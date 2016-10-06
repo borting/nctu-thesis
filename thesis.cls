@@ -30,6 +30,7 @@
                                     % WenQuanYi Micro Hei (文泉驛微米黑)
 \setCJKmonofont{WenQuanYi Zen Hei Mono}  % WenQuanYi Zen Hei Mono (文泉驛等寬正黑)
                                          % WenQuanYi Micro Hei Mono (文泉驛等寬微米黑)
+\fi
 %%% Windows
 \ifwindows
 \setCJKmainfont{DFKai-SB}  % DFKai-SB (標楷體)
