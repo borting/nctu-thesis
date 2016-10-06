@@ -1,0 +1,221 @@
+\usepackage{color}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{multirow}
+\usepackage{bm}
+\usepackage{epstopdf}
+\usepackage{verbatim}
+
+\usepackage{calc}
+\usepackage{longtable}
+
+\usepackage{graphicx}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{construction}{Construction}
+\newtheorem{goal}{Goal}
+\newtheorem{claim}{Claim}
+\newtheorem{fact}{Fact}
+\newtheorem{conjecture}{Conjecture}
+
+%%%%%%%%%%%%%%%%%%%% Graphics %%%%%%%%%%%%%%%%%%%%
+\graphicspath{{figures/}}
+
+\newcommand{\onefiguren}[3]{
+  \begin{figure}[tbp] 
+  %\begin{minipage}{0.5
+  \begin{center}
+  \centering
+  \includegraphics[width=\textwidth, keepaspectratio=true]{#1}
+  \vspace{-4mm} %-3
+  \caption{{\footnotesize #2}}
+  \label{#3}
+  %\vspace{-4mm} %-3
+  \end{center}
+  %\end{minipage}
+  \end{figure}
+  \vspace{7mm}
+}
+\newcommand{\onefigure}[5]{
+  \begin{figure}[tbp] 
+  %\begin{center}
+	\centering  
+  \includegraphics[height=#2,width=#3,keepaspectratio=true]{#1}
+  \vspace{-4mm} %-3
+  \caption{{\footnotesize #4}}
+  \label{#5}
+  \vspace{-4mm} %-3
+  %\end{center}
+  \end{figure}
+}
+
+\newcommand{\onefigurecap}[6]{ %used for long-caption figures.
+  \begin{figure}[tbp] 
+  %\begin{center}
+	\centering  
+  \includegraphics[height=#2,width=#3,keepaspectratio=true]{#1}
+  \vspace{-4mm} %-3
+  \caption[#4]{{\footnotesize #5}} %#4: caption title, #5: full caption
+  \label{#6}
+  \vspace{-4mm} %-3
+  %\end{center}
+  \end{figure}
+}
+
+\newcommand{\twofigures}[6]{
+\begin{figure*}[t!]
+\begin{center}
+\begin{tabular}{c c}
+\hspace{-5mm} \includegraphics[height=#3,width=#4,keepaspectratio=true]{#1} 
+  & \includegraphics[height=#3,width=#4,keepaspectratio=true]{#2} \\
+\end{tabular}
+\vspace{-4mm} %-4
+\caption{{\footnotesize #5}}
+\label{#6}
+\vspace{-4mm} %-2
+\end{center}
+\end{figure*}
+}
+
+\newcommand{\twofigurescap}[7]{ %used for long-caption figures.
+  \begin{figure*}[t!]
+\begin{center}
+\begin{tabular}{c c}
+\hspace{-5mm} \includegraphics[height=#3,width=#4,keepaspectratio=true]{#1} 
+  & \includegraphics[height=#3,width=#4,keepaspectratio=true]{#2} \\
+\end{tabular}
+\vspace{-4mm} %-4
+\caption[#5]{{\footnotesize #6}}
+\label{#7}
+\vspace{-4mm} %-2
+\end{center}
+\end{figure*}
+}
+
+% single column
+\newcommand{\twofigurestight}[6]{
+\begin{figure}[t!]
+\begin{center}
+\begin{tabular}{c c}
+\hspace{-5mm} \includegraphics[height=#3,width=#4,keepaspectratio=true]{#1} 
+  & \includegraphics[height=#3,width=#4,keepaspectratio=true]{#2} \\
+\end{tabular}
+\vspace{-4mm}
+\caption{{\footnotesize #5}}
+\label{#6}
+\vspace{-2mm}
+\end{center}
+\end{figure}
+}
+
+\newcommand{\threefigures}[7]{
+\begin{figure*}[t!]
+\begin{center}
+\begin{tabular}{c c c}
+\hspace{-5mm} \includegraphics[height=#4,width=#5,keepaspectratio=true]{#1} \hspace{-3mm}
+  & \hspace{-1mm} \includegraphics[height=#4,width=#5,keepaspectratio=true]{#2} \hspace{-3mm}
+  & \hspace{-1mm} \includegraphics[height=#4,width=#5,keepaspectratio=true]{#3} \\
+\end{tabular}
+%\vspace{-4mm}
+\caption{{\footnotesize #6}}
+\label{#7}
+%\vspace{-2mm}
+\end{center}
+\end{figure*}
+}
+
+\newcommand{\threefigurescap}[8]{ %for long caption
+\begin{figure*}[t!]
+\begin{center}
+\begin{tabular}{c c c}
+\hspace{-5mm} \includegraphics[height=#4,width=#5,keepaspectratio=true]{#1} \hspace{-3mm}
+  & \hspace{-1mm} \includegraphics[height=#4,width=#5,keepaspectratio=true]{#2} \hspace{-3mm}
+  & \hspace{-1mm} \includegraphics[height=#4,width=#5,keepaspectratio=true]{#3} \\
+\end{tabular}
+%\vspace{-4mm}
+\caption[#6]{{\footnotesize #7}}
+\label{#8}
+%\vspace{-2mm}
+\end{center}
+\end{figure*}
+}
+
+\newcommand{\threefigurestight}[7]{
+\begin{figure*}[t!]
+\begin{center}
+\begin{tabular}{c c c}
+\hspace{-10mm} \includegraphics[height=#4,width=#5,keepaspectratio=true]{#1} \hspace{-5mm}
+  & \hspace{-5mm} \includegraphics[height=#4,width=#5,keepaspectratio=true]{#2} \hspace{-5mm}
+  & \hspace{-5mm} \includegraphics[height=#4,width=#5,keepaspectratio=true]{#3} \\
+\end{tabular}
+%\vspace{-4mm}
+\caption{{\footnotesize #6}}
+\label{#7}
+%\vspace{-2mm}
+\end{center}
+\end{figure*}
+}
+
+
+%%%%%%%%%%%%%%%%%%%% Math %%%%%%%%%%%%%%%%%%%%
+\def\C{{\mathbb C}}  % complex
+\def\Q{{\mathbb Q}}  % rationals
+\def\Z{{\mathbb Z}}  % integers
+\def\N{{\mathbb N}}  % integers
+\def\R{{\mathbb R}}  % reals
+\def\P{{\mathbb P}}  % probability
+\def\1{{\mathbb I}}  % indicator
+\def\Ee{{\mathbb E}} % expectation
+\def\Bc{{\mathcal B}}
+\def\Cc{{\mathcal C}}
+\def\Dc{{\mathcal D}}
+\def\Ec{{\mathcal E}}
+\def\Ic{{\mathcal I}}
+\def\Kc{{\mathcal K}}
+\def\Lc{{\mathcal L}}
+\def\Nc{{\mathcal N}}
+\def\Pc{{\mathcal P}}
+\def\Rc{{\mathcal R}}
+\def\Sc{{\mathcal S}}
+\def\Tc{{\mathcal T}}
+\def\Uc{{\mathcal U}}
+\def\Vc{{\mathcal V}}
+\def\Xc{{\mathcal X}}
+\def\Var{{\textrm{\bf Var}}}
+\def\diag{{\textrm{diag}}}
+\def\Unif{{\textrm{Unif}}}
+\newcommand{\me}{\mathrm{e}}  % math e
+\newcommand{\mi}{\mathrm{i}}  % math i
+%% upright \pi not easy since not provided in most math fonts
+\newcommand{\dif}{\mathrm{d}}  % differential operator
+\newcommand{\vect}[1]{\bm{#1}} % bold for vectors
+\newcommand{\rv}[1]{\bm{#1}}   % bold for random variables
+%\newcommand{\mat}[1]{\mathsf{#1}} % san serif for matrix
+\newcommand{\tmat}[2][rrrrrrrrrr]{\left[  
+\begin{array}{#1} 
+  #2 \\ 
+\end{array} 
+\right]^{\scriptstyle {tr}}}
+
+\newcommand{\mat}[2][rrrrrrrrrr]{\left[ 
+\begin{array}{#1} 
+  #2 \\ 
+\end{array}
+\right]＼}
+
+%%%%%%%%%%%%%%%%%%%% Source Code Environments %%%%%%%%%%%%%%%%%%%%
+\newenvironment{mycode}
+{\begin{list}{}{\setlength{\leftmargin}{1em}}\item\scriptsize\bfseries}
+{\end{list}}
+
+\newenvironment{mybigcode}
+{\begin{list}{}{\setlength{\leftmargin}{1em}}\item\small\sffamily}
+{\end{list}}
+
+\newenvironment{mytinycode}
+{\begin{list}{}{\setlength{\leftmargin}{1em}}\item\tiny\bfseries}
+{\end{list}}

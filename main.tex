@@ -1,0 +1,56 @@
+\documentclass{thesis}
+
+\input{env/common}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Front Pages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set title, author, advisor, degree, affiliation, and date.
+\input{aux/frontpage}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Copyright %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\copyrightpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Abstracts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{roman}  % Set page numbering to i, ii, iii, ...
+\setcounter{page}{0}
+
+\input{abs/abstract_zh}
+\input{abs/abstract_en}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Acknowledgement %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{aux/ack}
+\input{aux/dedication}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Index %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addcontentsline{toc}{section}{Table of Contents} 
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Figure List %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures 
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Table List %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addcontentsline{toc}{section}{List of Tables}
+\listoftables 
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Contents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{arabic}  % Change page numbering to 1, 2, 3, ...
+
+\input{chapters/1-intro}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{IEEEtran}
+\bibliography{bib/thesis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% CV %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{aux/cv}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Publication %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{aux/publication}
+
+\end{document} 
