@@ -40,10 +40,10 @@
 \fi
 %%% Mac OS X
 \ifmacosx
-\setCJKmainfont{Apple LiSung Light}  % Apple LiSung Light (蘋果儷細宋)
-                                     % LiSong Pro Light (儷宋 Pro, Max OS 9)
-\setCJKsansfont{Heiti TC Medium}  % Heiti TC (黑體-繁 中黑, available in OS X 10.6 and later)
-                                  % LiHei Pro Medium (儷黑 Pro, available in Mac OS X 10.3 and later)
+\setCJKmainfont{LiSong Pro}  % LiSong Pro (儷宋 Pro)
+                             % Apple LiSung (蘋果儷細宋)
+\setCJKsansfont{Heiti TC}  % Heiti TC (黑體-繁 中黑)
+                           % LiHei Pro (儷黑 Pro)
 \fi
 
 % Enable line break for chinese
