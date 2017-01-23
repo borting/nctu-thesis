@@ -1,13 +1,16 @@
-%\documentclass[]{thesis}                % draft mode
-%\documentclass[review]{thesis}          % writing mode (disable front matters)
-\documentclass[watermark,final]{thesis}  % print version
+\documentclass[]{thesis}                 % draft mode (default)
+%\documentclass[review]{thesis}           % writing mode (disable front matters)
+%\documentclass[watermark,final]{thesis}  % print version
 
 \input{env/common}
 
 \begin{document}
 
+% Show repeated author names in reference
+\bstctlcite{IEEEexample:BSTcontrol}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Front Matters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Title
@@ -44,11 +47,11 @@
 \degreeyear{2017}
 \degreeyearzh{中 華 民 國 一 百 零 六 年 一 月}
 
-% watermark
+% Watermark
 \watermark{figures/nctu_logo.jpg}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Make Title Pages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Not print front matters in review mode
@@ -59,6 +62,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Set page numbering to 'roman' (i, ii, iii, ...)
 \frontmatter
 
 \input{abs/abstract_zh}
@@ -72,7 +77,7 @@
 \ifTHESISOPTIONfinal
   \input{ack/ack}
 
-% Only required by PhD dissertation
+% Only shown in PhD dissertation
 \ifTHESISOPTIONphd
   \input{ack/dedication}
 \fi
@@ -99,18 +104,28 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Contents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\pagenumbering{arabic}  % Change page numbering to 1, 2, 3, ...
+% Set page numbering to 'arabic' (1, 2, 3, ...)
 \mainmatter
+
+% Contents
 \input{chapters/1-intro}
+\cite{Yang_2017}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Usage:
-%    \bibliography{bib/bib1,bib/bib2, ..., bib/bibN}
+% Set bib style
 \bibliographystyle{IEEEtran}
-\bibliography{bib/thesis}
+
+% Usage:
+%   \bibliography{bib/bib1,bib/bib2, ..., bib/bibN}
+%
+%   DONOT remove bib/BSTcontrol.bib when using IEEEtran.bst. The reason is that
+% when we cite two papers of the same (or similar) authors, IEEEtran.bst would
+% replace the author names with "------". To avoid this, we use BSTControl.bib
+% to set ctldash_repeated_names to 'no'.
+\bibliography{bib/ieeeBSTcontrol,bib/thesis}
 
 % Add to "Table of Contents"
 \addcontentsline{toc}{chapter}{Bibliography}

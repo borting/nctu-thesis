@@ -59,6 +59,7 @@
 \usepackage{emptypage}    % clear page number in empty even pages
 \usepackage{afterpage}    % adding blank page after cover & title page (twoside)
 \usepackage{lipsum}       % generating text for testing
+\usepackage[retainorgcmds]{IEEEtrantools}  % for \bstctlcite
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -212,7 +213,7 @@
 \fi
 
 \ifTHESISOPTIONdraft
-  \draft{Draft}
+  \draft{ Draft}
   \draftzh{初稿}
 \else
   \draft{}
@@ -456,7 +457,7 @@
   \hfill
   \makebox[2.8cm][s]{\large{指導教授：}}
   \makebox[2.4cm][s]{\large{\@advisorzh}}
-  \makebox[1cm][l]{\large{博士}}\\
+  \makebox[1.2cm][r]{\large{博士}}\\
   \centerline{\large{\@universityzh\@institutezh}}
   \vspace*{-0.4in}
 }
@@ -547,3 +548,4 @@
 }
 
 \endinput
+

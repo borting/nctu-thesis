@@ -10,7 +10,20 @@
 \usepackage{calc}
 \usepackage{longtable}
 
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
 \usepackage{graphicx}
+\usepackage[tight,footnotesize]{subfigure}
+
+% for landscape figure
+\usepackage{lscape}
+\usepackage{rotating}
+
+% for table
+\usepackage{booktabs}
+\usepackage{threeparttable}  % for adding notes in table
+
 \newtheorem{definition}{Definition}
 \newtheorem{proposition}{Proposition}
 \newtheorem{lemma}{Lemma}
@@ -40,6 +53,7 @@
   \end{figure}
   \vspace{7mm}
 }
+
 \newcommand{\onefigure}[5]{
   \begin{figure}[tbp] 
   %\begin{center}
@@ -58,10 +72,23 @@
   %\begin{center}
 	\centering  
   \includegraphics[height=#2,width=#3,keepaspectratio=true]{#1}
-  \vspace{-4mm} %-3
+  \vspace{-2mm} %-3
   \caption[#4]{{\footnotesize #5}} %#4: caption title, #5: full caption
   \label{#6}
-  \vspace{-4mm} %-3
+  \vspace{-1mm} %-3
+  %\end{center}
+  \end{figure}
+}
+
+\newcommand{\oneframefigurecap}[6]{ %used for long-caption figures.
+  \begin{figure}[tbp] 
+  %\begin{center}
+	\centering  
+  \frame{\includegraphics[height=#2,width=#3,keepaspectratio=true]{#1}}
+  \vspace{-2mm} %-3
+  \caption[#4]{{\footnotesize #5}} %#4: caption title, #5: full caption
+  \label{#6}
+  \vspace{-1mm} %-3
   %\end{center}
   \end{figure}
 }
@@ -73,10 +100,10 @@
 \hspace{-5mm} \includegraphics[height=#3,width=#4,keepaspectratio=true]{#1} 
   & \includegraphics[height=#3,width=#4,keepaspectratio=true]{#2} \\
 \end{tabular}
-\vspace{-4mm} %-4
+\vspace{-2mm} %-4
 \caption{{\footnotesize #5}}
 \label{#6}
-\vspace{-4mm} %-2
+\vspace{-1mm} %-2
 \end{center}
 \end{figure*}
 }
@@ -88,10 +115,10 @@
 \hspace{-5mm} \includegraphics[height=#3,width=#4,keepaspectratio=true]{#1} 
   & \includegraphics[height=#3,width=#4,keepaspectratio=true]{#2} \\
 \end{tabular}
-\vspace{-4mm} %-4
+\vspace{-2mm} %-4
 \caption[#5]{{\footnotesize #6}}
 \label{#7}
-\vspace{-4mm} %-2
+\vspace{-1mm} %-2
 \end{center}
 \end{figure*}
 }
@@ -219,3 +246,22 @@
 \newenvironment{mytinycode}
 {\begin{list}{}{\setlength{\leftmargin}{1em}}\item\tiny\bfseries}
 {\end{list}}
+
+%%%%%%%%%%%%%%%%%%%% Algorithms %%%%%%%%%%%%%%%%%%%%
+
+% For backward support the commands in algorithmic package
+\newcommand{\STATE}{\State}
+\newcommand{\FOR}{\For}
+\newcommand{\FORALL}{\ForAll}
+\newcommand{\ENDFOR}{\EndFor}
+\newcommand{\WHILE}{\While}
+\newcommand{\ENDWHILE}{\EndWhile}
+\newcommand{\REPEAT}{\Repeat}
+\newcommand{\UNTIL}{\Until}
+\newcommand{\IF}{\If}
+\newcommand{\ELSIF}{\ElsIf}
+\newcommand{\ELSE}{\Else}
+\newcommand{\ENDIF}{\EndIf}
+\newcommand{\LOOP}{\Loop}
+\newcommand{\ENDLOOP}{\EndLoop}
+\newcommand{\RETURN}{\State \Return}
