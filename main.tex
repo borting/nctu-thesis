@@ -1,56 +1,138 @@
-\documentclass{thesis}
+%\documentclass[]{thesis}                % draft mode
+%\documentclass[review]{thesis}          % writing mode (disable front matters)
+\documentclass[watermark,final]{thesis}  % print version
 
 \input{env/common}
 
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%% Front Pages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Set title, author, advisor, degree, affiliation, and date.
-\input{extra/frontpage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Title
+\title{A Study of the Strategy and Tactics of \\ Reinhard von Lohengramm}
+\titlezh{萊茵哈特·馮·羅嚴克拉姆的戰略與戰術研究}
+
+% Author
+\author{Wen-Li Yang}
+\authorzh{楊威利}
+
+% Advisor
+\advisor{Bamboo Fox}
+\advisorzh{竹狐}
+
+% Field
+\field{History}
+
+% Institute
+\institute{Institute of Military History}
+\institutezh{戰史研究所}
+
+% College
+\college{College of Global Security and Intelligence}
+
+% University
+\university{National Chiao Tung University}
+\universityzh{國立交通大學}
+
+% Location
+\location{Hsinchu, Taiwan}
+
+% Date of final submission
+\degreemonth{January}
+\degreeyear{2017}
+\degreeyearzh{中 華 民 國 一 百 零 六 年 一 月}
+
+% watermark
+\watermark{figures/nctu_logo.jpg}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Not print front matters in review mode
+\ifTHESISOPTIONreview\else
 
 \maketitle
 
-%%%%%%%%%%%%%%%%%%%%%%%%% Copyright %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\copyrightpage
-
-%%%%%%%%%%%%%%%%%%%%%%%%% Abstracts %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagenumbering{roman}  % Set page numbering to i, ii, iii, ...
-\setcounter{page}{0}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
 
 \input{abs/abstract_zh}
 \input{abs/abstract_en}
 
-%%%%%%%%%%%%%%%%%%%%%%%%% Acknowledgement %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{extra/ack}
-\input{extra/dedication}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Acknowledgement %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%% Index %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\addcontentsline{toc}{section}{Table of Contents} 
+% Only shown in final version
+\ifTHESISOPTIONfinal
+  \input{ack/ack}
+
+% Only required by PhD dissertation
+\ifTHESISOPTIONphd
+  \input{ack/dedication}
+\fi
+
+\fi  % \ifTHESISOPTIONfinal
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Index %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \tableofcontents
+\addcontentsline{toc}{chapter}{Table of Contents}
+\AddToShipoutPictureBG{\BackgroundPicture}
 
-%%%%%%%%%%%%%%%%%%%%%%%%% Figure List %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\addcontentsline{toc}{section}{List of Figures}
-\listoffigures 
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
 
-%%%%%%%%%%%%%%%%%%%%%%%%% Table List %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\addcontentsline{toc}{section}{List of Tables}
 \listoftables 
-\newpage
+\addcontentsline{toc}{chapter}{List of Tables}
 
-%%%%%%%%%%%%%%%%%%%%%%%%% Contents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagenumbering{arabic}  % Change page numbering to 1, 2, 3, ...
+\fi  % \ifTHESISOPTIONreview
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Contents %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\pagenumbering{arabic}  % Change page numbering to 1, 2, 3, ...
+\mainmatter
 \input{chapters/1-intro}
 
-%%%%%%%%%%%%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\addcontentsline{toc}{chapter}{Bibliography}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Usage:
+%    \bibliography{bib/bib1,bib/bib2, ..., bib/bibN}
 \bibliographystyle{IEEEtran}
 \bibliography{bib/thesis}
 
-%%%%%%%%%%%%%%%%%%%%%%%%% CV %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{extra/cv}
+% Add to "Table of Contents"
+\addcontentsline{toc}{chapter}{Bibliography}
 
-%%%%%%%%%%%%%%%%%%%%%%%%% Publication %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{extra/publication}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Appendix %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\end{document} 
+% TODO
+%   appendix
+
+%\appendix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CV & Publication %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% On shown in a PhD dissertation
+\ifTHESISOPTIONphd
+  \backmatter
+  \input{cv/cv}
+  \input{cv/publication}
+\fi
+
+\end{document}
