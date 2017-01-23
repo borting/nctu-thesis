@@ -1,0 +1,51 @@
+\begin{table}[h]
+	\centering
+	\caption[Comparison of IP Datagram Sizes and Overheads in Difference Cases]{Comparison of IP datagram sizes and overheads in difference cases}
+	\label{table:cmp}
+%\resizebox{0.48\textwidth}{!}{
+\begin{threeparttable}
+\begin{tabular}{llllrlllrll}
+\toprule[1.1pt]
+					& & 			\multicolumn{5}{c}{IP datagram Size}			& 			\multicolumn{3}{c}{Overhead} 		\\
+\midrule[1.1pt]
+	Case 0	& &							& &		66 bytes		& &								&					& \multicolumn{1}{c}{-}		&&             \\
+	Case 1	& &							& &		287 bytes 	& &								&					& 335 \%									&&             \\
+	Case 2	& &							& &		231 bytes		& &								&					& 250 \%									&&             \\
+	Case 3	& &							& &		150 bytes		& &								&					& 127 \%									&&          	\\       
+\bottomrule[1.1pt]
+\end{tabular}
+\begin{tablenotes}
+\item[*] Case 0: no access control protection.
+\item[*] Case 1: attaching a capability token.
+\item[*] Case 2: uncompressed Cap-Token option.
+\item[*] Case 3: compressed Cap-Token option.
+\end{tablenotes}
+\end{threeparttable}
+%}
+\end{table}
+
+%\begin{table}[h]
+%	\centering
+%	\caption{Comparison of the IP datagram sizes and overheads in difference cases.}
+%	\label{table:cmp}
+%%\resizebox{0.48\textwidth}{!}{
+%\begin{threeparttable}
+%\begin{tabular}{lllllrllrll}
+%\toprule[1.1pt]
+% & & \multicolumn{5}{c}{\begin{tabular}[c]{@{}c@{}}IP datagram Size\\ (byte)\end{tabular}} & \multicolumn{3}{c}{\begin{tabular}[c]{@{}c@{}}Overhead\\ (\%)\end{tabular}} \\
+%\midrule[1.1pt]
+%	Case 0 &&                            & & & 65                            &                           &                  & \multicolumn{1}{c}{-}                 &&                  \\
+%	Case 1 &&                            & & & 263                          &                           &                  & 304                                   &&                  \\
+%	Case 2 &&                            & & & 180                          &                           &                  & 176                                   &&                  \\
+%	Case 3 &&                            & & & 110                          &                           &                  & 69                                    &&          \\       
+%\bottomrule[1.1pt]
+%\end{tabular}
+%\begin{tablenotes}
+%\item[*] Case 0: no access control protection.
+%\item[*] Case 1: attaching a capability token.
+%\item[*] Case 2: uncompressed Cap-Token option.
+%\item[*] Case 3: compressed Cap-Token option.
+%\end{tablenotes}
+%\end{threeparttable}
+%%}
+%\end{table}

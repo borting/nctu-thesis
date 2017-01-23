@@ -1,0 +1,32 @@
+\chapter{Figures and Tables}
+
+\section{Figures}
+
+\onefigurecap{figures/nctu_logo}{!}{0.5\linewidth}
+{NCTU logo}
+{NCTU logo. The history of NCTU logo days back to 1896 ...}
+{fig:nctu_logo}
+
+Use \textbackslash onefigurecap to include a figure, it has 6 parameters:
+\begin{enumerate}
+\item path to the figure (generally I prefer to put all figures under same directory)
+\item height of figure
+\item width of figure
+\item text shown in ``List of Figures" (so ... should be short, better in one line)
+\item text shown below the figure (say anything you like)
+\item label
+\end{enumerate}
+
+Generally, latex place figures at top of pages.
+
+For example, Figure~\ref{fig:nctu_logo} said blablabla.
+
+Of course, use $\sim$ to connect \textbackslash cite\{\} and previous text.
+
+For more figure commands, see $env/common.tex$.
+
+\section{Tables}
+
+Generally, I prefer put table to another file.
+
+\input{tables/4-table_datagram_cmp.tex}
