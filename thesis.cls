@@ -1,6 +1,10 @@
 \ProvidesClass{thesis}[2017/01/23 V1.0 by Borting Chen]
 \NeedsTeXFormat{LaTeX2e}
 
+%TODO
+% 預留空間給 著作權授權書 (authorization) 和 審定書 (approval)
+% 檢查 twoside 時的版面配置
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Options Declaration %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,8 +70,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO:
-%   check margin in twoside mode
 % page margin
 \ifTHESISOPTIONfinal  % only valid in final mode
   \geometry{left=3 cm, right=2 cm, top=2.5 cm, bottom=2.5 cm}
@@ -272,13 +274,11 @@
 
 \newcommand\frontmatter{%
   \cleardoublepage
-%  \@mainmatterfalse
   \pagenumbering{roman}
 }
 
 \newcommand\mainmatter{%
   \cleardoublepage
-%  \@mainmattertrue
   \pagenumbering{arabic}
 }
 
@@ -292,15 +292,17 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Cover Page %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Front Matters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO
-%   try to use \titlepage to replace \coverpage and \frontpage
+%-------------------------------------------------------------------------------
+%  Cover Page
+%-------------------------------------------------------------------------------
 
 \def\coverpage
 {
   \thispagestyle{empty}
+  \phantomsection
   \begin{center}
     % univerity chinese name
     \fontsize{40}{40}{\Ming{\@universityzh}}\\
@@ -341,13 +343,14 @@
   \centerline{\makebox[15cm][s]{\large\@degreeyearzh}}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Front Page %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+%  Title Page
+%-------------------------------------------------------------------------------
 
-\def\frontpage
+\def\titlepage
 {
-\newpage
+  \cleardoublepage
+  \phantomsection
   \thispagestyle{empty}
   % chines & english titles
   \begin{center}
@@ -396,13 +399,14 @@
   \centerline{\makebox[8cm][s]{\normalsize\@degreeyearzh}}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Copyright Page %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+% Copyright Page
+%-------------------------------------------------------------------------------
 
 \def\copyrightpage{
-  \clearpage
+  \cleardoublepage
   \thispagestyle{empty}
+  \phantomsection
   \rule[0pt]{0pt}{0pt} \\
   \vspace{2.5in}
   \rule[0pt]{0pt}{0pt} \\
@@ -411,26 +415,29 @@
   \centerline{All rights reserved.}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Make Title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+%  Maketitle Redefinition
+%-------------------------------------------------------------------------------
 
 \def\maketitle{{
 % cover page
   \coverpage
 
-% blank page (twoside mode) 
-  \if@twoside
-    \afterpage{\blankpage}  
-  \fi
+% blank page (twoside mode)
+%  \if@twoside
+%    \afterpage{\blankpage}  
+%  \fi
 
-% front page 
-  \frontpage
+% Set page numbering to 'roman' (i, ii, iii, ...)
+  \frontmatter
 
-% blank page (twoside mode) 
-  \if@twoside
-    \afterpage{\blankpage}  
-  \fi
+% front page
+  \titlepage
+
+% blank page (twoside mode)
+%  \if@twoside
+%    \afterpage{\blankpage}  
+%  \fi
 
 % copyright page (dissertation final mode only)
   \ifTHESISOPTIONphd
@@ -440,13 +447,14 @@
   \fi
 }}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chinese Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+% Chinese Abstract
+%-------------------------------------------------------------------------------
 
 \def\abszhpage %中文摘要頁首
 {
-  \newpage
+  \cleardoublepage
+  \phantomsection
   \AddToShipoutPicture*{\BackgroundPicture}
   \addcontentsline{toc}{chapter}{摘要}
   \begin{center}
@@ -476,15 +484,16 @@
 \end{center}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% English Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+% English Abstract
+%-------------------------------------------------------------------------------
 
 %New environment of English Abstract: 為了使其頁碼與目錄其他章節標號一致
 
 \def\absenpage
 {
   \cleardoublepage
+  \phantomsection
   \newpage
   \AddToShipoutPicture*{\BackgroundPicture}
   \addcontentsline{toc}{chapter}{Abstract}
@@ -503,7 +512,7 @@
   \vspace*{-0.4in}
 }
 
-\newenvironment{abstracten}{
+\renewenvironment{abstract}{
 \absenpage
 \begin{center}
   \vspace*{-0.25in}
@@ -513,14 +522,14 @@
 \end{center}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Acknowledgement Page %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+%  Acknowledgement Page
+%-------------------------------------------------------------------------------
 
 \def\ackpage
 {
   \cleardoublepage
-  \newpage
+  \phantomsection
   \addcontentsline{toc}{chapter}{Acknowledgement}
 }
 
@@ -537,13 +546,13 @@
 \end{center}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Deidication Page %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+%  Deidication Page
+%-------------------------------------------------------------------------------
 
 \newenvironment{dedication}{
   \cleardoublepage
-  \newpage
+  \phantomsection
   \thispagestyle{empty}
   \vspace*{6.6cm}
 }
