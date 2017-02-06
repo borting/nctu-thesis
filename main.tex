@@ -1,72 +1,54 @@
-%\documentclass[]{thesis}                 % draft mode (default)
+\documentclass[]{thesis}                 % draft mode (default)
 %\documentclass[review]{thesis}           % writing mode (disable front matters)
-\documentclass[twoside,watermark,phd,final]{thesis}  % print version
+%\documentclass[watermark,phd,final]{thesis}  % print version
+%\documentclass[twoside,openright,watermark,phd,final]{thesis}  % print version
 
 \input{env/common}
 
-\begin{document}
-
-% Show repeated author names in reference
-\bstctlcite{IEEEexample:BSTcontrol}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Front Matters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%-------------------------------------------------------------------------------
+%  Author Info
+%    請在此設定 Title, 作者, 指導教授, 學校, 系所, 日期等資訊
+%-------------------------------------------------------------------------------
 \input{author/author}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Make Title Pages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
 
-% Not print front matters in review mode
-\ifTHESISOPTIONreview\else
+\bstctlcite{IEEEexample:BSTcontrol}  % Show repeated author names in reference
+
+\ifTHESISOPTIONreview\else  % Only print contents if in review mode
 
 \maketitle
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+%  Abstract
+%-------------------------------------------------------------------------------
 
+% 中文摘要
 \input{abs/abstract_zh}
+
+% 英文摘要
 \input{abs/abstract_en}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Acknowledgement %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+%  Acknowledgement
+%-------------------------------------------------------------------------------
 
-% Only shown in final version
-\ifTHESISOPTIONfinal
-  \input{ack/ack}
-
-% Only shown in PhD dissertation
-\ifTHESISOPTIONphd
-  \input{ack/dedication}
+% 誌謝
+\ifTHESISOPTIONfinal  % Only shown in final mode
+\input{ack/ack}
 \fi
 
-\fi  % \ifTHESISOPTIONfinal
+% 題獻頁 (博論才需要放)
+\ifTHESISOPTIONfinal\ifTHESISOPTIONphd  % Only for PhD dissertation final mode
+  \input{ack/dedication}
+\fi\fi
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Index %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+%  目錄
+%-------------------------------------------------------------------------------
 
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{Table of Contents}
-\tableofcontents
-\AddToShipoutPictureBG{\BackgroundPicture}
-
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{List of Figures}
-\listoffigures
-
-
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{List of Tables}
-\listoftables 
-
+% 產生目錄, 圖目錄, 表目錄
+\createContents
 
 \fi  % \ifTHESISOPTIONreview
 

@@ -201,6 +201,25 @@
 % "初稿"
 \def\draftzh#1{\gdef\@draftzh{#1}}
 
+\def\createContents{
+  % Contents
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Table of Contents}
+  \tableofcontents
+  \AddToShipoutPictureBG{\BackgroundPicture}
+  % Figures
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{List of Figures}
+  \listoffigures
+  % Tables
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{List of Tables}
+  \listoftables
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%% Macros Configuration %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -494,7 +513,6 @@
 {
   \cleardoublepage
   \phantomsection
-  \newpage
   \AddToShipoutPicture*{\BackgroundPicture}
   \addcontentsline{toc}{chapter}{Abstract}
   \begin{center}
