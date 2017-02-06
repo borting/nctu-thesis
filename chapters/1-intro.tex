@@ -8,30 +8,65 @@ Hello World! Welcome to use \textbf{XeTeX + xeCJK} to write your thesis/disserta
 \item We can use the fonts provided by your systems (Windows, Mac OS, ...) directly, rather than use the fonts provided by CJK package (which has limited support to rare use words).
 
 \item 我們可以隨意的在文章中切換中英文.
-Bye! $\textbackslash begin\{CJK\} ... \textbackslash end\{CJK\}$
+Bye! \textbackslash begin\{CJK\} ... \textbackslash end\{CJK\}
 
 \end{enumerate}
 
 \section{Environment}
 
+\subsection{推薦的組合}
+
+其實也只是我自己用慣的環境罷了 XD.
+寫碩論的時候自己還是個被 Windows 慣壞的使用者, 所以是用 MikTeX + Texmaker + JabRef.
+後來慢慢把重心轉到 Linux, 所以寫博論的時候改成用 TeX Live + Texmaker + JabRef (只有畫圖的時候會開個 Windows 用 Visio 畫圖 ``Orz).
+
 \begin{itemize}
 
-\item \textbf{Windows}
-\begin{itemize}
-  \item Editor: TeXmaker
-  \item \LaTeX: MiKTeX or TeX Live
+\item \textbf{LaTeX Typesetting System}:
+  \begin{itemize}
+  \item MiKTeX (https://miktex.org/) (Windows only)
+  \item TeX Live (https://www.tug.org/texlive/) (Windows/Linux/Mac OS)
+  \end{itemize}
+\item \textbf{LaTeX Editor}: TeXmaker (http://www.xm1math.net/texmaker/)
+\item \textbf{BibTeX Manager}: JabRef (http://www.jabref.org/)
+
 \end{itemize}
 
-\item \textbf{Linux}
+
+\subsection{LaTeX Editors}
+
+大部分的 LaTeX editor 都有提供 integrated viewer (e.g. PDF viewer), 可以直接在 editor 內檢查編譯的結果.
+但是, 這些 editor 都無法直接對編譯後產生的文字進行修改, 只能從 source tex file 修改.
+雖然也有些 editor 支援 WYSIWYM (what you see is what you mean) 的編譯模式, 讓使用者可以直接修改編譯後產生的文件.
+但除了 LyX 和少數網頁版的 editor 外, 絕大部分支援 WYSIWYM 的 editor 都是要收費的.
+以下只列出 open source software 或是 free software, 付費的不予考慮~\footnote{對其他 LaTeX editor 有興趣的請參考 https://en.wikipedia.org/wiki/Comparison\_of\_TeX\_editors}.
+
+
+\textbf{Basic editor}:
 \begin{itemize}
-  \item Editor: TeXmaker
-  \item \LaTeX: TeX Live
+\item \textbf{Texmaker} (http://www.xm1math.net/texmaker/) (Windows/Linux/Mac OS)
+\item \textbf{TeXstudio} (http://www.texstudio.org/) (Windows/Linux/Mac OS)
+\item \textbf{TeXwork} (http://www.tug.org/texworks/) (Windows/Linux/Mac OS)
+\item \textbf{Eclipse + TeXlipse} (http://texlipse.sourceforge.net/) (Windows/Linux/Mac OS)
 \end{itemize}
 
-\item \textbf{Mac OS}
+\textbf{WYSIWYM editor}:
 \begin{itemize}
-  \item Editor: ???
-  \item \LaTeX: TeX Live
+\item \textbf{LyX} (https://www.lyx.org/) (Windows/Linux/Mac OS) \\
+(不推薦. N年前實驗室學妹曾經用過, 但我老闆發現 LyX 會自動在 tex file 裡加入一些不必要的格式控制指令, 導致投稿時得花額外的心力去刪掉那些指令, 因此我老闆下令實驗室禁用 LyX.)
 \end{itemize}
 
+
+\textbf{Online editor}:
+\begin{itemize}
+\item \textbf{ShareLaTeX} (https://www.sharelatex.com/) \\
+(有提供 source code (https://github.com/sharelatex/sharelatex), 可以自己架一個)
+\item \textbf{Overleaf} (https://www.overleaf.com/)
+\item \textbf{Authorea} (https://www.authorea.com/)
+\end{itemize}
+
+\textbf{Terminal-based editor (Geak Only! lol)}:
+\begin{itemize}
+\item \textbf{Vim + Vim-Latex} (https://sourceforge.net/projects/vim-latex/)
+\item \textbf{Sublime Text + LaTeXTools} (https://github.com/SublimeText/LaTeXTools)
 \end{itemize}

@@ -47,7 +47,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Basic Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage[BoldFont, SlantFont, CJKchecksingle]{xeCJK} % for Chinese typing
+\usepackage[BoldFont, SlantFont, CJKchecksingle, CJKmath=true]{xeCJK}
+                          % for Chinese typing
 \usepackage{fontspec}     % for font selection
 \usepackage{ifplatform}   % determine tex is running on which platform/OS
 \usepackage{indentfirst}  % indention (Windows need this package)
@@ -102,7 +103,7 @@
                                          % WenQuanYi Micro Hei (文泉驛微米黑)
 \setCJKmonofont{WenQuanYi Zen Hei Mono}  % WenQuanYi Zen Hei Mono (文泉驛等寬正黑)
                                          % WenQuanYi Micro Hei Mono (文泉驛等寬微米黑)
-\newCJKfontfamily{\Ming}{AR PL UMing TW}       % 設定切換明體字型
+\newCJKfontfamily{\Ming}{AR PL UMing TW} % 設定切換明體字型
 \fi
 
 %%% Windows
