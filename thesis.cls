@@ -339,9 +339,10 @@
   \fontsize{18}{18}
   \makebox[0.75cm][s]{}\makebox[2.75cm][s]{研究生}\makebox[0.75cm][s]{：}
     \makebox[3.25cm][s]{\@authorzh}\\
+  \vspace{-0.2in}\\
   \makebox[0.75cm][s]{}\makebox[2.75cm][s]{指導教授}\makebox[0.75cm][s]{：}
     \makebox[3.25cm][s]{\@\@advisorzh}\makebox[2cm][c]{教授}\\
-    \vspace{1in}
+  \vspace{1in}
   \vfill
   % submission date
   \centerline{\makebox[15cm][s]{\large\@degreeyearzh}}
