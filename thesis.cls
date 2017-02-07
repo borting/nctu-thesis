@@ -1,25 +1,28 @@
-\ProvidesClass{thesis}[2017/01/23 V1.0 by Borting Chen]
+\ProvidesClass{thesis}[2017/02/07 V1.1 by Borting Chen]
 \NeedsTeXFormat{LaTeX2e}
 
 %TODO
 % 預留空間給 著作權授權書 (authorization) 和 審定書 (approval)
 % 檢查 twoside 時的版面配置
+% \cleardoublepage 後的空白頁不顯示 watermark
+% difference b/w \newcommand and \DeclareRobustCommand
+% Mac OS X 字型問題
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Options Declaration %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+% Document Options Declaration
+%-------------------------------------------------------------------------------
 
-% inherent existing options from report document class
+% Inherent existing options from report document class
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 
-% thesis type: (default: master)
+% Declare options for thesis types: (default: master)
 %   thesis(master) or dissertation(phd)
 \newif\ifTHESISOPTIONmaster         \THESISOPTIONmastertrue
 \newif\ifTHESISOPTIONphd            \THESISOPTIONphdfalse
 
 \DeclareOption{phd}{\THESISOPTIONmasterfalse\THESISOPTIONphdtrue}
 
-% thesis format: (default: deaft)
+% Declare options for print modes: (default: draft)
 %   review: for thesis writing (hide all front matters)
 %   draft : draft for defence
 %   final : print version
@@ -35,7 +38,7 @@
                       \THESISOPTIONdraftfalse
                       \THESISOPTIONfinaltrue}
 
-% watermark: (default: disabled)
+% Declare watermark option: (default: disabled)
 %   depending on the mode of thesis format:
 %     review: never shown
 %     draft : print "DRAFT" in the background
@@ -43,13 +46,13 @@
 \newif\ifTHESISOPTIONwatermark      \THESISOPTIONwatermarkfalse
 \DeclareOption{watermark}{\THESISOPTIONwatermarktrue}
 
-% load basic options
+% Load basic options
 \ProcessOptions
 \LoadClass[a4paper,12pt,oneside]{report}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Basic Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+% Basic Packages
+%-------------------------------------------------------------------------------
 
 \usepackage[BoldFont, SlantFont, CJKchecksingle, CJKmath=true]{xeCJK}
                           % for Chinese typing
@@ -66,38 +69,38 @@
 \usepackage{lipsum}       % generating text for testing
 \usepackage[retainorgcmds]{IEEEtrantools}  % for \bstctlcite
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+% Page Format
+%-------------------------------------------------------------------------------
 
-% page margin
+% Page margin
 \ifTHESISOPTIONfinal  % only valid in final mode
   \geometry{left=3 cm, right=2 cm, top=2.5 cm, bottom=2.5 cm}
 \else
   \geometry{left=2.5 cm, right=2.5 cm, top=2.5 cm, bottom=2.5 cm}
 \fi
 
-% page number position
+% Position of page number
 \pagestyle{plain}
 \setlength{\footskip}{1.5cm}
 
-% double spacing
+% Double spacing
 \doublespacing
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%% English Font Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+% English Font Setting
+%-------------------------------------------------------------------------------
 
 % Set English font in order to be consistent with Windows default font settings
 \setmainfont[Ligatures=TeX]{Times New Roman}
 \setsansfont[Ligatures=TeX]{Arial}
 \setmonofont[Ligatures=TeX]{Courier New}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%% Chinese Font Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+% Chinese Font Setting
+%-------------------------------------------------------------------------------
 
-%%% Linux
+% Linux
 \iflinux
 \setCJKmainfont{AR PL UKai TW}           % AR PL UKai TW (AR PL 中楷)
                                          % AR PL UMing TW (AR PL 明體)
@@ -108,7 +111,7 @@
 \newCJKfontfamily{\Ming}{AR PL UMing TW} % 設定切換明體字型
 \fi
 
-%%% Windows
+% Windows
 \ifwindows
 \setCJKmainfont{DFKai-SB}            % DFKai-SB (標楷體)
                                      % PMingLiU (新細明體)
@@ -117,7 +120,7 @@
 \newCJKfontfamily{\Ming}{PMingLiU}   % 設定切換明體字型
 \fi
 
-%%% Mac OS X
+% Mac OS X
 \ifmacosx
 \setCJKmainfont{LiSong Pro}  % LiSong Pro (儷宋 Pro)
                              % Apple LiSung (蘋果儷細宋)
@@ -129,19 +132,9 @@
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt plus 1pt
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%% General Font Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Set the font that will be used in the front matter headings
-\def\fmfont{\fontsize\@xiipt{14.5}\selectfont}
-\def\fmsmallfont{\fontsize\@xiipt{14pt}\selectfont}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Macros %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% These macros are used to declare arguments for front pages.
+%-------------------------------------------------------------------------------
+% Macros for Front Pages
+%-------------------------------------------------------------------------------
 
 % Chinese title of the thesis/dissertation
 \def\titlezh#1{\gdef\@titlezh{#1}}
@@ -201,6 +194,7 @@
 % "初稿"
 \def\draftzh#1{\gdef\@draftzh{#1}}
 
+% Generate Content pages
 \def\createContents{
   % Contents
   \cleardoublepage
@@ -220,10 +214,11 @@
   \listoftables
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%% Macros Configuration %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+% Default Values for Macros
+%-------------------------------------------------------------------------------
 
+% Macros related to degree
 \ifTHESISOPTIONmaster  % Master thesis
   \thesistype{Thesis}
   \thesistypezh{碩士論文}
@@ -234,6 +229,7 @@
   \degree{Doctor of Philosophy}
 \fi
 
+% Macros related to print mode
 \ifTHESISOPTIONdraft
   \draft{ Draft}
   \draftzh{初稿}
@@ -242,13 +238,13 @@
   \draftzh{}
 \fi
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Watermark %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+% Watermark
+%-------------------------------------------------------------------------------
 
 \newcommand\BackgroundPicture{
 \ifTHESISOPTIONwatermark
-% for 'draft' mode: print "DRAFT"
+% for draft mode: print "DRAFT"
   \ifTHESISOPTIONdraft
     \setlength{\@tempdimb}{.5\paperwidth}%
     \setlength{\@tempdimc}{.5\paperheight}%
@@ -258,7 +254,7 @@
       {\fontsize{6cm}{6cm}\selectfont{DRAFT}}}}%
     }%
   \fi
-% for 'final' mode: print the watermark specified by \watermark{}
+% for final mode: print the watermark specified by \watermark{}
   \ifTHESISOPTIONfinal
     \begin{tikzpicture}
       \node[minimum width=\paperwidth,minimum height=\paperheight,opacity=0.75]
@@ -268,54 +264,37 @@
 \fi
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------------------------------------------------
+% Commands
+%-------------------------------------------------------------------------------
 
-% \alwayssingle and \endalwayssingle
-%   These macros define an environment for front matter that is always 
-%   single column even in a double-column document.
-\def\alwayssingle{\@restonecolfalse\if@twocolumn\@restonecoltrue\onecolumn
-                  \else \newpage \fi}
-\def\endalwayssingle{\if@restonecol\twocolumn \else \newpage \fi}
-
-% change margin of a page
+% Change margin of a page
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
 \let\endchangemargin=\endlist 
 
-% add blank page after cover and title pages in twoside mode
-\newcommand\blankpage{%
-    \null
-    \thispagestyle{empty}%
-    \addtocounter{page}{-1}%
-    \newpage
-}
-
+% Use roman page numbering
 \newcommand\frontmatter{%
   \cleardoublepage
   \pagenumbering{roman}
 }
 
+% Use arabic page numbering
 \newcommand\mainmatter{%
   \cleardoublepage
   \pagenumbering{arabic}
 }
 
+% Clear page numbering
 \newcommand\backmatter{%
   \if@openright
     \cleardoublepage
   \else
     \clearpage
   \fi
-%  \@mainmatterfalse
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Front Matters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %-------------------------------------------------------------------------------
-%  Cover Page
+% Cover Page
 %-------------------------------------------------------------------------------
 
 \def\coverpage
@@ -363,7 +342,7 @@
 }
 
 %-------------------------------------------------------------------------------
-%  Title Page
+% Title Page
 %-------------------------------------------------------------------------------
 
 \def\titlepage
@@ -419,6 +398,17 @@
 }
 
 %-------------------------------------------------------------------------------
+% Authorization Page
+%-------------------------------------------------------------------------------
+
+\def\authzpage{
+  \cleardoublepage
+  \thispagestyle{empty}
+  \phantomsection
+  \newpage
+}
+
+%-------------------------------------------------------------------------------
 % Copyright Page
 %-------------------------------------------------------------------------------
 
@@ -435,17 +425,12 @@
 }
 
 %-------------------------------------------------------------------------------
-%  Maketitle Redefinition
+% Maketitle Redefinition
 %-------------------------------------------------------------------------------
 
 \def\maketitle{{
 % cover page
   \coverpage
-
-% blank page (twoside mode)
-%  \if@twoside
-%    \afterpage{\blankpage}  
-%  \fi
 
 % Set page numbering to 'roman' (i, ii, iii, ...)
   \frontmatter
@@ -453,10 +438,7 @@
 % front page
   \titlepage
 
-% blank page (twoside mode)
-%  \if@twoside
-%    \afterpage{\blankpage}  
-%  \fi
+  \authzpage
 
 % copyright page (dissertation final mode only)
   \ifTHESISOPTIONphd
@@ -507,8 +489,6 @@
 % English Abstract
 %-------------------------------------------------------------------------------
 
-%New environment of English Abstract: 為了使其頁碼與目錄其他章節標號一致
-
 \def\absenpage
 {
   \cleardoublepage
@@ -530,6 +510,8 @@
   \vspace*{-0.4in}
 }
 
+% Renew environment for english abstract, 使其頁碼與目錄其他章節標號一致
+
 \renewenvironment{abstract}{
 \absenpage
 \begin{center}
@@ -541,7 +523,7 @@
 }
 
 %-------------------------------------------------------------------------------
-%  Acknowledgement Page
+% Acknowledgement Page
 %-------------------------------------------------------------------------------
 
 \def\ackpage
@@ -565,7 +547,7 @@
 }
 
 %-------------------------------------------------------------------------------
-%  Deidication Page
+% Deidication Page
 %-------------------------------------------------------------------------------
 
 \newenvironment{dedication}{
@@ -576,4 +558,3 @@
 }
 
 \endinput
-
