@@ -1,6 +1,6 @@
-%\documentclass[]{thesis}                     % draft mode (default)
-%\documentclass[review]{thesis}               % review mode (show contents only)
-\documentclass[watermark,phd,final]{thesis}  % final mode (print version)
+\documentclass[]{thesis}  % draft mode (default)
+%\documentclass[review]{thesis}  % review mode (show contents & reference only)
+%\documentclass[watermark,phd,final]{thesis}  % final mode (print version)
 %\documentclass[twoside,openright,watermark,phd,final]{thesis}
 
 %-------------------------------------------------------------------------------
@@ -13,20 +13,17 @@
 % 修改 thesis.cls default 設定
 %\input{}
 
+%-------------------------------------------------------------------------------
+% Author Info
+%-------------------------------------------------------------------------------
+
 % 填寫 Title, 作者, 指導教授, 學校, 系所, 日期等資訊
 \input{author/author}
 
-%-------------------------------------------------------------------------------
-% Contents
-%-------------------------------------------------------------------------------
-
 \begin{document}
 
-% Show repeated author names in reference, remove this if not use IEEEtran.bst
+% Show repeated author names in reference, remove this if not using IEEEtran.bst
 \bstctlcite{IEEEexample:BSTcontrol}
-
-% Only print contents in review mode
-\ifTHESISOPTIONreview\else  
 
 % Generate cover, title, authorization, approval and copyright pages
 \maketitle
@@ -46,36 +43,28 @@
 %-------------------------------------------------------------------------------
 
 % 誌謝
-\ifTHESISOPTIONfinal  % Only shown in final mode
 \input{ack/ack}
-\fi
 
-% 題獻頁 (博論才需要放)
-\ifTHESISOPTIONfinal\ifTHESISOPTIONphd  % Only for PhD dissertation (final mode)
+% 題獻頁 (Only shown in the final mode of a PhD dissertation)
 \input{ack/dedication}
-\fi\fi
 
 %-------------------------------------------------------------------------------
 % 目錄
 %-------------------------------------------------------------------------------
 
-% 產生目錄, 圖目錄, 表目錄
-\createContents
-
-\fi  % \ifTHESISOPTIONreview
+% Generate 'Table of Contents', 'List of Figures', and 'List of Tables', and
+% Set page numbering to 'arabic'
+\maketocs
 
 %-------------------------------------------------------------------------------
-% 內文
+% Contents
 %-------------------------------------------------------------------------------
-
-% Set page numbering to 'arabic' (1, 2, 3, ...)
-\mainmatter
 
 % 內文, 請依照章節順序擺放
 \input{chapters/1-intro}
-%\input{chapters/2-secorder}
-%\input{chapters/3-writing}
-%\input{chapters/4-figure}
+\input{chapters/2-secorder}
+\input{chapters/3-writing}
+\input{chapters/4-figure}
 
 %-------------------------------------------------------------------------------
 % 參考文獻
@@ -110,11 +99,10 @@
 % 作者簡歷
 %-------------------------------------------------------------------------------
 
-\ifTHESISOPTIONphd  % Only shown in a PhD dissertation
-% 簡歷
+% 簡歷 (Only shown in a PhD dissertation)
 \input{author/cv}
-% 著作列表
-\input{author/publication}
-\fi
+
+% 著作列表 (Only shown in a PhD dissertation)
+\input{author/publications}
 
 \end{document}

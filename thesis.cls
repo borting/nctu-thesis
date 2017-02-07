@@ -194,26 +194,6 @@
 % "初稿"
 \def\draftzh#1{\gdef\@draftzh{#1}}
 
-% Generate Content pages
-\def\createContents{
-  % Contents
-  \cleardoublepage
-  \phantomsection
-  \addcontentsline{toc}{chapter}{Table of Contents}
-  \tableofcontents
-  \AddToShipoutPictureBG{\BackgroundPicture}
-  % Figures
-  \cleardoublepage
-  \phantomsection
-  \addcontentsline{toc}{chapter}{List of Figures}
-  \listoffigures
-  % Tables
-  \cleardoublepage
-  \phantomsection
-  \addcontentsline{toc}{chapter}{List of Tables}
-  \listoftables
-}
-
 %-------------------------------------------------------------------------------
 % Default Values for Macros
 %-------------------------------------------------------------------------------
@@ -291,6 +271,32 @@
   \else
     \clearpage
   \fi
+}
+
+% Generate tables of contents, list of figures, and list of tables, and set
+% page numbering to 'arabic'
+\def\maketocs{
+\ifTHESISOPTIONreview\else
+% Table of Contents
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Table of Contents}
+  \tableofcontents
+  \AddToShipoutPictureBG{\BackgroundPicture}
+% List of Figures
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{List of Figures}
+  \listoffigures
+% List of Tables
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{List of Tables}
+  \listoftables
+\fi
+
+% Set page numbering to 'arabic' (1, 2, 3, ...)
+\mainmatter
 }
 
 %-------------------------------------------------------------------------------
@@ -429,6 +435,7 @@
 %-------------------------------------------------------------------------------
 
 \def\maketitle{{
+\ifTHESISOPTIONreview\else
 % cover page
   \coverpage
 
@@ -446,6 +453,7 @@
       \copyrightpage
     \fi
   \fi
+\fi
 }}
 
 %-------------------------------------------------------------------------------
@@ -472,10 +480,9 @@
   \vspace*{-0.4in}
 }
 
-
-%New environment of Chinese Abstract
-
+% New environment for Chinese Abstract
 \newenvironment{abstractzh}{
+\ifTHESISOPTIONreview\comment\fi  % not be compiled if in review mode
 \abszhpage
 \begin{center}
   \vspace*{-0.25in}
@@ -483,6 +490,7 @@
 	\bfseries %\abstract chinese name
      \@endparpenalty\@M
 \end{center}
+\ifTHESISOPTIONreview\endcomment\fi
 }
 
 %-------------------------------------------------------------------------------
@@ -513,6 +521,7 @@
 % Renew environment for english abstract, 使其頁碼與目錄其他章節標號一致
 
 \renewenvironment{abstract}{
+\ifTHESISOPTIONreview\comment\fi  % not be compiled if in review mode
 \absenpage
 \begin{center}
   \vspace*{-0.25in}
@@ -520,6 +529,7 @@
 	\bfseries 
     \@endparpenalty\@M
 \end{center}
+\ifTHESISOPTIONreview\endcomment\fi
 }
 
 %-------------------------------------------------------------------------------
@@ -534,6 +544,7 @@
 }
 
 \newenvironment{acknowledgement}{
+\ifTHESISOPTIONfinal\else\comment\fi  % Only be compiled in final mode
 \ackpage
 \begin{center}
   \ifTHESISOPTIONmaster
@@ -544,6 +555,7 @@
   \bfseries 
     \@endparpenalty\@M
 \end{center}
+\ifTHESISOPTIONfinal\else\endcomment\fi
 }
 
 %-------------------------------------------------------------------------------
@@ -551,10 +563,41 @@
 %-------------------------------------------------------------------------------
 
 \newenvironment{dedication}{
+% Only be compiled in the final mode of a PhD dissertation
+\ifTHESISOPTIONfinal\ifTHESISOPTIONphd\else\comment\fi\else\comment\fi
   \cleardoublepage
-  \phantomsection
+%  \phantomsection
   \thispagestyle{empty}
   \vspace*{6.6cm}
+\ifTHESISOPTIONfinal\ifTHESISOPTIONphd\else\endcomment\fi\else\endcomment\fi
+}
+
+%-------------------------------------------------------------------------------
+% Curriculum Vitae Page
+%-------------------------------------------------------------------------------
+
+\newenvironment{cv}{
+% Only be compiled in the draft or final mode of a PhD dissertation
+\ifTHESISOPTIONreview\comment\else\ifTHESISOPTIONphd\else\comment\fi\fi
+  \cleardoublepage
+  \phantomsection
+  \chapter*{Curriculum Vitae}
+  \addcontentsline{toc}{chapter}{Curriculum Vitae}
+\ifTHESISOPTIONreview\endcomment\else\ifTHESISOPTIONphd\else\endcomment\fi\fi
+}
+
+%-------------------------------------------------------------------------------
+% Publications Page
+%-------------------------------------------------------------------------------
+
+\newenvironment{publications}{
+% Only be compiled in the draft or final mode of a PhD dissertation
+\ifTHESISOPTIONreview\comment\else\ifTHESISOPTIONphd\else\comment\fi\fi
+  \cleardoublepage
+  \phantomsection
+  \chapter*{List of Publications}
+  \addcontentsline{toc}{chapter}{List of Publications}
+\ifTHESISOPTIONreview\endcomment\else\ifTHESISOPTIONphd\else\endcomment\fi\fi
 }
 
 \endinput
