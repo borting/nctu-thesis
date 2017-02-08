@@ -69,6 +69,7 @@
 \usepackage{lipsum}       % generating text for testing
 \usepackage{verbatim}     % for \comment command
 \usepackage[retainorgcmds]{IEEEtrantools}  % for \bstctlcite
+\usepackage{xCJKnumb}     % coverting arabic number to chinese number
 
 %-------------------------------------------------------------------------------
 % Page Format
