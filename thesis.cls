@@ -67,6 +67,7 @@
 \usepackage{emptypage}    % clear page number in empty even pages
 \usepackage{afterpage}    % adding blank page after cover & title page (twoside)
 \usepackage{lipsum}       % generating text for testing
+\usepackage{verbatim}     % for \comment command
 \usepackage[retainorgcmds]{IEEEtrantools}  % for \bstctlcite
 
 %-------------------------------------------------------------------------------
