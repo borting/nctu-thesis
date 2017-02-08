@@ -300,6 +300,16 @@
 \mainmatter
 }
 
+\let\oldbibliographystyle\bibliographystyle
+\renewcommand{\bibliographystyle}[1]
+{
+% Add bibliography to "Table of Contents"
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\oldbibliographystyle{#1}
+}
+
 %-------------------------------------------------------------------------------
 % Cover Page
 %-------------------------------------------------------------------------------
