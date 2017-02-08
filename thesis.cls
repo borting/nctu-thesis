@@ -12,8 +12,8 @@
 % Document Options Declaration
 %-------------------------------------------------------------------------------
 
-% Inherent existing options from report document class
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
+% Inherent existing options from book document class
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{book}}
 
 % Declare options for thesis types: (default: master)
 %   thesis(master) or dissertation(phd)
@@ -48,7 +48,7 @@
 
 % Load basic options
 \ProcessOptions
-\LoadClass[a4paper,12pt,oneside]{report}
+\LoadClass[a4paper,12pt,oneside]{book}
 
 %-------------------------------------------------------------------------------
 % Basic Packages
@@ -253,27 +253,6 @@
 % Change margin of a page
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
 \let\endchangemargin=\endlist 
-
-% Use roman page numbering
-\newcommand\frontmatter{%
-  \cleardoublepage
-  \pagenumbering{roman}
-}
-
-% Use arabic page numbering
-\newcommand\mainmatter{%
-  \cleardoublepage
-  \pagenumbering{arabic}
-}
-
-% Clear page numbering
-\newcommand\backmatter{%
-  \if@openright
-    \cleardoublepage
-  \else
-    \clearpage
-  \fi
-}
 
 % Generate tables of contents, list of figures, and list of tables, and set
 % page numbering to 'arabic'
@@ -533,7 +512,7 @@
 
 % Renew environment for english abstract, 使其頁碼與目錄其他章節標號一致
 
-\renewenvironment{abstract}{
+\newenvironment{abstract}{
 \ifTHESISOPTIONreview\comment\fi  % not be compiled if in review mode
 \absenpage
 \begin{center}
