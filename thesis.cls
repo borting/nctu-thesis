@@ -70,6 +70,9 @@
 \usepackage{verbatim}     % for \comment command
 \usepackage[retainorgcmds]{IEEEtrantools}  % for \bstctlcite
 \usepackage{xCJKnumb}     % coverting arabic number to chinese number
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{etoolbox}
 
 %-------------------------------------------------------------------------------
 % Page Format
@@ -476,12 +479,9 @@
 \newenvironment{abstractzh}{
 \ifTHESISOPTIONreview\comment\fi  % not be compiled if in review mode
 \abszhpage
-\begin{center}
-  \vspace*{-0.25in}
-	\section*{摘要}
-	\bfseries %\abstract chinese name
-     \@endparpenalty\@M
-\end{center}
+\vspace*{-0.75in}
+\section*{\begin{center}摘要\end{center}}
+\vspace*{-0.75in}
 \ifTHESISOPTIONreview\endcomment\fi
 }
 
@@ -515,12 +515,9 @@
 \newenvironment{abstract}{
 \ifTHESISOPTIONreview\comment\fi  % not be compiled if in review mode
 \absenpage
-\begin{center}
-  \vspace*{-0.25in}
-  \section*{Abstract}
-	\bfseries 
-    \@endparpenalty\@M
-\end{center}
+\vspace*{-0.75in}
+\section*{\begin{center}Abstract\end{center}}
+\vspace*{-0.75in}
 \ifTHESISOPTIONreview\endcomment\fi
 }
 
