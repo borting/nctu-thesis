@@ -9,7 +9,7 @@ This thesis is built based on XeTeX + xeCJK, please use xelatex instead of pdfte
   ```
 * Change the xelatex option in IDE
   ```
-  xelatex -synctex=1 -shell-escape -interaction=nonstopmode \%.tex
+  xelatex -synctex=1 -shell-escape -interaction=nonstopmode %.tex
   ```
 
 ## Tested Environment
