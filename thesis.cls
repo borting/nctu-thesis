@@ -420,9 +420,9 @@
 
 % Covert 'A' to 1, 'B' to 2, ...
 %TODO
-%   This is a workaround to show '附錄一' in the chapter title but 'A.1' in the
-% section title of an appendix, instead of showing '1.1' which conficts with the
-% section title of a chapter. Hope someone can fix this in a smarter way.
+%   This is a workaround to show '附錄一' in the chapter label but 'A.1' in the
+% section label of an appendix, instead of showing '1.1' which conficts with the
+% section label of a chapter. Hope someone can fix this in a smarter way.
 \DeclareRobustCommand{\xCJKalphatozhnum}[1]{%
   \ifnum\strcmp{#1}{A} = 0 一 \else
   \ifnum\strcmp{#1}{B} = 0 二 \else
