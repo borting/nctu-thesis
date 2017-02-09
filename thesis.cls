@@ -2,11 +2,11 @@
 \NeedsTeXFormat{LaTeX2e}
 
 %TODO
-% 預留空間給 著作權授權書 (authorization) 和 審定書 (approval)
 % 檢查 twoside 時的版面配置
 % \cleardoublepage 後的空白頁不顯示 watermark
 % difference b/w \newcommand and \DeclareRobustCommand
 % Mac OS X 字型問題
+% 自動選擇是否引入 著作權授權書 (authorization) 和 審定書 (approval) 的 pdf 檔
 
 %-------------------------------------------------------------------------------
 % Document Options Declaration
@@ -300,7 +300,6 @@
 \def\coverpage
 {
   \thispagestyle{empty}
-  \phantomsection
   \begin{center}
     % univerity chinese name
     \fontsize{40}{40}{\Ming{\@universityzh}}\\
@@ -349,7 +348,6 @@
 \def\titlepage
 {
   \cleardoublepage
-  \phantomsection
   \thispagestyle{empty}
   % chines & english titles
   \begin{center}
@@ -406,7 +404,29 @@
   \cleardoublepage
   \thispagestyle{empty}
   \phantomsection
-  \newpage
+  \null\newpage
+}
+
+%-------------------------------------------------------------------------------
+% Chinese Approval Page
+%-------------------------------------------------------------------------------
+
+\def\approvalzhpage{
+  \cleardoublepage
+  \thispagestyle{empty}
+  \phantomsection
+  \null\newpage
+}
+
+%-------------------------------------------------------------------------------
+% English Approval Page
+%-------------------------------------------------------------------------------
+
+\def\approvalenpage{
+  \cleardoublepage
+  \thispagestyle{empty}
+  \phantomsection
+  \null\newpage
 }
 
 %-------------------------------------------------------------------------------
@@ -416,7 +436,6 @@
 \def\copyrightpage{
   \cleardoublepage
   \thispagestyle{empty}
-  \phantomsection
   \rule[0pt]{0pt}{0pt} \\
   \vspace{2.5in}
   \rule[0pt]{0pt}{0pt} \\
@@ -431,18 +450,25 @@
 
 \def\maketitle{{
 \ifTHESISOPTIONreview\else
-% cover page
+% Cover page
   \coverpage
 
 % Set page numbering to 'roman' (i, ii, iii, ...)
   \frontmatter
 
-% front page
+% Title page
   \titlepage
 
-  \authzpage
+% Authorization page
+%  \authzpage
 
-% copyright page (dissertation final mode only)
+% Chinese approval page
+%  \approvalzhpage
+
+% English approval page
+%  \approvalenpage
+
+% Copyright page (dissertation final mode only)
   \ifTHESISOPTIONphd
     \ifTHESISOPTIONfinal
       \copyrightpage
@@ -459,8 +485,8 @@
 {
   \cleardoublepage
   \phantomsection
-  \AddToShipoutPicture*{\BackgroundPicture}
   \addcontentsline{toc}{chapter}{摘要}
+  \AddToShipoutPicture*{\BackgroundPicture}
   \begin{center}
     {\Large \bf \@titlezh}
   \end{center}
@@ -493,8 +519,8 @@
 {
   \cleardoublepage
   \phantomsection
-  \AddToShipoutPicture*{\BackgroundPicture}
   \addcontentsline{toc}{chapter}{Abstract}
+  \AddToShipoutPicture*{\BackgroundPicture}
   \begin{center}
     {\Large \bf \@title} 
   \end{center}
@@ -530,20 +556,14 @@
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{Acknowledgement}
+  \begin{center}
+    {\Large \bf Acknowledgement} 
+  \end{center}
 }
 
 \newenvironment{acknowledgement}{
 \ifTHESISOPTIONfinal\else\comment\fi  % Only be compiled in final mode
 \ackpage
-\begin{center}
-  \ifTHESISOPTIONmaster
-    \section*{誌謝}
-  \else
-    \section*{Acknowledgement}
-  \fi
-  \bfseries 
-    \@endparpenalty\@M
-\end{center}
 \ifTHESISOPTIONfinal\else\endcomment\fi
 }
 
@@ -555,7 +575,6 @@
 % Only be compiled in the final mode of a PhD dissertation
 \ifTHESISOPTIONfinal\ifTHESISOPTIONphd\else\comment\fi\else\comment\fi
   \cleardoublepage
-%  \phantomsection
   \thispagestyle{empty}
   \vspace*{6.6cm}
 \ifTHESISOPTIONfinal\ifTHESISOPTIONphd\else\endcomment\fi\else\endcomment\fi
@@ -570,8 +589,8 @@
 \ifTHESISOPTIONreview\comment\else\ifTHESISOPTIONphd\else\comment\fi\fi
   \cleardoublepage
   \phantomsection
-  \chapter*{Curriculum Vitae}
   \addcontentsline{toc}{chapter}{Curriculum Vitae}
+  \chapter*{Curriculum Vitae}
 \ifTHESISOPTIONreview\endcomment\else\ifTHESISOPTIONphd\else\endcomment\fi\fi
 }
 
@@ -584,8 +603,8 @@
 \ifTHESISOPTIONreview\comment\else\ifTHESISOPTIONphd\else\comment\fi\fi
   \cleardoublepage
   \phantomsection
-  \chapter*{List of Publications}
   \addcontentsline{toc}{chapter}{List of Publications}
+  \chapter*{List of Publications}
 \ifTHESISOPTIONreview\endcomment\else\ifTHESISOPTIONphd\else\endcomment\fi\fi
 }
 
