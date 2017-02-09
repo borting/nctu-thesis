@@ -418,16 +418,47 @@
 %% \endchangemargin
 \let\endchangemargin=\endlist 
 
+% Covert 'A' to 1, 'B' to 2, ...
+%TODO
+%   This is a workaround to show '附錄一' in the chapter title but 'A.1' in the
+% section title of an appendix, instead of showing '1.1' which conficts with the
+% section title of a chapter. Hope someone can fix this in a smarter way.
+\DeclareRobustCommand{\xCJKalphatozhnum}[1]{%
+  \ifnum\strcmp{#1}{A} = 0 一 \else
+  \ifnum\strcmp{#1}{B} = 0 二 \else
+  \ifnum\strcmp{#1}{C} = 0 三 \else
+  \ifnum\strcmp{#1}{D} = 0 四 \else
+  \ifnum\strcmp{#1}{E} = 0 五 \else
+  \ifnum\strcmp{#1}{F} = 0 六 \else
+  \ifnum\strcmp{#1}{G} = 0 七 \else
+  \ifnum\strcmp{#1}{H} = 0 八 \else
+  \ifnum\strcmp{#1}{I} = 0 九 \else
+  \ifnum\strcmp{#1}{J} = 0 十 \else
+  \ifnum\strcmp{#1}{K} = 0 十一 \else
+  \ifnum\strcmp{#1}{L} = 0 十二 \else
+  \ifnum\strcmp{#1}{M} = 0 十三 \else
+  \ifnum\strcmp{#1}{N} = 0 十四 \else
+  \ifnum\strcmp{#1}{O} = 0 十五 \else
+  \ifnum\strcmp{#1}{P} = 0 十六 \else
+  \ifnum\strcmp{#1}{Q} = 0 十七 \else
+  \ifnum\strcmp{#1}{R} = 0 十八 \else
+  \ifnum\strcmp{#1}{S} = 0 十九 \else
+  \ifnum\strcmp{#1}{T} = 0 二十 \else 零
+  \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi
+}
+
 %-------------------------------------------------------------------------------
 % Bibliography
 %-------------------------------------------------------------------------------
 
 % Add Bibliography to "Table of Contents"
-\newcommand{\addBibToContents}[1]
+\let\oldbibliography\bibliography
+\renewcommand{\bibliography}[1]
 {
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{\@bibtitle}}
+  \oldbibliography[#1]
 }
 
 %-------------------------------------------------------------------------------
@@ -435,28 +466,28 @@
 %-------------------------------------------------------------------------------
 
 % Format the style of appendicies in terms of the language option (en or zh)
-\newcommand{\formatAppendix}
+\let\oldappendix\appendix
+\renewcommand{\appendix}
 {
-  % Set the appendix numbering to chiese style in ToC
-  \ifTHESISOPTIONzh
-    % Change the numbering style to arabic, otherwise \xCJKnumber would fail
-    \renewcommand{\thechapter}{\arabic{chapter}}
-    % Update appendix numbering style
-    \titlecontents{chapter}[0pt]
-    {}  % <left>
-    {\bfseries 附錄\xCJKnumber{\thecontentslabel}\quad}  % <above-code>
-    {}  % <numbered-entry-format>
-    {\cftdotfill{\cftdotsep}\contentspage}  % <filler-page-format>
-  \fi
+% Start Appendix
+\oldappendix
 
-  \ifTHESISOPTIONzh
-    \titleformat{\chapter}
-    [block]  % shape (label and title body are placed at the same line)
-    {\centering\Huge\bfseries}  % format for label and title body
-    {附錄\xCJKnumber{\thechapter}\quad}  % (X、 ...)
-    {0em}  % code preceding the title body
-    {}  % code following the title body
-  \fi
+\ifTHESISOPTIONzh
+  % Set appendix numbering to chiese style in ToC
+  \titlecontents{chapter}[0pt]
+  {}  % <left>
+  {\bfseries 附錄\xCJKalphatozhnum{\thecontentslabel}\quad}  % <above-code>
+  {}  % <numbered-entry-format>
+  {\cftdotfill{\cftdotsep}\contentspage}  % <filler-page-format>
+
+  % Set appendix title to chinese style
+  \titleformat{\chapter}
+  [block]  % shape (label and title body are placed at the same line)
+  {\centering\Huge\bfseries}  % format for label and title body
+  {附錄\xCJKalphatozhnum{\thechapter}\quad}  % (X、 ...)
+  {0em}  % code preceding the title body
+  {}  % code following the title body
+\fi
 }
 
 %-------------------------------------------------------------------------------

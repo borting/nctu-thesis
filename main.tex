@@ -21,7 +21,8 @@
 
 \begin{document}
 
-% Show repeated author names in reference, remove this if not using IEEEtran.bst
+% Show repeated author names in bibliography when using IEEEtran.bst
+% Comment out this line if you don't set IEEEtran in \bibliographystyle{}
 \bstctlcite{IEEEexample:BSTcontrol}
 
 % Generate cover, title, authorization, approval and copyright pages
@@ -72,9 +73,6 @@
 % Set bib style
 \bibliographystyle{IEEEtran}
 
-% Add Bibliography to "Table of Contents"
-\addBibToContents
-
 % Usage:
 %   \bibliography{bib/bib1,bib/bib2,...,bib/bibN} % 注意: 不要有空格
 %
@@ -83,6 +81,9 @@
 % when we cite two papers of the same (or similar) authors, IEEEtran.bst would
 % replace the author names with "------". To avoid this, we use BSTControl.bib
 % to set ctldash_repeated_names to 'no'.
+%
+% For non IEEEtran users:
+%   Please delete bib/ieeeBSTcontrol from \bibliography{}
 \bibliography{bib/ieeeBSTcontrol,bib/thesis}
 
 %-------------------------------------------------------------------------------
@@ -91,9 +92,6 @@
 
 % Start appendix
 \appendix
-
-% Format the style of appendicies in terms of the language option (en or zh)
-\formatAppendix
 
 % 請從此開始依序擺放附錄
 \input{appx/1-appendix}
