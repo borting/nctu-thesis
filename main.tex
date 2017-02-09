@@ -1,7 +1,6 @@
-%\documentclass[]{thesis}  % draft mode (default)
+\documentclass[]{thesis}  % draft mode (default)
 %\documentclass[review]{thesis}  % review mode (show contents & reference only)
-\documentclass[watermark,phd,final]{thesis}  % final mode (print version)
-%\documentclass[twoside,watermark,phd,final]{thesis}
+%\documentclass[watermark,final]{thesis}  % final mode (version for library)
 
 %-------------------------------------------------------------------------------
 % Configuration
@@ -73,6 +72,9 @@
 % Set bib style
 \bibliographystyle{IEEEtran}
 
+% Add Bibliography to "Table of Contents"
+\addBibToContents
+
 % Usage:
 %   \bibliography{bib/bib1,bib/bib2,...,bib/bibN} % 注意: 不要有空格
 %
@@ -87,7 +89,11 @@
 % 附錄
 %-------------------------------------------------------------------------------
 
+% Start appendix
 \appendix
+
+% Format the style of appendicies in terms of the language option (en or zh)
+\formatAppendix
 
 % 請從此開始依序擺放附錄
 \input{appx/1-appendix}

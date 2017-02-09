@@ -4,9 +4,10 @@
 %TODO
 % 檢查 twoside 時的版面配置
 % \cleardoublepage 後的空白頁不顯示 watermark
-% difference b/w \newcommand and \DeclareRobustCommand
 % Mac OS X 字型問題
 % 自動選擇是否引入 著作權授權書 (authorization) 和 審定書 (approval) 的 pdf 檔
+% Table of Contents 的排版問題
+% 缺 Notation(Symbol?) page
 
 %-------------------------------------------------------------------------------
 % Document Options Declaration
@@ -20,7 +21,16 @@
 \newif\ifTHESISOPTIONmaster         \THESISOPTIONmastertrue
 \newif\ifTHESISOPTIONphd            \THESISOPTIONphdfalse
 
+\DeclareOption{master}{\THESISOPTIONmastertrue\THESISOPTIONphdfalse}
 \DeclareOption{phd}{\THESISOPTIONmasterfalse\THESISOPTIONphdtrue}
+
+% Declare options for the language used in thesis: (default: english)
+%   en(english) or zh(chinese)
+\newif\ifTHESISOPTIONen             \THESISOPTIONentrue
+\newif\ifTHESISOPTIONzh             \THESISOPTIONzhfalse
+
+\DeclareOption{en}{\THESISOPTIONentrue\THESISOPTIONzhfalse}
+\DeclareOption{zh}{\THESISOPTIONenfalse\THESISOPTIONzhtrue}
 
 % Declare options for print modes: (default: draft)
 %   review: for thesis writing (hide all front matters)
@@ -32,6 +42,10 @@
 
 \DeclareOption{review}{\THESISOPTIONreviewtrue
                       \THESISOPTIONdraftfalse
+                      \THESISOPTIONfinalfalse}
+
+\DeclareOption{draft}{\THESISOPTIONreviewfalse
+                      \THESISOPTIONdrafttrue
                       \THESISOPTIONfinalfalse}
 
 \DeclareOption{final}{\THESISOPTIONreviewfalse
@@ -70,9 +84,9 @@
 \usepackage{verbatim}     % for \comment command
 \usepackage[retainorgcmds]{IEEEtrantools}  % for \bstctlcite
 \usepackage{xCJKnumb}     % coverting arabic number to chinese number
-\usepackage{titlesec}
-\usepackage{titletoc}
-\usepackage{etoolbox}
+\usepackage{titlesec}     % formating titles of sectioning
+\usepackage{titletoc}     % formating titles in toc
+\usepackage[subfigure]{tocloft}  % centering toc, lof, and lot
 
 %-------------------------------------------------------------------------------
 % Page Format
@@ -199,11 +213,38 @@
 % "初稿"
 \def\draftzh#1{\gdef\@draftzh{#1}}
 
+% Title of Chinese abstract
+\def\abszhtitle#1{\gdef\@abszhtitle{#1}}
+
+% Title of English abstract
+\def\absentitle#1{\gdef\@absentitle{#1}}
+
+% Title of Acknowledgement
+\def\acktitle#1{\gdef\@acktitle{#1}}
+
+% Title of Table of Contents
+\def\toctitle#1{\gdef\@toctitle{#1}}
+
+% Title of List of Figures
+\def\loftitle#1{\gdef\@loftitle{#1}}
+
+% Title of List of Tables
+\def\lottitle#1{\gdef\@lottitle{#1}}
+
+% Title of List of Bibliography
+\def\bibtitle#1{\gdef\@bibtitle{#1}}
+
+% Title of Curriculum Vitae
+\def\cvtitle#1{\gdef\@cvtitle{#1}}
+
+% Title of List of Publications
+\def\loptitle#1{\gdef\@loptitle{#1}}
+
 %-------------------------------------------------------------------------------
 % Default Values for Macros
 %-------------------------------------------------------------------------------
 
-% Macros related to degree
+% Define macros related to degree
 \ifTHESISOPTIONmaster  % Master thesis
   \thesistype{Thesis}
   \thesistypezh{碩士論文}
@@ -214,7 +255,7 @@
   \degree{Doctor of Philosophy}
 \fi
 
-% Macros related to print mode
+% Define macros related to print mode
 \ifTHESISOPTIONdraft
   \draft{ Draft}
   \draftzh{初稿}
@@ -222,6 +263,124 @@
   \draft{}
   \draftzh{}
 \fi
+
+% Define language-related macros
+\ifTHESISOPTIONzh
+  \abszhtitle{中文摘要}
+  \absentitle{英文摘要}
+  \acktitle{誌謝}
+  \toctitle{目錄}
+  \loftitle{圖目錄}
+  \lottitle{表目錄}
+  \bibtitle{參考文獻}
+  \cvtitle{自傳}
+  \loptitle{著作目錄}
+\else
+  \abszhtitle{摘要}
+  \absentitle{Abstract}
+  \acktitle{Acknowledgement}
+  \toctitle{Table of Contents}
+  \loftitle{List of Figures}
+  \lottitle{List of Tables}
+  \bibtitle{Bibliography}
+  \cvtitle{Curriculum Vitae}
+  \loptitle{List of Publications}
+\fi
+
+%-------------------------------------------------------------------------------
+% ToC, LoF, and LoT Format
+%-------------------------------------------------------------------------------
+
+% Place the titles of ToC, LoF, and LoT to center
+\renewcommand{\cfttoctitlefont}{\hspace*{\fill}\Huge\bfseries}
+\renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
+\renewcommand{\cftlottitlefont}{\hspace*{\fill}\Huge\bfseries}
+\renewcommand{\cftafterlottitle}{\hspace*{\fill}}
+\renewcommand{\cftloftitlefont}{\hfill \Huge\bfseries}
+\renewcommand{\cftafterloftitle}{\hspace*{\fill}}
+
+% Set the language used in ToC, LoF, and LoT
+\ifTHESISOPTIONzh
+\renewcommand{\contentsname}{\textbf{\@toctitle}}
+\renewcommand{\listfigurename}{\textbf{\@loftitle}}
+\renewcommand{\listtablename}{\textbf{\@lottitle}}
+\renewcommand{\tablename}{表}
+\renewcommand{\figurename}{圖}
+\renewcommand{\bibname}{參考文獻}
+\fi
+
+% Set the chapter numbering to chiese number in ToC
+\ifTHESISOPTIONzh
+  \titlecontents{chapter}[0pt]  % <left>
+  {}  % <above>
+  {\bfseries\xCJKnumber{\thecontentslabel}、\hspace{0.5em}}  % <above-code>
+  {}  % <numbered-entry-format>
+  {\cftdotfill{\cftdotsep}\contentspage}  % <filler-page-format>
+\else
+  \titlecontents{chapter}[0pt]  % <left>
+  {}  % <above>
+  {\bfseries\thecontentslabel\quad}  % <above-code>
+  {}  % <numbered-entry-format>
+  {\cftdotfill{\cftdotsep}\contentspage}  % <filler-page-format>
+\fi
+
+% Adjust the position of the title of ToC, LoF, and LoT
+\renewcommand\cftbeforetoctitleskip{-0.5cm}
+\renewcommand\cftbeforeloftitleskip{-0.5cm}
+\renewcommand\cftbeforelottitleskip{-0.5cm}
+
+% Define \maketocs to generate toc, lof, and lot
+% Set page numbering to 'arabic'
+\def\maketocs{
+\ifTHESISOPTIONreview\else
+% Table of Contents
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\textbf{\@toctitle}}
+  \tableofcontents
+  \AddToShipoutPictureBG{\BackgroundPicture}
+% List of Figures
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\textbf{\@loftitle}}
+  \listoffigures
+% List of Tables
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\textbf{\@lottitle}}
+  \listoftables
+\fi
+
+% Set page numbering to 'arabic' (1, 2, 3, ...)
+\mainmatter
+}
+
+%-------------------------------------------------------------------------------
+% Chapter Format
+%-------------------------------------------------------------------------------
+
+% Set the title format for chapter
+\ifTHESISOPTIONzh
+  \titleformat{\chapter}
+  [block]  % shape (label and title body are placed at the same line)
+  {\centering\Huge\bfseries}  % format for label and title body
+  {\xCJKnumber{\thechapter}、\hspace{0.5em}}  % (X、 ...)
+  {0em}  % code preceding the title body
+  {}  % code following the title body
+\else
+  \titleformat{\chapter}
+  [display]  % shape (title body is placed at second line)
+  {\centering\Huge\bfseries}  % format for label and title body
+  {\chaptertitlename\ \thechapter}  % label (Chapter X)
+  {0em}  % code preceding the title body
+  {}  % code following the title body
+\fi
+
+% Set the spacing between chapter title with page top and text body
+\titlespacing*{\chapter}
+{0em}    % left
+{-40pt}  % before seperation
+{*6}     % aftet seperation
 
 %-------------------------------------------------------------------------------
 % Watermark
@@ -253,44 +412,51 @@
 % Commands
 %-------------------------------------------------------------------------------
 
-% Change margin of a page
+% Change margin of a period
+%% \changemargin
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+%% \endchangemargin
 \let\endchangemargin=\endlist 
 
-% Generate tables of contents, list of figures, and list of tables, and set
-% page numbering to 'arabic'
-\def\maketocs{
-\ifTHESISOPTIONreview\else
-% Table of Contents
-  \cleardoublepage
-  \phantomsection
-  \addcontentsline{toc}{chapter}{Table of Contents}
-  \tableofcontents
-  \AddToShipoutPictureBG{\BackgroundPicture}
-% List of Figures
-  \cleardoublepage
-  \phantomsection
-  \addcontentsline{toc}{chapter}{List of Figures}
-  \listoffigures
-% List of Tables
-  \cleardoublepage
-  \phantomsection
-  \addcontentsline{toc}{chapter}{List of Tables}
-  \listoftables
-\fi
+%-------------------------------------------------------------------------------
+% Bibliography
+%-------------------------------------------------------------------------------
 
-% Set page numbering to 'arabic' (1, 2, 3, ...)
-\mainmatter
+% Add Bibliography to "Table of Contents"
+\newcommand{\addBibToContents}[1]
+{
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{\textbf{\@bibtitle}}
 }
 
-\let\oldbibliographystyle\bibliographystyle
-\renewcommand{\bibliographystyle}[1]
+%-------------------------------------------------------------------------------
+% Appendix Format
+%-------------------------------------------------------------------------------
+
+% Format the style of appendicies in terms of the language option (en or zh)
+\newcommand{\formatAppendix}
 {
-% Add bibliography to "Table of Contents"
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{Bibliography}
-\oldbibliographystyle{#1}
+  % Set the appendix numbering to chiese style in ToC
+  \ifTHESISOPTIONzh
+    % Change the numbering style to arabic, otherwise \xCJKnumber would fail
+    \renewcommand{\thechapter}{\arabic{chapter}}
+    % Update appendix numbering style
+    \titlecontents{chapter}[0pt]
+    {}  % <left>
+    {\bfseries 附錄\xCJKnumber{\thecontentslabel}\quad}  % <above-code>
+    {}  % <numbered-entry-format>
+    {\cftdotfill{\cftdotsep}\contentspage}  % <filler-page-format>
+  \fi
+
+  \ifTHESISOPTIONzh
+    \titleformat{\chapter}
+    [block]  % shape (label and title body are placed at the same line)
+    {\centering\Huge\bfseries}  % format for label and title body
+    {附錄\xCJKnumber{\thechapter}\quad}  % (X、 ...)
+    {0em}  % code preceding the title body
+    {}  % code following the title body
+  \fi
 }
 
 %-------------------------------------------------------------------------------
@@ -485,7 +651,7 @@
 {
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{摘要}
+  \addcontentsline{toc}{chapter}{\textbf{\@abszhtitle}}
   \AddToShipoutPicture*{\BackgroundPicture}
   \begin{center}
     {\Large \bf \@titlezh}
@@ -519,7 +685,7 @@
 {
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{Abstract}
+  \addcontentsline{toc}{chapter}{\textbf{\@absentitle}}
   \AddToShipoutPicture*{\BackgroundPicture}
   \begin{center}
     {\Large \bf \@title} 
@@ -555,9 +721,9 @@
 {
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{Acknowledgement}
+  \addcontentsline{toc}{chapter}{\textbf{\@acktitle}}
   \begin{center}
-    {\Large \bf Acknowledgement} 
+    {\Large \bf \@acktitle}
   \end{center}
 }
 
@@ -589,8 +755,8 @@
 \ifTHESISOPTIONreview\comment\else\ifTHESISOPTIONphd\else\comment\fi\fi
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{Curriculum Vitae}
-  \chapter*{Curriculum Vitae}
+  \addcontentsline{toc}{chapter}{\textbf{\@cvtitle}}
+  \chapter*{\@cvtitle}
 \ifTHESISOPTIONreview\endcomment\else\ifTHESISOPTIONphd\else\endcomment\fi\fi
 }
 
@@ -603,8 +769,8 @@
 \ifTHESISOPTIONreview\comment\else\ifTHESISOPTIONphd\else\comment\fi\fi
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{List of Publications}
-  \chapter*{List of Publications}
+  \addcontentsline{toc}{chapter}{\textbf{\@loptitle}}
+  \chapter*{\@loptitle}
 \ifTHESISOPTIONreview\endcomment\else\ifTHESISOPTIONphd\else\endcomment\fi\fi
 }
 
