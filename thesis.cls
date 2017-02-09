@@ -319,7 +319,7 @@
 \else
   \titlecontents{chapter}[0pt]  % <left>
   {}  % <above>
-  {\bfseries\thecontentslabel\quad}  % <above-code>
+  {\bfseries\makebox[1em][l]{\thecontentslabel}\hspace{0.25em}}  % <above-code>
   {}  % <numbered-entry-format>
   {\cftdotfill{\cftdotsep}\contentspage}  % <filler-page-format>
 \fi
