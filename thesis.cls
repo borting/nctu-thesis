@@ -699,16 +699,14 @@
   \makebox[2.4cm][s]{\large{\@advisorzh}}
   \makebox[1.2cm][r]{\large{博士}}\\
   \centerline{\large{\@universityzh\@institutezh}}
-  \vspace*{-0.4in}
+  \centerline{\ }
+  \centerline{\Large{\textbf{摘要}}}
 }
 
 % New environment for Chinese Abstract
 \newenvironment{abstractzh}{
 \ifTHESISOPTIONreview\comment\fi  % not be compiled if in review mode
 \abszhpage
-\vspace*{-0.75in}
-\section*{\begin{center}摘要\end{center}}
-\vspace*{-0.75in}
 \ifTHESISOPTIONreview\endcomment\fi
 }
 
@@ -734,17 +732,15 @@
   \makebox[4cm][l]{\large{\@advisor}}\\
   \centerline{\large{\@institute}}
   \centerline{\large{\@university}}
-  \vspace*{-0.4in}
+  \centerline{\ }
+  \centerline{\Large{\textbf{Abstract}}}
 }
 
-% Renew environment for english abstract, 使其頁碼與目錄其他章節標號一致
+% New environment for english abstract
 
 \newenvironment{abstract}{
 \ifTHESISOPTIONreview\comment\fi  % not be compiled if in review mode
 \absenpage
-\vspace*{-0.75in}
-\section*{\begin{center}Abstract\end{center}}
-\vspace*{-0.75in}
 \ifTHESISOPTIONreview\endcomment\fi
 }
 
