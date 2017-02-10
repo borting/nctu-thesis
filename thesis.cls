@@ -141,7 +141,7 @@
 
 % Mac OS X
 \ifmacosx
-\setCJKmainfont{LiSong Pro}  % LiSong Pro (儷宋 Pro)
+\setCJKmainfont{Kai}         % LiSong Pro (儷宋 Pro)
                              % Apple LiSung (蘋果儷細宋)
 \setCJKsansfont{Heiti TC}    % Heiti TC (黑體-繁 中黑)
                              % LiHei Pro (儷黑 Pro)
