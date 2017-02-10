@@ -141,11 +141,12 @@
 
 % Mac OS X
 \ifmacosx
-\setCJKmainfont{Kai}         % LiSong Pro (儷宋 Pro)
-                             % Apple LiSung (蘋果儷細宋)
-\setCJKsansfont{Heiti TC}    % Heiti TC (黑體-繁 中黑)
-                             % LiHei Pro (儷黑 Pro)
-\newCJKfontfamily{\Ming}{LiSong Pro}   % 設定切換明體字型
+\setCJKmainfont{Kaiti TC Regular}     % Kaiti TC Regular (楷體-繁)
+                                      % LiSong Pro (儷宋 Pro)
+                                      % Apple LiSung (蘋果儷細宋)
+\setCJKsansfont{Heiti TC}             % Heiti TC (黑體-繁 中黑)
+                                      % LiHei Pro (儷黑 Pro)
+\newCJKfontfamily{\Ming}{LiSong Pro}  % 設定切換明體字型
 \fi
 
 % Enable line break for chinese
