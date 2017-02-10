@@ -145,6 +145,7 @@
                              % Apple LiSung (蘋果儷細宋)
 \setCJKsansfont{Heiti TC}    % Heiti TC (黑體-繁 中黑)
                              % LiHei Pro (儷黑 Pro)
+\newCJKfontfamily{\Ming}{LiSong Pro}   % 設定切換明體字型
 \fi
 
 % Enable line break for chinese
@@ -531,7 +532,9 @@
     \makebox[3.25cm][s]{\@authorzh}\\
   \vspace{-0.2in}\\
   \makebox[0.75cm][s]{}\makebox[2.75cm][s]{指導教授}\makebox[0.75cm][s]{：}
-    \makebox[3.25cm][s]{\@\@advisorzh}\makebox[2cm][c]{教授}\\
+  \ifx \@advisorzh \itsempty \else
+    \makebox[3.25cm][s]{\@advisorzh}\makebox[2cm][c]{教授}\\
+  \fi
   \vspace{1in}
   \vfill
   % submission date
