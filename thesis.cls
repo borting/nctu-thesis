@@ -331,8 +331,7 @@
 \renewcommand\cftbeforeloftitleskip{-0.5cm}
 \renewcommand\cftbeforelottitleskip{-0.5cm}
 
-% Define \maketocs to generate toc, lof, and lot
-% Set page numbering to 'arabic'
+% A wraper to generate toc, lof, and lot
 \def\maketocs{
 \ifTHESISOPTIONreview\else
 % Table of Contents
@@ -352,9 +351,6 @@
   \addcontentsline{toc}{chapter}{\textbf{\@lottitle}}
   \listoftables
 \fi
-
-% Set page numbering to 'arabic' (1, 2, 3, ...)
-\mainmatter
 }
 
 %-------------------------------------------------------------------------------
@@ -453,27 +449,21 @@
 % Bibliography
 %-------------------------------------------------------------------------------
 
-% Add Bibliography to "Table of Contents"
-\let\oldbibliography\bibliography
-\renewcommand{\bibliography}[1]
+% A wraper to add Bibliography to "Table of Contents"
+\newcommand{\addBibToContents}
 {
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{\@bibtitle}}
-  \oldbibliography[#1]
 }
 
 %-------------------------------------------------------------------------------
 % Appendix Format
 %-------------------------------------------------------------------------------
 
-% Format the style of appendicies in terms of the language option (en or zh)
-\let\oldappendix\appendix
-\renewcommand{\appendix}
+% A wraper to set the style of appendicies in terms of the language (en or zh)
+\newcommand{\addAppxToContents}
 {
-% Start Appendix
-\oldappendix
-
 \ifTHESISOPTIONzh
   % Set appendix numbering to chiese style in ToC
   \titlecontents{chapter}[0pt]
@@ -646,7 +636,7 @@
 }
 
 %-------------------------------------------------------------------------------
-% Maketitle Redefinition
+% \maketitle Redefinition
 %-------------------------------------------------------------------------------
 
 \def\maketitle{{
@@ -706,7 +696,9 @@
 % New environment for Chinese Abstract
 \newenvironment{abstractzh}{
 \ifTHESISOPTIONreview\comment\fi  % not be compiled if in review mode
-\abszhpage
+  \abszhpage
+  \section*{}
+  \vspace{-0.75in}
 \ifTHESISOPTIONreview\endcomment\fi
 }
 
@@ -740,7 +732,9 @@
 
 \newenvironment{abstract}{
 \ifTHESISOPTIONreview\comment\fi  % not be compiled if in review mode
-\absenpage
+  \absenpage
+  \section*{}
+  \vspace{-0.75in}
 \ifTHESISOPTIONreview\endcomment\fi
 }
 

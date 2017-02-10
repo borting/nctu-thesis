@@ -60,6 +60,9 @@
 % Contents
 %-------------------------------------------------------------------------------
 
+% Set page numbering to 'arabic' (1, 2, 3, ...)
+\mainmatter
+
 % 內文, 請依照章節順序擺放
 \input{chapters/1-intro}
 \input{chapters/2-secorder}
@@ -72,6 +75,9 @@
 
 % Set bib style
 \bibliographystyle{IEEEtran}
+
+% Add Bibliography to "Table of Contents"
+\addBibToContents
 
 % Usage:
 %   \bibliography{bib/bib1,bib/bib2,...,bib/bibN} % 注意: 不要有空格
@@ -92,6 +98,9 @@
 
 % Start appendix
 \appendix
+
+% Add Appendicies to "Table of Contents"
+\addAppxToContents
 
 % 請從此開始依序擺放附錄
 \input{appx/1-appendix}
