@@ -227,12 +227,6 @@
 % "初稿"
 \def\draftzh#1{\gdef\@draftzh{#1}}
 
-% Title of Chinese abstract
-\def\abszhtitle#1{\gdef\@abszhtitle{#1}}
-
-% Title of English abstract
-\def\absentitle#1{\gdef\@absentitle{#1}}
-
 % Title of Acknowledgement
 \def\acktitle#1{\gdef\@acktitle{#1}}
 
@@ -280,8 +274,6 @@
 
 % Define language-related macros
 \ifTHESISOPTIONzh
-  \abszhtitle{中文摘要}
-  \absentitle{英文摘要}
   \acktitle{誌謝}
   \toctitle{目錄}
   \loftitle{圖目錄}
@@ -290,8 +282,6 @@
   \cvtitle{自傳}
   \loptitle{著作目錄}
 \else
-  \abszhtitle{摘要}
-  \absentitle{Abstract}
   \acktitle{Acknowledgement}
   \toctitle{Table of Contents}
   \loftitle{List of Figures}
@@ -717,7 +707,7 @@
 {
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{\textbf{\@abszhtitle}}
+  \addcontentsline{toc}{chapter}{\textbf{摘要}}
 % Start to add watermark
   \AddToShipoutPicture*{\BackgroundPicture}
 % Thesis title in Chinese
@@ -771,7 +761,7 @@
 {
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{\textbf{\@absentitle}}
+  \addcontentsline{toc}{chapter}{\textbf{Abstract}}
 % Thesis title in English
   \begin{center}
     {\Large \bf \@title} 
