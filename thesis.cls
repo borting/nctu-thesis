@@ -203,6 +203,18 @@
 % The name of advisor in Chinese
 \def\advisorzh#1{\gdef\@advisorzh{#1}}
 
+% The name of co-advisor A in English
+\def\coadvisorA#1{\gdef\@coadvisorA{#1}}
+
+% The name of co-advisor A in Chinese
+\def\coadvisorAzh#1{\gdef\@coadvisorAzh{#1}}
+
+% The name of co-advisor B in English
+\def\coadvisorB#1{\gdef\@coadvisorB{#1}}
+
+% The name of co-advisor B in Chinese
+\def\coadvisorBzh#1{\gdef\@coadvisorBzh{#1}}
+
 % The name of the author in Chinese
 \def\authorzh#1{\gdef\@authorzh{#1}}
 
@@ -519,16 +531,25 @@
     \vspace{1in}
   \fi
   \fontsize{18}{18}
-  \makebox[0.75cm][s]{}\makebox[2.75cm][s]{研究生}\makebox[0.75cm][s]{：}
-    \makebox[3.25cm][s]{\@authorzh}\\
-  \vspace{-0.2in}\\
-  \makebox[0.75cm][s]{}\makebox[2.75cm][s]{指導教授}\makebox[0.75cm][s]{：}
-  \ifx \@advisorzh \itsempty \else
-    \makebox[3.25cm][s]{\@advisorzh}\makebox[2cm][c]{教授}\\
+% Author
+  \makebox[0.75cm][s]{}\makebox[2.75cm][s]{研究生}\makebox[0.75cm][s]{：}%
+  \makebox[3.25cm][s]{\@authorzh}\vspace{0.2in}\\
+% Advisor
+  \makebox[0.75cm][s]{}\makebox[2.75cm][s]{指導教授}\makebox[0.75cm][s]{：}%
+  \makebox[3.25cm][s]{\@advisorzh}\makebox[2cm][c]{教授}\\
+% Co-Advisor A
+  \ifx \@coadvisorAzh \@empty \else
+  \makebox[0.75cm][s]{}\makebox[2.75cm][s]{}\makebox[0.75cm][s]{}%
+  \makebox[3.25cm][s]{\@coadvisorAzh}\makebox[2cm][c]{教授}\\
+  \fi
+% Co-Advisor B
+  \ifx \@coadvisorBzh \@empty \else
+  \makebox[0.75cm][s]{}\makebox[2.75cm][s]{}\makebox[0.75cm][s]{}%
+  \makebox[3.25cm][s]{\@coadvisorBzh}\makebox[2cm][c]{教授}\\
   \fi
   \vspace{1in}
   \vfill
-  % submission date
+% Submission date in Chinese
   \centerline{\makebox[15cm][s]{\large\@degreeyearzh}}
 }
 
@@ -540,34 +561,54 @@
 {
   \cleardoublepage
   \thispagestyle{empty}
-  % chines & english titles
+% Chines & English titles
   \begin{center}
-    {\singlespacing\Large{\@titlezh \\ \@title}}
+    {\singlespacing\Large{\@titlezh \vspace{-0.15in}\\}}
+    {\singlespacing\Large{\@title \\}}
   \end{center}
-  % author name in chinese and english
-  \vspace{0.25in}
-  \makebox[2.8cm][s]{\large{研究生：}}
-  \makebox[2.4cm][s]{\large{\@authorzh}}
-  \hfill
-  \makebox[2cm][s]{\large{Student: }}
+% Author name in Chinese and English
+  \vspace{0.25in}%
+  \makebox[2.8cm][s]{\large{研究生：}}%
+  \makebox[2.4cm][s]{\large{\@authorzh}}%
+  \hfill%
+  \makebox[2cm][s]{\large{Student: }}%
   \makebox[4cm][l]{\large{\@author}}\\
-  % advisor name in chinese and english
-  \makebox[2.8cm][s]{\large{指導教授：}}
-  \makebox[2.4cm][s]{\large{\@advisorzh}}
-  \hfill
-  \makebox[2cm][s]{\large{Advisor: }}
-  \makebox[4cm][l]{\large{\@advisor}}\\
-  % university & institute & thesis type in chinese
+% Advisor name in Chinese and English
+  \makebox[2.8cm][s]{\large{指導教授：}}%
+  \makebox[2.4cm][s]{\large{\@advisorzh}}%
+  \hfill%
+  \makebox[2cm][s]{\large{Advisor: }}%
+  \makebox[4cm][l]{\large{\@advisor}}%
+% Co-advisor A's name in Chinese and English
+  \ifx \@coadvisorAzh \@empty \else%
+  \vspace{-0.1in}\\  % narrow down spacing if we have co-advisor
+  \makebox[2.8cm][s]{}%
+  \makebox[2.4cm][s]{\large{\@coadvisorAzh}}%
+  \hfill%
+  \makebox[2cm][s]{}%
+  \makebox[4cm][l]{\large{\@coadvisorA}}%
+  \fi%
+% Co-advisor B's name in Chinese and English
+  \ifx \@coadvisorBzh \@empty \else%
+  \vspace{-0.1in}\\  % narrow down spacing if we have co-advisor
+  \makebox[2.8cm][s]{}%
+  \makebox[2.4cm][s]{\large{\@coadvisorBzh}}%
+  \hfill%
+  \makebox[2cm][s]{}%
+  \makebox[4cm][l]{\large{\@coadvisorB}}%
+  \fi%
+  \\  % normal spacing between advisor and the following text
+% University & institute & thesis type in Chinese
   \vfill
   \begin{center}
-  \normalsize
   \makebox[5.75cm][s]{\large\@universityzh}\\
   \makebox[5.5cm][s]{\large\@institutezh}\\
   \makebox[4cm][s]{\large\@thesistypezh\@draftzh}\\
   \end{center}
-  % english
+% Submission description in English
   \vfill
-  \centerline{\normalsize{A \@thesistype \@draft}}
+  \normalsize
+  \centerline{{A \@thesistype \@draft}}
   \centerline{Submitted to {\@institute}}
   \centerline{\@college}
   \centerline{\@university}
@@ -578,7 +619,7 @@
   \centerline{\ }
   \centerline{\@field}
   \centerline{\ }
-  % date
+% Submission date
   \vfill
   \centerline{{\@degreemonth} {\@degreeyear}}
   \vfill
@@ -677,19 +718,39 @@
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{\@abszhtitle}}
+% Start to add watermark
   \AddToShipoutPicture*{\BackgroundPicture}
+% Thesis title in Chinese
   \begin{center}
     {\Large \bf \@titlezh}
   \end{center}
   \vspace*{-0.1in}
-  \makebox[2.4cm][s]{\large{研究生：}}
-  \makebox[2.4cm][s]{\large{\@authorzh}}
-  \hfill
-  \makebox[2.8cm][s]{\large{指導教授：}}
-  \makebox[2.4cm][s]{\large{\@advisorzh}}
-  \makebox[1.2cm][r]{\large{博士}}\\
+% Author & Advisor in Chinese
+  \makebox[2.4cm][s]{\large{研究生：}}\makebox[2.4cm][s]{\large{\@authorzh}}%
+  \hfill%
+  \makebox[2.8cm][s]{\large{指導教授：}}\makebox[2.4cm][s]{\large{\@advisorzh}}%
+  \makebox[1.2cm][r]{\large{博士}}%
+% Co-advisor A in Chinese
+  \ifx \@coadvisorAzh \@empty \else%
+  \vspace{-0.1in}\\  % narrow down spacing if we have co-advisor
+  \makebox[2.4cm][s]{}\makebox[2.4cm][s]{}%
+  \hfill%
+  \makebox[2.8cm][s]{}\makebox[2.4cm][s]{\large{\@coadvisorAzh}}%
+  \makebox[1.2cm][r]{\large{博士}}%
+  \fi
+% Co-advisor B in Chinese
+  \ifx \@coadvisorBzh \@empty \else%
+  \vspace{-0.1in}\\  % narrow down spacing if we have co-advisor
+  \makebox[2.4cm][s]{}\makebox[2.4cm][s]{}%
+  \hfill%
+  \makebox[2.8cm][s]{}\makebox[2.4cm][s]{\large{\@coadvisorBzh}}%
+  \makebox[1.2cm][r]{\large{博士}}%
+  \fi
+  \\  % normal spacing between advisor and the following text
+% Institute and university name in Chinese
   \centerline{\large{\@universityzh\@institutezh}}
   \centerline{\ }
+% Abstract title in Chinese
   \centerline{\Large{\textbf{摘要}}}
 }
 
@@ -711,20 +772,38 @@
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{\@absentitle}}
-  \AddToShipoutPicture*{\BackgroundPicture}
+% Thesis title in English
   \begin{center}
     {\Large \bf \@title} 
   \end{center}
   \vspace*{-0.1in}
-  \makebox[2cm][s]{\large{Student: }}
-  \makebox[4cm][l]{\large{\@author}}
-  \hfill
-  \makebox[2cm][s]{\large{Advisor: }}
-  \makebox[0.75cm][l]{\large{Dr. }}
-  \makebox[4cm][l]{\large{\@advisor}}\\
+% Author & Advisor in English
+  \makebox[2cm][s]{\large{Student: }}\makebox[4cm][l]{\large{\@author}}%
+  \hfill%
+  \makebox[2cm][s]{\large{Advisor: }}\makebox[0.75cm][l]{\large{Dr. }}%
+  \makebox[4cm][l]{\large{\@advisor}}%
+% Co-advisor A in English
+  \ifx \@coadvisorA \@empty \else%
+  \vspace{-0.1in}\\  % narrow down spacing if we have co-advisor
+  \makebox[2cm][s]{}\makebox[4cm][l]{}%
+  \hfill%
+  \makebox[2cm][s]{}\makebox[0.75cm][l]{\large{Dr. }}%
+  \makebox[4cm][l]{\large{\@coadvisorA}}%
+  \fi
+% Co-advisor B in English
+  \ifx \@coadvisorB \@empty \else%
+  \vspace{-0.1in}\\  % narrow down spacing if we have co-advisor
+  \makebox[2cm][s]{}\makebox[4cm][l]{}%
+  \hfill%
+  \makebox[2cm][s]{}\makebox[0.75cm][l]{\large{Dr. }}%
+  \makebox[4cm][l]{\large{\@coadvisorB}}%
+  \fi
+  \\  % normal spacing between advisor and the following text
+% Institue and university name in English
   \centerline{\large{\@institute}}
   \centerline{\large{\@university}}
   \centerline{\ }
+% Abstract title in English
   \centerline{\Large{\textbf{Abstract}}}
 }
 
