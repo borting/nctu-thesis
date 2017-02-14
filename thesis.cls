@@ -2,7 +2,6 @@
 \NeedsTeXFormat{LaTeX2e}
 
 %TODO
-% 檢查 twoside 時的版面配置
 % \cleardoublepage 後的空白頁不顯示 watermark
 % Mac OS X 字型問題
 % 自動選擇是否引入 著作權授權書 (authorization) 和 審定書 (approval) 的 pdf 檔
