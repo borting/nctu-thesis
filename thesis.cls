@@ -25,7 +25,7 @@
 \DeclareOption{phd}{\THESISOPTIONmasterfalse\THESISOPTIONphdtrue}
 
 % Declare options for the language used in thesis: (default: english)
-%   en(english) or zh(chinese)
+%   en(English) or zh(Chinese)
 \newif\ifTHESISOPTIONen             \THESISOPTIONentrue
 \newif\ifTHESISOPTIONzh             \THESISOPTIONzhfalse
 
@@ -94,9 +94,9 @@
 
 % Page margin
 \ifTHESISOPTIONfinal  % only valid in final mode
-  \geometry{left=3 cm, right=2 cm, top=2.5 cm, bottom=2.5 cm}
+  \geometry{left=3 cm, right=2 cm, top=2.5 cm, bottom=2.5 cm}%
 \else
-  \geometry{left=2.5 cm, right=2.5 cm, top=2.5 cm, bottom=2.5 cm}
+  \geometry{left=2.5 cm, right=2.5 cm, top=2.5 cm, bottom=2.5 cm}%
 \fi
 
 % Position of page number
@@ -154,7 +154,7 @@
 \XeTeXlinebreakskip = 0pt plus 1pt
 
 %-------------------------------------------------------------------------------
-% Macros for Front Pages
+% Macros
 %-------------------------------------------------------------------------------
 
 % Chinese title of the thesis/dissertation
@@ -221,12 +221,6 @@
 % The path to watermark
 \def\watermark#1{\gdef\@watermark{#1}}
 
-% "Draft"
-\def\draft#1{\gdef\@draft{#1}}
-
-% "初稿"
-\def\draftzh#1{\gdef\@draftzh{#1}}
-
 % Title of Acknowledgement
 \def\acktitle#1{\gdef\@acktitle{#1}}
 
@@ -253,79 +247,68 @@
 %-------------------------------------------------------------------------------
 
 % Define macros related to degree
-\ifTHESISOPTIONmaster  % Master thesis
-  \thesistype{Thesis}
-  \thesistypezh{碩士論文}
-  \degree{Master}
-\else                  % PhD dissertation 
-  \thesistype{Dissertation}
-  \thesistypezh{博士論文}
-  \degree{Doctor of Philosophy}
-\fi
-
-% Define macros related to print mode
-\ifTHESISOPTIONdraft
-  \draft{ Draft}
-  \draftzh{初稿}
+\ifTHESISOPTIONmaster
+  \thesistype{Thesis}%
+  \thesistypezh{碩士論文}%
+  \degree{Master}%
 \else
-  \draft{}
-  \draftzh{}
+  \thesistype{Dissertation}%
+  \thesistypezh{博士論文}%
+  \degree{Doctor of Philosophy}%
 \fi
 
-% Define language-related macros
+% Define language-related macros for front pages and back pages
 \ifTHESISOPTIONzh
-  \acktitle{誌謝}
-  \toctitle{目錄}
-  \loftitle{圖目錄}
-  \lottitle{表目錄}
-  \bibtitle{參考文獻}
-  \cvtitle{自傳}
-  \loptitle{著作目錄}
+  \acktitle{誌謝}%
+  \toctitle{目錄}%
+  \loftitle{圖目錄}%
+  \lottitle{表目錄}%
+  \bibtitle{參考文獻}%
+  \cvtitle{自傳}%
+  \loptitle{著作目錄}%
 \else
-  \acktitle{Acknowledgement}
-  \toctitle{Table of Contents}
-  \loftitle{List of Figures}
-  \lottitle{List of Tables}
-  \bibtitle{Bibliography}
-  \cvtitle{Curriculum Vitae}
-  \loptitle{List of Publications}
+  \acktitle{Acknowledgement}%
+  \toctitle{Table of Contents}%
+  \loftitle{List of Figures}%
+  \lottitle{List of Tables}%
+  \bibtitle{Bibliography}%
+  \cvtitle{Curriculum Vitae}%
+  \loptitle{List of Publications}%
 \fi
 
 %-------------------------------------------------------------------------------
-% ToC, LoF, and LoT Format
+% Table of Contents, List of Figures, and List of Tables
 %-------------------------------------------------------------------------------
 
-% Place the titles of ToC, LoF, and LoT to center
+% Place the titles of ToC, LoF, and LoT to center and set the font of the titles
 \renewcommand{\cfttoctitlefont}{\hspace*{\fill}\Huge\bfseries}
 \renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
 \renewcommand{\cftlottitlefont}{\hspace*{\fill}\Huge\bfseries}
 \renewcommand{\cftafterlottitle}{\hspace*{\fill}}
-\renewcommand{\cftloftitlefont}{\hfill \Huge\bfseries}
+\renewcommand{\cftloftitlefont}{\hspace*{\fill}\Huge\bfseries}
 \renewcommand{\cftafterloftitle}{\hspace*{\fill}}
 
 % Set the language used in ToC, LoF, and LoT
 \ifTHESISOPTIONzh
-\renewcommand{\contentsname}{\textbf{\@toctitle}}
-\renewcommand{\listfigurename}{\textbf{\@loftitle}}
-\renewcommand{\listtablename}{\textbf{\@lottitle}}
-\renewcommand{\tablename}{表}
-\renewcommand{\figurename}{圖}
-\renewcommand{\bibname}{參考文獻}
+  \renewcommand{\contentsname}{\textbf{\@toctitle}}%
+  \renewcommand{\listfigurename}{\textbf{\@loftitle}}%
+  \renewcommand{\listtablename}{\textbf{\@lottitle}}%
+  \renewcommand{\tablename}{表}%
+  \renewcommand{\figurename}{圖}%
+  \renewcommand{\bibname}{參考文獻}%
 \fi
 
-% Set the chapter numbering to chiese number in ToC
+% Set the chapter numbering to Chinese number in ToC
 \ifTHESISOPTIONzh
-  \titlecontents{chapter}[0pt]  % <left>
-  {}  % <above>
-  {\bfseries\xCJKnumber{\thecontentslabel}、\hspace{0.5em}}  % <above-code>
-  {}  % <numbered-entry-format>
-  {\cftdotfill{\cftdotsep}\contentspage}  % <filler-page-format>
+  \titlecontents{chapter}[0pt]{}%
+  {\bfseries\xCJKnumber{\thecontentslabel}、\hspace{0.5em}}{}%
+  {\cftdotfill{\cftdotsep}\contentspage}%
 \else
-  \titlecontents{chapter}[0pt]  % <left>
-  {}  % <above>
-  {\bfseries\makebox[1em][l]{\thecontentslabel}\hspace{0.25em}}  % <above-code>
-  {}  % <numbered-entry-format>
-  {\cftdotfill{\cftdotsep}\contentspage}  % <filler-page-format>
+% Format the chapter numbering in ToC when using English
+  \titlecontents{chapter}[0pt]{}%
+  % Fix the chapter number within a box no matter it has 1 or 2 digits
+  {\bfseries\makebox[1em][l]{\thecontentslabel}\hspace{0.25em}}{}%
+  {\cftdotfill{\cftdotsep}\contentspage}%
 \fi
 
 % Adjust the position of the title of ToC, LoF, and LoT
@@ -334,59 +317,55 @@
 \renewcommand\cftbeforelottitleskip{-0.5cm}
 
 % A wraper to generate toc, lof, and lot
-\def\maketocs{
+\def\maketocs{%
 \ifTHESISOPTIONreview\else
 % Table of Contents
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{\textbf{\@toctitle}}
+  \addcontentsline{toc}{chapter}{\textbf{\@toctitle}}%
   \tableofcontents
-  \AddToShipoutPictureBG{\BackgroundPicture}
+  % Add watermark to every pages starting from ToC
+  \AddToShipoutPictureBG{\BackgroundPicture}%
 % List of Figures
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{\textbf{\@loftitle}}
+  \addcontentsline{toc}{chapter}{\textbf{\@loftitle}}%
   \listoffigures
 % List of Tables
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{\textbf{\@lottitle}}
+  \addcontentsline{toc}{chapter}{\textbf{\@lottitle}}%
   \listoftables
 \fi
 }
 
 %-------------------------------------------------------------------------------
-% Chapter Format
+% Chapters
 %-------------------------------------------------------------------------------
 
-% Set the title format for chapter
+% Set the position of chapter label and title
 \ifTHESISOPTIONzh
-  \titleformat{\chapter}
-  [block]  % shape (label and title body are placed at the same line)
-  {\centering\Huge\bfseries}  % format for label and title body
-  {\xCJKnumber{\thechapter}、\hspace{0.5em}}  % (X、 ...)
-  {0em}  % code preceding the title body
-  {}  % code following the title body
+  \titleformat{\chapter}[block]% (place label and title body at the same line)
+  {\centering\Huge\bfseries}%
+  {\xCJKnumber{\thechapter}、\hspace{0.5em}}% (X、 ...)
+  {0em}{}%
 \else
-  \titleformat{\chapter}
-  [display]  % shape (title body is placed at second line)
-  {\centering\Huge\bfseries}  % format for label and title body
-  {\chaptertitlename\ \thechapter}  % label (Chapter X)
-  {0em}  % code preceding the title body
-  {}  % code following the title body
+  \titleformat{\chapter}[display]% (title body is placed at second line)
+  {\centering\Huge\bfseries}%
+  {\chaptertitlename\ \thechapter}%
+  {0em}{}%
 \fi
 
-% Set the spacing between chapter title with page top and text body
-\titlespacing*{\chapter}
-{0em}    % left
-{-40pt}  % before seperation
-{*6}     % aftet seperation
+% Set the spacing before and after chapter label/title
+%   {type}{left}{before seperation}{after seperation}
+\titlespacing*{\chapter}{0em}{-40pt}{*6}
 
 %-------------------------------------------------------------------------------
 % Watermark
 %-------------------------------------------------------------------------------
 
-\newcommand\BackgroundPicture{
+% Set the source of watermark
+\newcommand\BackgroundPicture{%
 \ifTHESISOPTIONwatermark
 % for draft mode: print "DRAFT"
   \ifTHESISOPTIONdraft
@@ -400,10 +379,10 @@
   \fi
 % for final mode: print the watermark specified by \watermark{}
   \ifTHESISOPTIONfinal
-    \begin{tikzpicture}
-      \node[minimum width=\paperwidth,minimum height=\paperheight,opacity=0.75]
-        {\includegraphics[width=0.75\textwidth]{\@watermark}};
-    \end{tikzpicture}
+    \begin{tikzpicture}%
+      \node[minimum width=\paperwidth,minimum height=\paperheight,opacity=0.75]%
+        {\includegraphics[width=0.75\textwidth]{\@watermark}};%
+    \end{tikzpicture}%
   \fi
 \fi
 }
@@ -421,8 +400,9 @@
 % Covert 'A' to 1, 'B' to 2, ...
 %TODO
 %   This is a workaround to show '附錄一' in the chapter label but 'A.1' in the
-% section label of an appendix, instead of showing '1.1' which conficts with the
-% section label of a chapter. Hope someone can fix this in a smarter way.
+% section label of an appendix, rather than showing '1.1', which conflicts with
+% the section label of a regular chapter. Hope someone can fix this in a smarter
+% way.
 \DeclareRobustCommand{\xCJKalphatozhnum}[1]{%
   \ifnum\strcmp{#1}{A} = 0 一 \else
   \ifnum\strcmp{#1}{B} = 0 二 \else
@@ -443,7 +423,7 @@
   \ifnum\strcmp{#1}{Q} = 0 十七 \else
   \ifnum\strcmp{#1}{R} = 0 十八 \else
   \ifnum\strcmp{#1}{S} = 0 十九 \else
-  \ifnum\strcmp{#1}{T} = 0 二十 \else 零
+  \ifnum\strcmp{#1}{T} = 0 二十 \else 零%
   \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi
 }
 
@@ -452,35 +432,29 @@
 %-------------------------------------------------------------------------------
 
 % A wraper to add Bibliography to "Table of Contents"
-\newcommand{\addBibToContents}
-{
+\newcommand{\addBibToContents}{%
   \cleardoublepage
   \phantomsection
-  \addcontentsline{toc}{chapter}{\textbf{\@bibtitle}}
+  \addcontentsline{toc}{chapter}{\textbf{\@bibtitle}}%
 }
 
 %-------------------------------------------------------------------------------
-% Appendix Format
+% Apendicies
 %-------------------------------------------------------------------------------
 
-% A wraper to set the style of appendicies in terms of the language (en or zh)
-\newcommand{\addAppxToContents}
-{
+% A wraper to reset the style of appendicies when 'zh' option is set
+\newcommand{\addAppxToContents}{%
 \ifTHESISOPTIONzh
-  % Set appendix numbering to chiese style in ToC
-  \titlecontents{chapter}[0pt]
-  {}  % <left>
-  {\bfseries 附錄\xCJKalphatozhnum{\thecontentslabel}\quad}  % <above-code>
-  {}  % <numbered-entry-format>
-  {\cftdotfill{\cftdotsep}\contentspage}  % <filler-page-format>
+  % Set appendix numbering to Chiese style in ToC
+  \titlecontents{chapter}[0pt]{}%
+  {\bfseries 附錄\xCJKalphatozhnum{\thecontentslabel}\quad}%
+  {}{\cftdotfill{\cftdotsep}\contentspage}%
 
-  % Set appendix title to chinese style
-  \titleformat{\chapter}
-  [block]  % shape (label and title body are placed at the same line)
-  {\centering\Huge\bfseries}  % format for label and title body
-  {附錄\xCJKalphatozhnum{\thechapter}\quad}  % (X、 ...)
-  {0em}  % code preceding the title body
-  {}  % code following the title body
+  % Set appendix title to Chinese style
+  \titleformat{\chapter}[block]% (place label and title body at the same line)
+  {\centering\Huge\bfseries}%
+  {附錄\xCJKalphatozhnum{\thechapter}\quad}% (X、 ...)
+  {0em}{}%
 \fi
 }
 
@@ -490,57 +464,58 @@
 
 \def\coverpage
 {
-  \thispagestyle{empty}
+  \thispagestyle{empty}%
+% University, institute, and title
   \begin{center}
-    % univerity chinese name
-    \fontsize{40}{40}{\Ming{\@universityzh}}\\
-    \vspace{0.5in}
-    % institute chinese name
+    % University
+    \fontsize{40}{40}{\makebox[10cm][s]{\Ming{\@universityzh}}}\\
+    \vspace{1.5\baselineskip}
+    % Institute
     \fontsize{28}{28}{\textbf{\Ming{\@institutezh}}}\\
-    \vspace{0.5in}
-    % thesis type (\Huge font size)
-    \fontsize{24}{24}
-    \centerline{\makebox[4.5cm][s]{\textbf{\Ming{\@thesistypezh}}}}    
-    % mark "初稿" in 'draft' mode
+    \vspace{1.5\baselineskip}
+    % Thesis type
+    \fontsize{24}{24}{\makebox[4.5cm][s]{\textbf{\Ming{\@thesistypezh}}}}\\
     \ifTHESISOPTIONdraft
-      \vspace{0.5in}
-  	    \centerline{\makebox[2cm][s]{\textbf{\Ming{初稿}}}}
-  	  \fi
+      \vspace{1.5\baselineskip}
+      \makebox[2cm][s]{\textbf{\Ming{初稿}}}\\
+    \fi
     \vfill
-    % set single spacing
-    \singlespacing
-    \LARGE{\@titlezh}\\  % chinese title
-    \vspace{0.25in}
-    \LARGE{\@title}\\    % english title
+    \singlespacing % set single spacing
+    % Chinese title
+    \LARGE{\@titlezh}\\
+    \vspace{0.75\baselineskip}
+    % English title
+    \LARGE{\@title}\\
+    \vfill
   \end{center}
-  \vfill
-  % author & andvisor
-  \ifTHESISOPTIONdraft
-    \vspace{0.25in}
-  \else
-    \vspace{1in}
-  \fi
-  \fontsize{18}{18}
-% Author
-  \makebox[0.75cm][s]{}\makebox[2.75cm][s]{研究生}\makebox[0.75cm][s]{：}%
-  \makebox[3.25cm][s]{\@authorzh}\vspace{0.2in}\\
-% Advisor
-  \makebox[0.75cm][s]{}\makebox[2.75cm][s]{指導教授}\makebox[0.75cm][s]{：}%
-  \makebox[3.25cm][s]{\@advisorzh}\makebox[2cm][c]{教授}\\
-% Co-Advisor A
-  \ifx \@coadvisorAzh \@empty \else
-  \makebox[0.75cm][s]{}\makebox[2.75cm][s]{}\makebox[0.75cm][s]{}%
-  \makebox[3.25cm][s]{\@coadvisorAzh}\makebox[2cm][c]{教授}\\
-  \fi
-% Co-Advisor B
-  \ifx \@coadvisorBzh \@empty \else
-  \makebox[0.75cm][s]{}\makebox[2.75cm][s]{}\makebox[0.75cm][s]{}%
-  \makebox[3.25cm][s]{\@coadvisorBzh}\makebox[2cm][c]{教授}\\
-  \fi
+% Author & advisors
+  \begin{flushleft}
+    \singlespacing
+    \fontsize{18}{18}
+    % Author
+    \makebox[0.5cm][s]{}\makebox[2.75cm][s]{研究生}\makebox[0.75cm][s]{：}%
+    \makebox[3.25cm][s]{\@authorzh}\\
+    \vspace{\baselineskip}
+    % Advisor
+    \makebox[0.5cm][s]{}\makebox[2.75cm][s]{指導教授}\makebox[0.75cm][s]{：}%
+    \makebox[3.25cm][s]{\@advisorzh}\makebox[2cm][c]{博士}\\
+    % Co-Advisor A
+    \ifx \@coadvisorAzh \@empty \else
+      \makebox[0.5cm][s]{}\makebox[2.75cm][s]{}\makebox[0.75cm][s]{}%
+      \makebox[3.25cm][s]{\@coadvisorAzh}\makebox[2cm][c]{博士}\\
+    \fi
+    % Co-Advisor B
+    \ifx \@coadvisorBzh \@empty \else
+      \makebox[0.5cm][s]{}\makebox[2.75cm][s]{}\makebox[0.75cm][s]{}%
+      \makebox[3.25cm][s]{\@coadvisorBzh}\makebox[2cm][c]{博士}\\
+    \fi
+  \end{flushleft}
   \vspace{1in}
   \vfill
 % Submission date in Chinese
-  \centerline{\makebox[15cm][s]{\large\@degreeyearzh}}
+  \begin{center}
+    \makebox[15cm][s]{\large\@degreeyearzh}\\
+  \end{center}
 }
 
 %-------------------------------------------------------------------------------
@@ -553,69 +528,72 @@
   \thispagestyle{empty}
 % Chines & English titles
   \begin{center}
-    {\singlespacing\Large{\@titlezh \vspace{-0.15in}\\}}
-    {\singlespacing\Large{\@title \\}}
+    \singlespacing\Large
+    \@titlezh\\
+    \vspace{0.25\baselineskip}
+    \@title\\
+    \vspace{0.25\baselineskip}
   \end{center}
-% Author name in Chinese and English
-  \vspace{0.25in}%
-  \makebox[2.8cm][s]{\large{研究生：}}%
-  \makebox[2.4cm][s]{\large{\@authorzh}}%
+% Author name and advisor name in Chinese and English
+  \begin{flushleft}
+  \singlespacing
+  % Author
+  \makebox[2.8cm][s]{\large{研究生：}}\makebox[2.4cm][s]{\large{\@authorzh}}%
   \hfill%
-  \makebox[2cm][s]{\large{Student: }}%
-  \makebox[4cm][l]{\large{\@author}}\\
-% Advisor name in Chinese and English
-  \makebox[2.8cm][s]{\large{指導教授：}}%
-  \makebox[2.4cm][s]{\large{\@advisorzh}}%
+  \makebox[2cm][s]{\large{Student: }}\makebox[4cm][l]{\large{\@author}}\\
+  \vspace{0.25\baselineskip}
+  % Advisor
+  \makebox[2.8cm][s]{\large{指導教授：}}\makebox[2.4cm][s]{\large{\@advisorzh}}%
   \hfill%
-  \makebox[2cm][s]{\large{Advisor: }}%
-  \makebox[4cm][l]{\large{\@advisor}}%
-% Co-advisor A's name in Chinese and English
-  \ifx \@coadvisorAzh \@empty \else%
-  \vspace{-0.1in}\\  % narrow down spacing if we have co-advisor
-  \makebox[2.8cm][s]{}%
-  \makebox[2.4cm][s]{\large{\@coadvisorAzh}}%
-  \hfill%
-  \makebox[2cm][s]{}%
-  \makebox[4cm][l]{\large{\@coadvisorA}}%
-  \fi%
-% Co-advisor B's name in Chinese and English
-  \ifx \@coadvisorBzh \@empty \else%
-  \vspace{-0.1in}\\  % narrow down spacing if we have co-advisor
-  \makebox[2.8cm][s]{}%
-  \makebox[2.4cm][s]{\large{\@coadvisorBzh}}%
-  \hfill%
-  \makebox[2cm][s]{}%
-  \makebox[4cm][l]{\large{\@coadvisorB}}%
-  \fi%
-  \\  % normal spacing between advisor and the following text
+  \makebox[2cm][s]{\large{Advisor: }}\makebox[4cm][l]{\large{\@advisor}}\\
+  % Co-advisor A
+  \ifx \@coadvisorAzh \@empty \else
+    \makebox[2.8cm][s]{}\makebox[2.4cm][s]{\large{\@coadvisorAzh}}%
+    \hfill%
+    \makebox[2cm][s]{}\makebox[4cm][l]{\large{\@coadvisorA}}\\
+  \fi
+  % Co-advisor B
+  \ifx \@coadvisorBzh \@empty \else
+    \makebox[2.8cm][s]{}\makebox[2.4cm][s]{\large{\@coadvisorBzh}}%
+    \hfill%
+    \makebox[2cm][s]{}\makebox[4cm][l]{\large{\@coadvisorB}}\\
+  \fi
+  \end{flushleft}
+  \vfill
 % University & institute & thesis type in Chinese
-  \vfill
   \begin{center}
-  \makebox[5.75cm][s]{\large\@universityzh}\\
-  \makebox[5.5cm][s]{\large\@institutezh}\\
-  \makebox[4cm][s]{\large\@thesistypezh\@draftzh}\\
-  \end{center}
+    \makebox[6cm][s]{\large\@universityzh}\\
+    \makebox[5.5cm][s]{\large\@institutezh}\\
+    \ifTHESISOPTIONdraft
+      \makebox[4cm][s]{\large\@thesistypezh 初稿}\\
+    \else
+      \makebox[4cm][s]{\large\@thesistypezh}\\
+    \fi
+    \vfill
 % Submission description in English
-  \vfill
-  \normalsize
-  \centerline{{A \@thesistype \@draft}}
-  \centerline{Submitted to {\@institute}}
-  \centerline{\@college}
-  \centerline{\@university}
-  \centerline{in partial Fulfilment of the Requirements}
-  \centerline{for the Degree of}
-  \centerline{\@degree}
-  \centerline{in}
-  \centerline{\ }
-  \centerline{\@field}
-  \centerline{\ }
-% Submission date
-  \vfill
-  \centerline{{\@degreemonth} {\@degreeyear}}
-  \vfill
-  \centerline{\@location}
-  \vfill
-  \centerline{\makebox[8cm][s]{\normalsize\@degreeyearzh}}
+    \ifTHESISOPTIONdraft
+      \centerline{{A \@thesistype\ Draft}}%
+    \else
+      \centerline{{A \@thesistype}}%
+    \fi
+    Submitted to {\@institute}\\
+    \@college\\
+    \@university\\
+    in partial Fulfilment of the Requirements\\
+    for the Degree of\\
+    \@degree\\
+    in\\
+    \vspace{0.5\baselineskip}
+    \@field\\
+    \vspace{\baselineskip}
+    \vfill
+% Submission date and location
+    {{\@degreemonth} {\@degreeyear}}\\
+    \vspace{0.25\baselineskip}
+    \@location\\
+    \vfill
+    \makebox[8cm][s]{\normalsize\@degreeyearzh}
+  \end{center}
 }
 
 %-------------------------------------------------------------------------------
@@ -661,9 +639,11 @@
   \rule[0pt]{0pt}{0pt} \\
   \vspace{2.5in}
   \rule[0pt]{0pt}{0pt} \\
-  \centerline{\copyright {\@degreeyear} - {\@author}}
-  \centerline{\ }
-  \centerline{All rights reserved.}
+  \begin{center}
+    \copyright {\@degreeyear} - {\@author}\\
+    \vspace{0.5\baselineskip}
+    All rights reserved.\\
+  \end{center}
 }
 
 %-------------------------------------------------------------------------------
@@ -703,108 +683,113 @@
 % Chinese Abstract
 %-------------------------------------------------------------------------------
 
-\def\abszhpage %中文摘要頁首
+% Page layout of Chinese abstract
+\def\abszhpage
 {
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{摘要}}
-% Start to add watermark
-  \AddToShipoutPicture*{\BackgroundPicture}
-% Thesis title in Chinese
+% Add watermark in this page
+  \AddToShipoutPictureBG*{\BackgroundPicture}
   \begin{center}
-    {\Large \bf \@titlezh}
+    \singlespacing
+% Thesis title
+    {\Large \bf \@titlezh}\\
+    \vspace{\baselineskip}
+% Author & Advisor
+    \makebox[2.4cm][s]{\large{研究生：}}\makebox[2.4cm][s]{\large{\@authorzh}}%
+    \hfill%
+    \makebox[2.8cm][s]{\large{指導教授：}}\makebox[2.4cm][s]{\large{\@advisorzh}}%
+    \makebox[1.2cm][r]{\large{博士}}\\
+% Co-advisor A
+    \ifx \@coadvisorAzh \@empty \else
+      \makebox[2.4cm][s]{}\makebox[2.4cm][s]{}%
+      \hfill%
+      \makebox[2.8cm][s]{}\makebox[2.4cm][s]{\large{\@coadvisorAzh}}%
+      \makebox[1.2cm][r]{\large{博士}}\\
+    \fi
+% Co-advisor B
+    \ifx \@coadvisorBzh \@empty \else
+      \makebox[2.4cm][s]{}\makebox[2.4cm][s]{}%
+      \hfill%
+      \makebox[2.8cm][s]{}\makebox[2.4cm][s]{\large{\@coadvisorBzh}}%
+      \makebox[1.2cm][r]{\large{博士}}\\
+    \fi
+% Institute and university name
+    \vspace{0.25\baselineskip}
+    \large{\@universityzh\hspace{1ex}\@institutezh}\\
+    \vspace{\baselineskip}
+% Abstract title
+    \Large{\textbf{摘\qquad 要}}\\
   \end{center}
-  \vspace*{-0.1in}
-% Author & Advisor in Chinese
-  \makebox[2.4cm][s]{\large{研究生：}}\makebox[2.4cm][s]{\large{\@authorzh}}%
-  \hfill%
-  \makebox[2.8cm][s]{\large{指導教授：}}\makebox[2.4cm][s]{\large{\@advisorzh}}%
-  \makebox[1.2cm][r]{\large{博士}}%
-% Co-advisor A in Chinese
-  \ifx \@coadvisorAzh \@empty \else%
-  \vspace{-0.1in}\\  % narrow down spacing if we have co-advisor
-  \makebox[2.4cm][s]{}\makebox[2.4cm][s]{}%
-  \hfill%
-  \makebox[2.8cm][s]{}\makebox[2.4cm][s]{\large{\@coadvisorAzh}}%
-  \makebox[1.2cm][r]{\large{博士}}%
-  \fi
-% Co-advisor B in Chinese
-  \ifx \@coadvisorBzh \@empty \else%
-  \vspace{-0.1in}\\  % narrow down spacing if we have co-advisor
-  \makebox[2.4cm][s]{}\makebox[2.4cm][s]{}%
-  \hfill%
-  \makebox[2.8cm][s]{}\makebox[2.4cm][s]{\large{\@coadvisorBzh}}%
-  \makebox[1.2cm][r]{\large{博士}}%
-  \fi
-  \\  % normal spacing between advisor and the following text
-% Institute and university name in Chinese
-  \centerline{\large{\@universityzh\@institutezh}}
-  \centerline{\ }
-% Abstract title in Chinese
-  \centerline{\Large{\textbf{摘要}}}
 }
 
 % New environment for Chinese Abstract
-\newenvironment{abstractzh}{
-\ifTHESISOPTIONreview\comment\fi  % not be compiled if in review mode
-  \abszhpage
-  \section*{}
-  \vspace{-0.75in}
-\ifTHESISOPTIONreview\endcomment\fi
+\newenvironment{abstractzh}{%
+  \ifTHESISOPTIONreview\else
+    \abszhpage
+    \par % start a new paragraph and force the first line being indented
+  \fi
+  \ifTHESISOPTIONreview\comment\fi  % ignore input tex in review mode
+}{%
+  \ifTHESISOPTIONreview\endcomment\fi
 }
 
 %-------------------------------------------------------------------------------
 % English Abstract
 %-------------------------------------------------------------------------------
 
+% Page layout of English abstract
 \def\absenpage
 {
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{Abstract}}
-% Thesis title in English
+% Add watermark in this page
+  \AddToShipoutPictureBG*{\BackgroundPicture}
   \begin{center}
-    {\Large \bf \@title} 
+    \singlespacing
+% Thesis title
+    {\Large \bf \@title}\\
+    \vspace{\baselineskip}
+% Author & Advisor
+    \makebox[2cm][s]{\large{Student: }}\makebox[4cm][l]{\large{\@author}}%
+    \hfill%
+    \makebox[2cm][s]{\large{Advisor: }}\makebox[0.75cm][l]{\large{Dr. }}%
+    \makebox[4cm][l]{\large{\@advisor}}\\
+% Co-advisor A
+    \ifx \@coadvisorA \@empty \else
+      \makebox[2cm][s]{}\makebox[4cm][l]{}%
+      \hfill%
+      \makebox[2cm][s]{}\makebox[0.75cm][l]{\large{Dr. }}%
+      \makebox[4cm][l]{\large{\@coadvisorA}}\\
+    \fi
+% Co-advisor B
+    \ifx \@coadvisorB \@empty \else
+      \makebox[2cm][s]{}\makebox[4cm][l]{}%
+      \hfill%
+      \makebox[2cm][s]{}\makebox[0.75cm][l]{\large{Dr. }}%
+      \makebox[4cm][l]{\large{\@coadvisorB}}\\
+    \fi
+% Institue and university name
+    \vspace{0.25\baselineskip}
+    \large{\@institute}\\
+    \large{\@university}\\
+    \vspace{\baselineskip}
+% Abstract title
+    \Large{\textbf{Abstract}}\\
   \end{center}
-  \vspace*{-0.1in}
-% Author & Advisor in English
-  \makebox[2cm][s]{\large{Student: }}\makebox[4cm][l]{\large{\@author}}%
-  \hfill%
-  \makebox[2cm][s]{\large{Advisor: }}\makebox[0.75cm][l]{\large{Dr. }}%
-  \makebox[4cm][l]{\large{\@advisor}}%
-% Co-advisor A in English
-  \ifx \@coadvisorA \@empty \else%
-  \vspace{-0.1in}\\  % narrow down spacing if we have co-advisor
-  \makebox[2cm][s]{}\makebox[4cm][l]{}%
-  \hfill%
-  \makebox[2cm][s]{}\makebox[0.75cm][l]{\large{Dr. }}%
-  \makebox[4cm][l]{\large{\@coadvisorA}}%
-  \fi
-% Co-advisor B in English
-  \ifx \@coadvisorB \@empty \else%
-  \vspace{-0.1in}\\  % narrow down spacing if we have co-advisor
-  \makebox[2cm][s]{}\makebox[4cm][l]{}%
-  \hfill%
-  \makebox[2cm][s]{}\makebox[0.75cm][l]{\large{Dr. }}%
-  \makebox[4cm][l]{\large{\@coadvisorB}}%
-  \fi
-  \\  % normal spacing between advisor and the following text
-% Institue and university name in English
-  \centerline{\large{\@institute}}
-  \centerline{\large{\@university}}
-  \centerline{\ }
-% Abstract title in English
-  \centerline{\Large{\textbf{Abstract}}}
 }
 
-% New environment for english abstract
-
-\newenvironment{abstract}{
-\ifTHESISOPTIONreview\comment\fi  % not be compiled if in review mode
-  \absenpage
-  \section*{}
-  \vspace{-0.75in}
-\ifTHESISOPTIONreview\endcomment\fi
+% New environment for English abstract
+\newenvironment{abstract}{%
+  \ifTHESISOPTIONreview\else
+    \absenpage
+    \par % start a new paragraph and force the first line being indented
+  \fi
+  \ifTHESISOPTIONreview\comment\fi  % ignore input tex in review mode
+}{%
+  \ifTHESISOPTIONreview\endcomment\fi
 }
 
 %-------------------------------------------------------------------------------
@@ -817,55 +802,68 @@
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{\@acktitle}}
   \begin{center}
-    {\Large \bf \@acktitle}
+    {\Large \bf \@acktitle}\\
   \end{center}
 }
 
-\newenvironment{acknowledgement}{
-\ifTHESISOPTIONfinal\else\comment\fi  % Only be compiled in final mode
-\ackpage
-\ifTHESISOPTIONfinal\else\endcomment\fi
+\newenvironment{acknowledgement}{%
+  \ifTHESISOPTIONfinal
+    \ackpage
+    \par % start a new paragraph and force the first line being indented
+  \fi
+  \ifTHESISOPTIONfinal\else\comment\fi  % ignore input tex if not in final mode
+}{%
+  \ifTHESISOPTIONfinal\else\endcomment\fi
 }
 
 %-------------------------------------------------------------------------------
 % Deidication Page
 %-------------------------------------------------------------------------------
 
-\newenvironment{dedication}{
-% Only be compiled in the final mode of a PhD dissertation
-\ifTHESISOPTIONfinal\ifTHESISOPTIONphd\else\comment\fi\else\comment\fi
-  \cleardoublepage
-  \thispagestyle{empty}
-  \vspace*{6.6cm}
-\ifTHESISOPTIONfinal\ifTHESISOPTIONphd\else\endcomment\fi\else\endcomment\fi
+\newenvironment{dedication}{%
+  \ifTHESISOPTIONfinal\ifTHESISOPTIONphd
+    \cleardoublepage
+    \thispagestyle{empty}%
+    \vspace*{6.6cm}
+    \begin{center}
+  \fi\fi
+  % ignore input tex if not in the final mode of a PhD dissertation
+  \ifTHESISOPTIONfinal\ifTHESISOPTIONphd\else\comment\fi\else\comment\fi
+}{%
+  \ifTHESISOPTIONfinal\ifTHESISOPTIONphd\else\endcomment\fi\else\endcomment\fi
+  \ifTHESISOPTIONfinal\ifTHESISOPTIONphd
+    \end{center}
+  \fi\fi
 }
 
 %-------------------------------------------------------------------------------
 % Curriculum Vitae Page
 %-------------------------------------------------------------------------------
 
-\newenvironment{cv}{
-% Only be compiled in the draft or final mode of a PhD dissertation
-\ifTHESISOPTIONreview\comment\else\ifTHESISOPTIONphd\else\comment\fi\fi
-  \cleardoublepage
-  \phantomsection
-  \addcontentsline{toc}{chapter}{\textbf{\@cvtitle}}
-  \chapter*{\@cvtitle}
-\ifTHESISOPTIONreview\endcomment\else\ifTHESISOPTIONphd\else\endcomment\fi\fi
+\newenvironment{vita}{%
+  % Only be compiled in the draft or final mode of a PhD dissertation
+  \ifTHESISOPTIONreview\comment\else\ifTHESISOPTIONphd\else\comment\fi\fi
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\textbf{\@cvtitle}}
+    \chapter*{\@cvtitle}
+}{%
+  \ifTHESISOPTIONreview\endcomment\else\ifTHESISOPTIONphd\else\endcomment\fi\fi
 }
 
 %-------------------------------------------------------------------------------
 % Publications Page
 %-------------------------------------------------------------------------------
 
-\newenvironment{publications}{
-% Only be compiled in the draft or final mode of a PhD dissertation
-\ifTHESISOPTIONreview\comment\else\ifTHESISOPTIONphd\else\comment\fi\fi
-  \cleardoublepage
-  \phantomsection
-  \addcontentsline{toc}{chapter}{\textbf{\@loptitle}}
-  \chapter*{\@loptitle}
-\ifTHESISOPTIONreview\endcomment\else\ifTHESISOPTIONphd\else\endcomment\fi\fi
+\newenvironment{publications}{%
+  % Only be compiled in the draft or final mode of a PhD dissertation
+  \ifTHESISOPTIONreview\comment\else\ifTHESISOPTIONphd\else\comment\fi\fi
+    \cleardoublepage
+    \phantomsection
+    \addcontentsline{toc}{chapter}{\textbf{\@loptitle}}
+    \chapter*{\@loptitle}
+}{%
+  \ifTHESISOPTIONreview\endcomment\else\ifTHESISOPTIONphd\else\endcomment\fi\fi
 }
 
 \endinput
