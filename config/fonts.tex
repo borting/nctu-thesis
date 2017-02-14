@@ -1,0 +1,42 @@
+%-------------------------------------------------------------------------------
+% Chinese Font Settings
+%
+%   These macros are used to change the default Chinese fonts (see below) used
+% by thesis.cls. Please leave {} empty if you want to use the default settings
+% and make sure that you have added '-shell-escape' option when using xetex to
+% compile tex files, i.e. xetex compiling commands should run something like:
+%
+%     xelatex -synctex=1 -shell-escape -interaction=nonstopmode %.tex
+%
+% (default Chinese font settings)
+%   Windows              Linux                        Mac OS X
+% * 標楷體 (DFKai-SB)    AR PL 中楷 (AR PL UKai TW)   楷體-繁 (Kaiti TC Regular)
+% @ 新細明體 (PMingLiU)  AR PL 明體 (AR PL UMing TW)  儷宋 Pro (LiSong Pro)
+%
+% * fontname --> 預設中文本文字型
+% @ fontname --> 預設中文明體字型 (使用於封面頁)
+%-------------------------------------------------------------------------------
+
+% main font for Chinese, leave {} empty if you want to use default font setting
+\mainfontzh{}
+
+% ming font (明體), leave {} empty if you want to use default font setting
+\mingfontzh{}
+
+%-------------------------------------------------------------------------------
+% English Font Settings
+%
+%   These macros are used to change the default English fonts (see below) used
+% by thesis.cls. Please leave {} empty if you want to use the default settings.
+%
+% (default English font settings)
+% main font       --> Times New Roman (for all platforms)
+% sans-serif font --> Arial           (for all platforms)
+%-------------------------------------------------------------------------------
+
+% main font for English, leave {} empty if you want to use default font setting
+\mainfont{}
+
+% sans-serif font for English, leave {} empty if you want to use default setting
+\sansfont{}
+

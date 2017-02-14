@@ -3,9 +3,8 @@
 
 %TODO
 % \cleardoublepage 後的空白頁不顯示 watermark
-% Mac OS X 字型問題
 % 自動選擇是否引入 著作權授權書 (authorization) 和 審定書 (approval) 的 pdf 檔
-% Table of Contents 的排版問題
+% Table of Contents 的排版對齊問題
 % 缺 Notation(Symbol?) page
 
 %-------------------------------------------------------------------------------
@@ -109,44 +108,61 @@
 % English Font Setting
 %-------------------------------------------------------------------------------
 
-% Set English font in order to be consistent with Windows default font settings
-\setmainfont[Ligatures=TeX]{Times New Roman}
-\setsansfont[Ligatures=TeX]{Arial}
-\setmonofont[Ligatures=TeX]{Courier New}
+% Main font for English
+\newcommand{\mainfont}[1]{%
+\ifx&#1&%
+  \setmainfont[Ligatures=TeX]{Times New Roman}
+\else
+  \setmainfont[Ligatures=TeX]{#1}
+\fi
+}
+
+% Sans-serif font for English
+\newcommand{\sansfont}[1]{%
+\ifx&#1&%
+  \setsansfont[Ligatures=TeX]{Arial}
+\else
+  \setsansfont[Ligatures=TeX]{#1}
+\fi
+}
 
 %-------------------------------------------------------------------------------
 % Chinese Font Setting
 %-------------------------------------------------------------------------------
 
-% Linux
-\iflinux
-\setCJKmainfont{AR PL UKai TW}           % AR PL UKai TW (AR PL 中楷)
-                                         % AR PL UMing TW (AR PL 明體)
-\setCJKsansfont{WenQuanYi Zen Hei}       % WenQuanYi Zen Hei (文泉驛正黑)
-                                         % WenQuanYi Micro Hei (文泉驛微米黑)
-\setCJKmonofont{WenQuanYi Zen Hei Mono}  % WenQuanYi Zen Hei Mono (文泉驛等寬正黑)
-                                         % WenQuanYi Micro Hei Mono (文泉驛等寬微米黑)
-\newCJKfontfamily{\Ming}{AR PL UMing TW} % 設定切換明體字型
+% Set main font for Chinese
+\newcommand{\mainfontzh}[1]{%
+\ifx&#1&%
+  \ifwindows  % Windows
+    \setCJKmainfont{DFKai-SB}  % 標楷體
+  \else\iflinux  % Linux
+    \setCJKmainfont{AR PL UKai TW}  % AR PL 中楷
+  \else\ifmacosx  % Mac OS X
+    \setCJKmainfont{Kaiti TC Regular}  % 楷體-繁
+  \else  % '-shell-escape' is not set, using Windows fonts as default
+    \setCJKmainfont{DFKai-SB}
+  \fi\fi\fi
+\else
+  \setCJKmainfont{#1}
 \fi
+}
 
-% Windows
-\ifwindows
-\setCJKmainfont{DFKai-SB}            % DFKai-SB (標楷體)
-                                     % PMingLiU (新細明體)
-\setCJKsansfont{Microsoft JhengHei}  % Microsoft JhengHei (微軟正黑體)
-                                     % Microsoft YaHei (微軟雅黑)
-\newCJKfontfamily{\Ming}{PMingLiU}   % 設定切換明體字型
+% Set ming font (明體)
+\newcommand{\mingfontzh}[1]{%
+\ifx&#1&%
+  \ifwindows  % Windows
+    \newCJKfontfamily{\Ming}{PMingLiU}  % 新細明體
+  \else\iflinux  % Linux
+    \newCJKfontfamily{\Ming}{AR PL UMing TW}  % AR PL 明體
+  \else\ifmacosx  % Mac OS X
+    \newCJKfontfamily{\Ming}{LiSong Pro}  % 儷宋 Pro (明體)
+  \else  % '-shell-escape' is not set, using Windows fonts as default
+    \newCJKfontfamily{\Ming}{PMingLiU}
+  \fi\fi\fi
+\else
+  \newCJKfontfamily{\Ming}{#1}
 \fi
-
-% Mac OS X
-\ifmacosx
-\setCJKmainfont{Kaiti TC Regular}     % Kaiti TC Regular (楷體-繁)
-                                      % LiSong Pro (儷宋 Pro)
-                                      % Apple LiSung (蘋果儷細宋)
-\setCJKsansfont{Heiti TC}             % Heiti TC (黑體-繁 中黑)
-                                      % LiHei Pro (儷黑 Pro)
-\newCJKfontfamily{\Ming}{LiSong Pro}  % 設定切換明體字型
-\fi
+}
 
 % Enable line break for chinese
 \XeTeXlinebreaklocale "zh"
