@@ -340,7 +340,7 @@
   \addcontentsline{toc}{chapter}{\textbf{\@toctitle}}%
   \tableofcontents
   % Add watermark to every pages starting from ToC
-  \AddToShipoutPictureBG{\BackgroundPicture}%
+  \AddToShipoutPicture{\BackgroundPicture}%
 % List of Figures
   \cleardoublepage
   \phantomsection
@@ -705,7 +705,7 @@
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{摘要}}
 % Add watermark in this page
-  \AddToShipoutPictureBG*{\BackgroundPicture}
+  \AddToShipoutPicture*{\BackgroundPicture}
   \begin{center}
     \singlespacing
 % Thesis title
@@ -761,7 +761,7 @@
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{Abstract}}
 % Add watermark in this page
-  \AddToShipoutPictureBG*{\BackgroundPicture}
+  \AddToShipoutPicture*{\BackgroundPicture}
   \begin{center}
     \singlespacing
 % Thesis title
