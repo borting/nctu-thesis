@@ -24,6 +24,14 @@
 \DeclareOption{en}{\THESISOPTIONentrue\THESISOPTIONzhfalse}
 \DeclareOption{zh}{\THESISOPTIONenfalse\THESISOPTIONzhtrue}
 
+% Declare binding option: (default: disabled)
+%   depending on the mode of thesis format:
+%     review: disabled
+%     draft : disabled
+%     final : enabled
+\newif\ifTHESISOPTIONbinding      \THESISOPTIONbindingfalse
+\DeclareOption{binding}{\THESISOPTIONbindingtrue}
+
 % Declare options for print modes: (default: draft)
 %   review: for thesis writing (hide all front matters)
 %   draft : draft for defence
@@ -33,16 +41,19 @@
 \newif\ifTHESISOPTIONfinal          \THESISOPTIONfinalfalse
 
 \DeclareOption{review}{\THESISOPTIONreviewtrue
-                      \THESISOPTIONdraftfalse
-                      \THESISOPTIONfinalfalse}
+                       \THESISOPTIONdraftfalse
+                       \THESISOPTIONfinalfalse
+                       \THESISOPTIONbindingfalse}
 
 \DeclareOption{draft}{\THESISOPTIONreviewfalse
                       \THESISOPTIONdrafttrue
-                      \THESISOPTIONfinalfalse}
+                      \THESISOPTIONfinalfalse
+                      \THESISOPTIONbindingfalse}
 
 \DeclareOption{final}{\THESISOPTIONreviewfalse
                       \THESISOPTIONdraftfalse
-                      \THESISOPTIONfinaltrue}
+                      \THESISOPTIONfinaltrue
+                      \THESISOPTIONbindingtrue}
 
 % Declare watermark option: (default: disabled)
 %   depending on the mode of thesis format:
@@ -85,7 +96,7 @@
 %-------------------------------------------------------------------------------
 
 % Page margin
-\ifTHESISOPTIONfinal  % only valid in final mode
+\ifTHESISOPTIONbinding  % only valid in final mode
   \geometry{left=3 cm, right=2 cm, top=2.5 cm, bottom=2.5 cm}%
 \else
   \geometry{left=2.5 cm, right=2.5 cm, top=2.5 cm, bottom=2.5 cm}%
