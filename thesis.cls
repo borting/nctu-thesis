@@ -1,11 +1,6 @@
 \ProvidesClass{thesis}[2017/02/09 V1.2 by Borting Chen]
 \NeedsTeXFormat{LaTeX2e}
 
-%TODO
-% 自動選擇是否引入 著作權授權書 (authorization) 和 審定書 (approval) 的 pdf 檔
-% Table of Contents 的排版對齊問題
-% 缺 Notation(Symbol?) page
-
 %-------------------------------------------------------------------------------
 % Document Options Declaration
 %-------------------------------------------------------------------------------
@@ -304,12 +299,12 @@
 
 % Set the language used in ToC, LoF, and LoT
 \ifTHESISOPTIONzh
-  \renewcommand{\contentsname}{\textbf{\@toctitle}}%
-  \renewcommand{\listfigurename}{\textbf{\@loftitle}}%
-  \renewcommand{\listtablename}{\textbf{\@lottitle}}%
+  \renewcommand{\contentsname}{\makebox[3em][s]{\@toctitle}}%
+  \renewcommand{\listfigurename}{\makebox[4em][s]{\@loftitle}}%
+  \renewcommand{\listtablename}{\makebox[4em][s]{\@lottitle}}%
   \renewcommand{\tablename}{表}%
   \renewcommand{\figurename}{圖}%
-  \renewcommand{\bibname}{參考文獻}%
+  \renewcommand{\bibname}{\makebox[5.5em][s]{\@bibtitle}}%
 \fi
 
 % Set the chapter numbering to Chinese number in ToC
@@ -830,7 +825,11 @@
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{\@acktitle}}
   \begin{center}
-    {\Large \bf \@acktitle}\\
+    \ifTHESISOPTIONzh
+      {\LARGE \bf \makebox[3em][s]{\@acktitle}}\\
+    \else
+      {\LARGE \bf \@acktitle}\\
+    \fi
   \end{center}
 }
 
@@ -875,7 +874,11 @@
     \cleardoublepage
     \phantomsection
     \addcontentsline{toc}{chapter}{\textbf{\@cvtitle}}
-    \chapter*{\@cvtitle}
+    \ifTHESISOPTIONzh
+      \chapter*{\makebox[3em][s]{\@cvtitle}}
+    \else
+      \chapter*{\@cvtitle}
+    \fi
 }{%
   \ifTHESISOPTIONreview\endcomment\else\ifTHESISOPTIONphd\else\endcomment\fi\fi
 }
@@ -890,7 +893,11 @@
     \cleardoublepage
     \phantomsection
     \addcontentsline{toc}{chapter}{\textbf{\@loptitle}}
-    \chapter*{\@loptitle}
+    \ifTHESISOPTIONzh
+      \chapter*{\makebox[5.5em][s]{\@loptitle}}
+    \else
+      \chapter*{\@loptitle}
+    \fi
 }{%
   \ifTHESISOPTIONreview\endcomment\else\ifTHESISOPTIONphd\else\endcomment\fi\fi
 }
