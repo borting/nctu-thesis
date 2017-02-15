@@ -492,7 +492,7 @@
     \fontsize{40}{40}{\makebox[10cm][s]{\Ming{\@universityzh}}}\\
     \vspace{1.5\baselineskip}
     % Institute
-    \fontsize{28}{28}{\textbf{\Ming{\@institutezh}}}\\
+    \fontsize{28}{28}{\makebox[1.333\width][s]{\textbf{\Ming{\@institutezh}}}}\\
     \vspace{1.5\baselineskip}
     % Thesis type
     \fontsize{24}{24}{\makebox[4.5cm][s]{\textbf{\Ming{\@thesistypezh}}}}\\
@@ -532,7 +532,7 @@
   \vfill
 % Submission date in Chinese
   \begin{center}
-    \makebox[15cm][s]{\large\@degreeyearzh}\\
+    \makebox[2.5\width][s]{\large\@degreeyearzh}\\
   \end{center}
 }
 
@@ -559,7 +559,7 @@
     \setlength{\tabcolsep}{0.25em}
   % Chinese name
     \begin{tabular}{rl}%
-      \large{\makebox[4em][s]{研究生}：}&\large{\@authorzh}\vspace{0.55em}\\%
+      \large{\makebox[4em][s]{研究生}：}&\large{\@authorzh}\vspace{0.5em}\\%
       \large{指導教授：}&{\large{\@advisorzh}}\\%
       \ifx \@coadvisorAzh \@empty \else
         &{\large{\@coadvisorAzh}}\\%
@@ -584,12 +584,12 @@
   \vfill
 % University & institute & thesis type in Chinese
   \begin{center}
-    \makebox[6cm][s]{\large\@universityzh}\\
-    \makebox[5.5cm][s]{\large\@institutezh}\\
+    \makebox[2\width][s]{\large\@universityzh}\\
+    \makebox[1.33\width][s]{\large\@institutezh}\\
     \ifTHESISOPTIONdraft
-      \makebox[4cm][s]{\large\@thesistypezh 初稿}\\
+      \makebox[1.33\width][s]{\large\@thesistypezh 初稿}\\
     \else
-      \makebox[4cm][s]{\large\@thesistypezh}\\
+      \makebox[1.33\width][s]{\large\@thesistypezh}\\
     \fi
     \vfill
 % Submission description in English
@@ -614,7 +614,7 @@
     \vspace{0.25\baselineskip}
     \@location\\
     \vfill
-    \makebox[8cm][s]{\normalsize\@degreeyearzh}
+    \makebox[1.75\width][s]{\normalsize\@degreeyearzh}
   \end{center}
 }
 
