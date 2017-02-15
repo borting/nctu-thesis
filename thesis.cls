@@ -510,26 +510,23 @@
     \vfill
   \end{center}
 % Author & advisors
-  \begin{flushleft}
+  \begin{flushleft}%
     \singlespacing
-    \fontsize{18}{18}
+    \LARGE
+    \begin{tabular}{crll}%
     % Author
-    \makebox[0.5cm][s]{}\makebox[2.75cm][s]{研究生}\makebox[0.75cm][s]{：}%
-    \makebox[3.25cm][s]{\@authorzh}\\
-    \vspace{\baselineskip}
+      &\LARGE{\makebox[4em][s]{研究生}：}&{\@authorzh}&\vspace{1em}\\%
     % Advisor
-    \makebox[0.5cm][s]{}\makebox[2.75cm][s]{指導教授}\makebox[0.75cm][s]{：}%
-    \makebox[3.25cm][s]{\@advisorzh}\makebox[2cm][c]{博士}\\
+      &{指導教授：}&{\@advisorzh}&{博士}\\%
     % Co-Advisor A
-    \ifx \@coadvisorAzh \@empty \else
-      \makebox[0.5cm][s]{}\makebox[2.75cm][s]{}\makebox[0.75cm][s]{}%
-      \makebox[3.25cm][s]{\@coadvisorAzh}\makebox[2cm][c]{博士}\\
-    \fi
+      \ifx \@coadvisorAzh \@empty \else
+        &&{\@coadvisorAzh}&{博士}\\%
+      \fi
     % Co-Advisor B
-    \ifx \@coadvisorBzh \@empty \else
-      \makebox[0.5cm][s]{}\makebox[2.75cm][s]{}\makebox[0.75cm][s]{}%
-      \makebox[3.25cm][s]{\@coadvisorBzh}\makebox[2cm][c]{博士}\\
-    \fi
+      \ifx \@coadvisorBzh \@empty \else
+        &&{\@coadvisorBzh}&{博士}\\%
+      \fi
+    \end{tabular}%
   \end{flushleft}
   \vspace{1in}
   \vfill
