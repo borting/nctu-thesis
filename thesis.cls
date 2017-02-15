@@ -558,28 +558,31 @@
   \end{center}
 % Author name and advisor name in Chinese and English
   \begin{flushleft}
-  \singlespacing
-  % Author
-  \makebox[2.8cm][s]{\large{研究生：}}\makebox[2.4cm][s]{\large{\@authorzh}}%
-  \hfill%
-  \makebox[2cm][s]{\large{Student: }}\makebox[4cm][l]{\large{\@author}}\\
-  \vspace{0.25\baselineskip}
-  % Advisor
-  \makebox[2.8cm][s]{\large{指導教授：}}\makebox[2.4cm][s]{\large{\@advisorzh}}%
-  \hfill%
-  \makebox[2cm][s]{\large{Advisor: }}\makebox[4cm][l]{\large{\@advisor}}\\
-  % Co-advisor A
-  \ifx \@coadvisorAzh \@empty \else
-    \makebox[2.8cm][s]{}\makebox[2.4cm][s]{\large{\@coadvisorAzh}}%
-    \hfill%
-    \makebox[2cm][s]{}\makebox[4cm][l]{\large{\@coadvisorA}}\\
-  \fi
-  % Co-advisor B
-  \ifx \@coadvisorBzh \@empty \else
-    \makebox[2.8cm][s]{}\makebox[2.4cm][s]{\large{\@coadvisorBzh}}%
-    \hfill%
-    \makebox[2cm][s]{}\makebox[4cm][l]{\large{\@coadvisorB}}\\
-  \fi
+    \singlespacing
+    \setlength{\tabcolsep}{0.25em}
+  % Chinese name
+    \begin{tabular}{rl}%
+      \large{\makebox[4em][s]{研究生}：}&\large{\@authorzh}\vspace{0.55em}\\%
+      \large{指導教授：}&{\large{\@advisorzh}}\\%
+      \ifx \@coadvisorAzh \@empty \else
+        &{\large{\@coadvisorAzh}}\\%
+      \fi
+      \ifx \@coadvisorBzh \@empty \else
+        &{\large{\@coadvisorBzh}}\\%
+      \fi
+    \end{tabular}%
+    \hfill
+  % English name
+    \begin{tabular}{rl}%
+      \large{Student:}&{\large{\@author}}\vspace{0.5em}\\%
+      \large{Advisor:}&{\large{\@advisor}}\\%
+      \ifx \@coadvisorA \@empty \else
+        &{\large{\@coadvisorA}}\\%
+      \fi
+      \ifx \@coadvisorB \@empty \else
+        &{\large{\@coadvisorB}}\\%
+      \fi
+    \end{tabular}
   \end{flushleft}
   \vfill
 % University & institute & thesis type in Chinese
@@ -720,27 +723,29 @@
 % Thesis title
     {\Large \bf \@titlezh}\\
     \vspace{\baselineskip}
-% Author & Advisor
-    \makebox[2.4cm][s]{\large{研究生：}}\makebox[2.4cm][s]{\large{\@authorzh}}%
-    \hfill%
-    \makebox[2.8cm][s]{\large{指導教授：}}\makebox[2.4cm][s]{\large{\@advisorzh}}%
-    \makebox[1.2cm][r]{\large{博士}}\\
-% Co-advisor A
-    \ifx \@coadvisorAzh \@empty \else
-      \makebox[2.4cm][s]{}\makebox[2.4cm][s]{}%
-      \hfill%
-      \makebox[2.8cm][s]{}\makebox[2.4cm][s]{\large{\@coadvisorAzh}}%
-      \makebox[1.2cm][r]{\large{博士}}\\
-    \fi
-% Co-advisor B
-    \ifx \@coadvisorBzh \@empty \else
-      \makebox[2.4cm][s]{}\makebox[2.4cm][s]{}%
-      \hfill%
-      \makebox[2.8cm][s]{}\makebox[2.4cm][s]{\large{\@coadvisorBzh}}%
-      \makebox[1.2cm][r]{\large{博士}}\\
-    \fi
+% Author and advisors
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lr}%
+      \setlength{\tabcolsep}{0.25em}%
+  % Author
+      \begin{tabular}{rl}%
+        \large{學生：}&{\large{\@authorzh}}\\%
+      \end{tabular}&%
+      \setlength{\tabcolsep}{0.25em}%
+      \begin{tabular}{rlc}%
+  % Advisor
+        \large{指導教授：}&{\large{\@advisorzh}}&{\large{博士}}\\%
+  % Co-advisor A
+        \ifx \@coadvisorAzh \@empty \else
+          &{\large{\@coadvisorAzh}}&{\large{博士}}\\%
+        \fi
+  % Co-advisor B
+        \ifx \@coadvisorBzh \@empty \else
+          &{\large{\@coadvisorBzh}}&{\large{博士}}\\%
+        \fi
+      \end{tabular}\\%
+    \end{tabular*}\\
 % Institute and university name
-    \vspace{0.25\baselineskip}
+    \vspace{0.5\baselineskip}
     \large{\@universityzh\hspace{1ex}\@institutezh}\\
     \vspace{\baselineskip}
 % Abstract title
@@ -774,27 +779,29 @@
 % Thesis title
     {\Large \bf \@title}\\
     \vspace{\baselineskip}
-% Author & Advisor
-    \makebox[2cm][s]{\large{Student: }}\makebox[4cm][l]{\large{\@author}}%
-    \hfill%
-    \makebox[2cm][s]{\large{Advisor: }}\makebox[0.75cm][l]{\large{Dr. }}%
-    \makebox[4cm][l]{\large{\@advisor}}\\
-% Co-advisor A
-    \ifx \@coadvisorA \@empty \else
-      \makebox[2cm][s]{}\makebox[4cm][l]{}%
-      \hfill%
-      \makebox[2cm][s]{}\makebox[0.75cm][l]{\large{Dr. }}%
-      \makebox[4cm][l]{\large{\@coadvisorA}}\\
-    \fi
-% Co-advisor B
-    \ifx \@coadvisorB \@empty \else
-      \makebox[2cm][s]{}\makebox[4cm][l]{}%
-      \hfill%
-      \makebox[2cm][s]{}\makebox[0.75cm][l]{\large{Dr. }}%
-      \makebox[4cm][l]{\large{\@coadvisorB}}\\
-    \fi
+% Author and advisors
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lr}%
+      \setlength{\tabcolsep}{0.25em}%
+  % Author
+      \begin{tabular}{rl}%
+        \large{Student:}&{\large{\@author}}\\%
+      \end{tabular}&%
+      \setlength{\tabcolsep}{0.25em}%
+      \begin{tabular}{rl}%
+  % Advisor
+        \large{Advisor:}&{\large{Dr. \@advisor}}\\%
+  % Co-advisor A
+        \ifx \@coadvisorA \@empty \else
+          &{\large{Dr. \@coadvisorA}}\\%
+        \fi
+  % Co-advisor B
+        \ifx \@coadvisorB \@empty \else
+          &{\large{Dr. \@coadvisorB}}\\%
+        \fi
+      \end{tabular}\\%
+    \end{tabular*}\\
 % Institue and university name
-    \vspace{0.25\baselineskip}
+    \vspace{0.5\baselineskip}
     \large{\@institute}\\
     \large{\@university}\\
     \vspace{\baselineskip}
