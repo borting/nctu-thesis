@@ -1,4 +1,4 @@
-\ProvidesClass{thesis}[2017/02/16 V2.1 by Borting Chen]
+\ProvidesClass{thesis}[2017/02/16 V2.2 by Borting Chen]
 \NeedsTeXFormat{LaTeX2e}
 
 %-------------------------------------------------------------------------------
