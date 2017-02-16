@@ -14,9 +14,10 @@ This thesis is built based on XeLaTeX + xeCJK, please use xelatex instead of pdf
   xelatex -synctex=1 -shell-escape -interaction=nonstopmode %.tex
   ```
   * thesis.cls 會根據目前你的作業系統環境選擇要使用的中文字型, 請設定 -shell-escape 開啟這個功能.
+
     (這樣你和你的指導教授用不同作業系統寫論文時, 就不用每次重新設定中文字型啦)
 
-## 說明
+## 使用說明
    請參考 [README.pdf](https://github.com/borting/nctu-thesis/blob/master/README.md)
 
 ## Tested Environment
