@@ -71,12 +71,12 @@ thesis.cls 提供了以下四個修改預設字型的指令.
 
 \section{Options provided by thesis.cls}
 
-thesis.cls 提供碩士與博士論文模板, 並提供初稿與終稿等選項讓使用者自行選擇.
+thesis.cls 提供碩士與博士論文模板, 並提供初稿與終稿等選項讓使用者自行印出的版面格式.
 thesis.cls 的 options 設定就在 \textbf{main.tex} 的第一行
 
 \textbackslash documentclass[\textbf{<options>}]\{thesis\}
 
-以下介紹 thesis.cls 提供的 options
+以下介紹 thesis.cls 所提供的 options
 
 \newpage
 
@@ -93,7 +93,7 @@ thesis.cls 的 options 設定就在 \textbf{main.tex} 的第一行
 \textbackslash documentclass[review]\{thesis\}
 \end{itemize}
 
-\paragraph{中文碩士論文} 在 [ ] 中多加一個 `zh' 就會顯示中文的章節標號和標題了, 舉例來說
+\paragraph{中文碩士論文} 在 [ ] 中多加一個 `zh' 就會顯示中文的章節編號和標題了, 舉例來說
 
 \begin{itemize}
 \item \textbackslash documentclass[zh,watermark,final]\{thesis\}
@@ -118,7 +118,7 @@ thesis.cls 的 options 設定就在 \textbf{main.tex} 的第一行
 \item \textbackslash documentclass[twoside,phd,watermark,final]\{thesis\}
 \end{itemize}
 
-\paragraph{Known Bug!!!} 在編譯過英文版後, 加入 `zh' 編譯中文版後的\textbf{第一次編譯}時, XeLaTeX 會出錯.
+\paragraph{Known Issue!} 在編譯過英文版後, 加入 `zh' 編譯中文版後的\textbf{第一次編譯}時, XeLaTeX 會出錯.
 但只要再編譯一次就沒問題了.
 也就是說從英文版轉到中文版的編譯步驟變成:
 
@@ -127,7 +127,7 @@ thesis.cls 的 options 設定就在 \textbf{main.tex} 的第一行
 \subsection{詳細版的 Class Options}
 
 thesis.cls 提供的 options 詳列於 Table~\ref{table:clsoptions}.
-標注 (default) 代表 thesis.cls 的預設值, 不須要寫在 [ ] 內.
+標注 (default) 代表 thesis.cls 的預設值, 不需要寫在 [ ] 內.
 
 % 把 table 的內容放在另一個檔案再 load, 讓 tex 看起來乾淨一點
 \input{tables/table-classopt}
