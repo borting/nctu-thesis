@@ -1,0 +1,30 @@
+\begin{table}[h]
+\centering
+% [] 顯示在 list of tables 的文字
+% {} 顯示在表格上方的文字
+\caption[Class options of thesis.cls]{Class options of thesis.cls}
+\label{table:clsoptions}
+\begin{tabular}{lll}
+\toprule[1.1pt]
+                      & Options   & Description\\
+\midrule[1.1pt]
+\multirow{2}{*}{論文類型} & master    & 碩士論文 (default)\\
+                      & phd       & 博士論文\\
+\midrule
+\multirow{3}{*}{論文格式} & draft     & 初稿 (default)\\
+                      & final     & 終稿\\
+                      & review    & 只顯示內文,參考文獻,與附錄\\
+\midrule
+\multirow{2}{*}{語言}   & en        & 英文章節編號與標題 (default)\\
+                       & zh        & 中文章節編號與標題\\
+\midrule
+\multirow{2}{*}{列印}   & oneside   & 單面列印 (default)\\
+
+                        & twoside   & 雙面列印\\
+\midrule
+浮水印                   & watermark & \begin{tabular}[c]{@{}l@{}}review mode 不顯示\\ draft mode 顯示 ``DRAFT" 字樣\\ final mode 顯示指定的浮水印\end{tabular} \\
+\midrule
+裝訂                    & binding   & \begin{tabular}[c]{@{}l@{}} 在 final mode 預設為開啟, 保留 1cm 的裝訂空間\\ 在 review 和 draft mode 將文章置中不保留裝訂空間\end{tabular}\\
+\bottomrule[1.1pt]
+\end{tabular}
+\end{table}

@@ -1,0 +1,147 @@
+\chapter{thesis.cls 簡介}
+\label{chapter:doccls}
+
+\textbf{thesis.cls} 是本 template 的核心, 其主要功能是產生論文的封面, 設定版面與章節樣式, 並提供自動選擇字型的功能.
+因大部分需要使用者輸入的資訊(e.g. author name)都有拉出對應的變數讓使用者設定, 因此
+絕大部分的情況下, 你是不需要動到 thesis.cls 的.
+當然, 如果你有發現 bug 或是覺得哪些地方有更好的寫法, 也請麻煩在 github 上發個 issue 告訴我吧, 謝謝!
+
+以下介紹如何設定封面資訊與字型, thesis.cls 提供的 options, 以及摘要等檔案放置的位置.
+
+\section{封面資訊}
+
+封面資訊的設定指令全部都放在 \textit{config/info.tex} 下, 請在此設定你論文的 title, author name, (co-)advisor name, college name (院), institute name (所), field (領域), 日期等資訊.
+
+\textbf{注意:} 如果沒有共同指導教授, \textbackslash coadvisorA, \textbackslash coadvisorAzh, \textbackslash coadvisorB \textbackslash coadvisorBzh 的\{ \}請留白.
+
+\section{字型設定}
+\label{sec:fonts}
+
+為了避免在不同作業系統上編譯文件時要重新設定中文字型, thesis.cls 提供了自動選擇字型的功能.
+(請在 xelatex 加入 \textbf{-shell-escape} 才能開啟此功能)
+
+\subsection{預設英文字型}
+
+thesis.cls 預設的英文字型在全部作業系統上皆為
+\begin{itemize}
+\item 本文字型(main font): \textbf{Times New Roman}
+\item 無襯線字型(sans-serif font): \textbf{Arial}
+\end{itemize}
+
+\subsection{預設中文字型}
+
+thesis.cls 預設的中文字型則詳列於 Table~\ref{table:zhfonts}.
+簡單來說, 本文使用``標楷體", 封面字型則使用``明體".
+
+% table 
+\begin{table}[h]
+\centering
+% [] 顯示在 list of tables 的文字
+% {} 顯示在表格上方的文字
+\caption[Default Chinese font settings]{預設的中文字型}
+\label{table:zhfonts}
+\begin{tabular}{@{}lll@{}}
+\toprule
+作業系統     & 本文字型     & 明體字 (用於封面) \\ \midrule
+Windows  & 標楷體      & 新細明體       \\
+Linux    & AR PL 中楷 & AR PL 明體   \\
+Mac OS X & 楷體-繁     & 儷宋 Pro     \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{修改預設字型}
+
+thesis.cls 提供了以下四個修改預設字型的指令.
+\textbf{注意: 如果修改了預設字型, thesis.cls 則不會再根據所處的作業系統自動選擇字型.}
+我將此四個指令獨立出來放在 \textit{config/fonts.tex} 裡面.
+如果不想修改預設字型, \{ \} 請留白.
+
+\begin{itemize}
+
+\item \textbf{\textbackslash mainfontzh\{\}} 修改預設中文本文字型
+
+\item \textbf{\textbackslash mingfontzh\{\}} 修改預設中文明體字型
+
+\item \textbf{\textbackslash mainfont\{\}} 修改預設英文本文字型
+
+\item \textbf{\textbackslash sansfont\{\}} 修改預設英文無襯線字型
+
+\end{itemize}
+
+
+\section{Options provided by thesis.cls}
+
+thesis.cls 提供碩士與博士論文模板, 並提供初稿與終稿等選項讓使用者自行選擇.
+thesis.cls 的 options 設定就在 \textbf{main.tex} 的第一行
+
+\textbackslash documentclass[\textbf{<options>}]\{thesis\}
+
+以下介紹 thesis.cls 提供的 options
+
+\newpage
+
+\subsection{給沒空的人看的無腦版本}
+
+\paragraph{英文碩士論文} 請設定
+
+\begin{itemize}
+\item 初稿\\
+\textbackslash documentclass[]\{thesis\}
+\item 終稿\\
+\textbackslash documentclass[watermark,final]\{thesis\}
+\item 只顯示論文內文, 附錄, 和 reference\\
+\textbackslash documentclass[review]\{thesis\}
+\end{itemize}
+
+\paragraph{中文碩士論文} 在 [ ] 中多加一個 `zh' 就會顯示中文的章節標號和標題了, 舉例來說
+
+\begin{itemize}
+\item \textbackslash documentclass[zh,watermark,final]\{thesis\}
+\end{itemize}
+
+
+\paragraph{英文博士論文} 請在 [ ] 中多加一個 `phd', 舉例來說
+
+\begin{itemize}
+\item \textbackslash documentclass[phd,watermark,final]\{thesis\}
+\end{itemize}
+
+\paragraph{中文博士論文} 一樣在 [ ] 中多加一個 `zh' 就可以了, 舉例來說
+
+\begin{itemize}
+\item \textbackslash documentclass[phd,zh,watermark,final]\{thesis\}
+\end{itemize}
+
+\paragraph{雙面列印} 預設為單面列印, 如果要雙面列印, 請在 [ ] 中加入 'twoside', 比方說
+
+\begin{itemize}
+\item \textbackslash documentclass[twoside,phd,watermark,final]\{thesis\}
+\end{itemize}
+
+\paragraph{Known Bug!!!} 在編譯過英文版後, 加入 `zh' 編譯中文版後的\textbf{第一次編譯}時, XeLaTeX 會出錯.
+但只要再編譯一次就沒問題了.
+也就是說從英文版轉到中文版的編譯步驟變成:
+
+\hspace{2em} \textbf{XeLaTeX} (\textbf{\textit{Failed!}}) $\rightarrow$ \textbf{XeLaTeX} $\rightarrow$ \textbf{BibTeX} $\rightarrow$ \textbf{XeLaTeX} $\rightarrow$ \textbf{XeLaTeX}
+
+\subsection{詳細版的 Class Options}
+
+thesis.cls 提供的 options 詳列於 Table~\ref{table:clsoptions}.
+標注 (default) 代表 thesis.cls 的預設值, 不須要寫在 [ ] 內.
+
+% 把 table 的內容放在另一個檔案再 load, 讓 tex 看起來乾淨一點
+\input{tables/table-classopt}
+
+\section{論文檔案位置}
+
+Table~\ref{table:pages} 詳列了摘要, 誌謝等頁面的位置.
+如果你使用 Texmaker 之類的 editor 的話, 可以從 main.tex 連結到這些檔案.
+
+\textbf{注意:} 題獻頁, 自傳, 著作目錄只有博士論文才需要填寫, 也只有在 \textbackslash documentclass[] 加入 `phd' 選項後才會被編譯.
+
+\input{tables/table-files}
+
+至於論文內文的檔案要放哪裡, 則看個人喜好.
+我自己的習慣是把論文的每一個 chapter 獨立成一個 .tex 檔, 放在 \textit{chapters/} 下.
+而附錄也是寫成獨立的 .tex 檔, 放在另一個資料夾下, 方便管理.
+請參考此 template 的 \textit{chapters/} 與 \textit{appx/} 兩個資料夾.

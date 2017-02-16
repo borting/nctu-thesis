@@ -1,73 +1,71 @@
 \chapter{Introduction}
 \label{chapter:intro}
 
-Hello World! Welcome to use \textbf{XeTeX + xeCJK} to write your thesis/dissertation.
-捨棄 pdfTeX + CJK 改用 XeTeX + xeCJK 的主因有二:
+本 template 參考國立交通大學註冊組所提供的 ``學位論文格式" (http://aadm.nctu.edu.tw/registra/form.aspx) 寫成.
+因為本 template 使用 XeCJK 來提供中文的論文寫作環境, 所以必須使用 XeLaTeX 編譯.
+
+\section{環境設定}
+
+推薦使用的編譯環境 (LaTeX core + LaTeX editor + Bibliography editor)
+
+\begin{itemize}
+\item \textbf{Windows \& Linux}: TeX Live + TeXmaker + JabRef
+\item \textbf{Mac OS X}: MacTeX + TeXShop + JabRef
+\end{itemize}
+
+\section{開使寫作}
+
+請用你的 LaTeX editor 打開 ``\textbf{main.tex}".
+\textbf{main.tex} 是本 template 的主文件 (本文件亦是由編譯 main.tex 產生).
+請在 \textbf{main.tex} 加入新的 chapter, 或是由此開啟其他的 chapter files or configuration files (如果你使用的 editor 支援的話), etc.
+
+\section{編譯}
+
+\subsection{編譯指令}
+
+編譯此 template 需要使用 \textbf{XeLaTeX} 和 \textbf{BibTeX} 兩個指令.
+
+\begin{itemize}
+\item XeLaTeX (負責編譯 .tex 檔)\\
+xelatex -synctex=1 \textbf{-shell-escape} -interaction=nonstopmode \%.tex
+\item BibTeX (負責編譯 Bibliography .bib 檔)\\
+bibtex \%.aux
+\end{itemize}
+
+因大部分的 LaTeX editor 預設的編譯快速鍵是執行 latex, 所以我們需要修改預設的編譯指令.
+以下以\textbf{Texmaker}為例, 介紹如何修改:
 \begin{enumerate}
-
-\item We can use the fonts provided by your systems (Windows, Mac OS, ...) directly, rather than use the fonts provided by CJK package (which has limited support to rare use words).
-
-\item 我們可以隨意的在文章中切換中英文.
-Bye! \textbackslash begin\{CJK\} ... \textbackslash end\{CJK\}
+\item ``Options" $\rightarrow$ ``Configure Texmaker" $\rightarrow$ ``Commands\\
+修改 XeLaTeX 欄位, 加入 ``\textbf{-shell-escape}", 其結果如上所示.
+\item ``Options" $\rightarrow$ ``Configure Texmaker" $\rightarrow$ ``Quick Build"\\
+勾選 ``XeLaTeX + View PDF"
 
 \end{enumerate}
 
-\section{Environment}
+加入 ``\textbf{-shell-escape}" 是為了讓 XeLaTeX 在編譯時能根據目前執行平台的作業系統 (Windows/Linux/Mac OS X)自動選擇字型.
+(各平台預設使用的字型請參考 Section~\ref{sec:fonts})
+當你和你的指導教授使用不同的作業系統編寫 LaTeX 時 (尤其當你們還使用 git 之類的版本管理工具來管理論文時), 相信這個小功能可以減少不少修改字型設定的困擾.
 
-\subsection{推薦的組合}
+\subsection{編譯 main.tex}
 
-其實也只是我自己用慣的環境罷了 XD.
-寫碩論的時候自己還是個被 Windows 慣壞的使用者, 所以是用 MikTeX + Texmaker + JabRef.
-後來慢慢把重心轉到 Linux, 所以寫博論的時候改成用 TeX Live + Texmaker + JabRef (只有畫圖的時候會開個 Windows 用 Visio 畫圖 ``Orz).
+\paragraph{編譯順序:} (\textbf{注意}: BibTeX 執行完後, 要執行 XeLaTeX 兩次)
 
-\begin{itemize}
+\hspace{2em} \textbf{XeLaTeX} $\rightarrow$ \textbf{BibTeX} $\rightarrow$ \textbf{XeLaTeX} $\rightarrow$ \textbf{XeLaTeX}
 
-\item \textbf{LaTeX Typesetting System}:
-  \begin{itemize}
-  \item MiKTeX (https://miktex.org/) (Windows only)
-  \item TeX Live (https://www.tug.org/texlive/) (Windows/Linux)
-  \item MacTeX (http://www.tug.org/mactex/) (Mac OS) (Mac OS 版的 TeX Live)
-  \end{itemize}
-\item \textbf{LaTeX Editor}: TeXmaker (http://www.xm1math.net/texmaker/)
-\item \textbf{BibTeX Manager}: JabRef (http://www.jabref.org/)
+\paragraph{使用 Command line:} 我提供了一個簡單的 Makefile, 請執行
 
-\end{itemize}
+\hspace{2em} \textbf{\$ make}
 
+\paragraph{使用 LaTeX Editor:}
+Texmaker 提供了兩個編譯快速鍵: XeLaTeX (\textbf{F1}) 和 BibTeX (\textbf{F11}).
+在 Texmaker 中編譯請執行:
 
-\subsection{LaTeX Editors}
+\hspace{2em} \textbf{F1 $\rightarrow$ F11 $\rightarrow$ F1 $\rightarrow$ F1}
 
-大部分的 LaTeX editor 都有提供 integrated viewer (e.g. PDF viewer), 可以直接在 editor 內檢查編譯的結果.
-但是, 這些 editor 都無法直接對編譯後產生的文字進行修改, 只能從 source tex file 修改.
-雖然也有些 editor 支援 WYSIWYM (what you see is what you mean) 的編譯模式, 讓使用者可以直接修改編譯後產生的文件.
-但除了 LyX 和少數網頁版的 editor 外, 絕大部分支援 WYSIWYM 的 editor 都是要收費的.
-以下只列出 open source software 或是 free software, 付費的不予考慮~\footnote{對其他 LaTeX editor 有興趣的請參考 https://en.wikipedia.org/wiki/Comparison\_of\_TeX\_editors}.
+\paragraph{小技巧:} 每次用 \textbf{Texmaker} 開啟 \textbf{main.tex} 後, 請執行 ``Options" $\rightarrow$ ``Define Current Document as `Master Document' ", 將\textbf{main.tex} 設成 XeLaTeX 編譯的主文件, 避免每次編譯時都要切換回 main.tex 才能編譯.
 
+\section{Synopsis}
 
-\textbf{Basic editor}:
-\begin{itemize}
-\item \textbf{Texmaker} (http://www.xm1math.net/texmaker/) (Windows/Linux/Mac OS)
-\item \textbf{TeXstudio} (http://www.texstudio.org/) (Windows/Linux/Mac OS)
-\item \textbf{TeXwork} (http://www.tug.org/texworks/) (Windows/Linux/Mac OS)
-\item \textbf{Eclipse + TeXlipse} (http://texlipse.sourceforge.net/) (Windows/Linux/Mac OS)
-\end{itemize}
-
-\textbf{WYSIWYM editor}:
-\begin{itemize}
-\item \textbf{LyX} (https://www.lyx.org/) (Windows/Linux/Mac OS) \\
-(不推薦. N年前實驗室學妹曾經用過, 但我老闆發現 LyX 會自動在 tex file 裡加入一些不必要的格式控制指令, 導致投稿時得花額外的心力去刪掉那些指令, 因此我老闆下令實驗室禁用 LyX.)
-\end{itemize}
-
-
-\textbf{Online editor}:
-\begin{itemize}
-\item \textbf{ShareLaTeX} (https://www.sharelatex.com/) \\
-(有提供 source code (https://github.com/sharelatex/sharelatex), 可以自己架一個)
-\item \textbf{Overleaf} (https://www.overleaf.com/)
-\item \textbf{Authorea} (https://www.authorea.com/)
-\end{itemize}
-
-\textbf{Terminal-based editor (Geak Only! lol)}:
-\begin{itemize}
-\item \textbf{Vim + Vim-Latex} (https://sourceforge.net/projects/vim-latex/)
-\item \textbf{Sublime Text + LaTeXTools} (https://github.com/SublimeText/LaTeXTools)
-\end{itemize}
+Chapter~\ref{chapter:doccls} introduces thesis.cls document class.
+Chapter~\ref{chapter:secorder} introduces section ordering.
+Chapter~\ref{chapter:ref} and~\ref{chapter:fig} explain how to load citation, figures and tables (not completed).

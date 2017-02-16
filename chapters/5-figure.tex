@@ -1,0 +1,30 @@
+\chapter{Figures and Tables}
+\label{chapter:fig}
+
+關於怎麼使用圖和表格, 網路上都可以找到許多介紹. Google it.
+(其實是我累了, 不想寫了 XD)
+
+\section{Figures}
+
+這裡介紹如何載入一張圖片, 解釋請看 .tex 檔的註解吧！
+此外, 我個人習慣是把所有的圖檔都放在一個資料夾下, 像是 \textit{figures/}
+
+\begin{figure}[b]
+  \centering
+  % 圖片的高度與寬度, height 設為 ! 代表由寬度大小等比例縮放
+  \includegraphics[height=!,width=0.4\linewidth,keepaspectratio=true]%
+  % 圖片的位置
+  {figures/nctu_logo}
+  % [] 放的是顯示在 list of figure 的文字
+  % {} 放的是顯示在圖下方的文字
+  \caption[NCTU logo]{{\footnotesize The history of NCTU days back to 1896 ...}}
+  \label{fig:nctu_logo}
+\end{figure}
+
+\textbf{注意:} 在呼叫圖的標籤的時候, 請寫 \textbf{Figure$\sim$\textbackslash ref\{label\}}.
+(請參考 .tex 檔看我是如何載入 Figure~\ref{fig:nctu_logo} 的吧).
+
+\section{Tables}
+
+我個人的習慣是把表格的內容放到另一個 .tex 內, 再把這些 .tex 檔放到另一個資料夾下 (e.g. \textit{tables/}), 讓本文看起來不會那麼亂.
+請參考 Table~\ref{table:clsoptions} 裡面的註解 (檔案位置 \textit{tables/table-classopt.tex}), 看看要怎寫一個簡單的 table 吧.

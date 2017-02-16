@@ -16,6 +16,6 @@ This thesis is built based on XeTeX + xeCJK, please use xelatex instead of pdfte
 * Windows
   * Windows 7 + MikTeX 2.9.6069
 * Linux
-  * Ubuntu 14.04.1 + TeX 3.1415926 (TeX Live 2013/Debian)
+  * Ubuntu 14.04.1 + TeX Live 2013/Debian
 * Mac OS X
-  * Mac OS 10.9 + TeX Live
+  * Mac OS 10.9 + MacTeX 2016

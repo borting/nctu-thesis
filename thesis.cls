@@ -90,6 +90,8 @@
 \usepackage{titlesec}     % formating titles of sectioning
 \usepackage{titletoc}     % formating titles in toc
 \usepackage[subfigure]{tocloft}  % centering toc, lof, and lot
+\usepackage[tight,footnotesize]{subfigure} % load in advance to prevent
+                                           % conflicting with tocloft
 
 %-------------------------------------------------------------------------------
 % Page Format
@@ -372,6 +374,19 @@
   {\centering\Huge\bfseries}%
   {\chaptertitlename\ \thechapter}%
   {0em}{}%
+% The following is the original chapter title format and label numbering style
+% suggested by NCTU Thesis Format. But, such an English chapter title format is
+% too ugly. Not mentioning that I need to number chapter label in Roman style,
+% but use arabic style in section label, i.e. doing something like this:
+%     (chapter) II. Related Work
+%     (section)     2.1 brabra
+% Besides, generally, Roman style numbering is reserved for 'parts' in a book.
+% Therefore, I made my own way. :)
+%
+%  \titleformat{\chapter}[block]% (place label and title body at the same line)
+%  {\centering\Huge\bfseries}%
+%  {\Roman{chapter}.\hspace{0.5em}}%
+%  {0em}{}%
 \fi
 
 % Set the spacing before and after chapter label/title
@@ -422,6 +437,9 @@
 %-------------------------------------------------------------------------------
 % Commands
 %-------------------------------------------------------------------------------
+
+% Change to uppercase of roman number
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
 
 % Change margin of a period
 %% \changemargin
@@ -476,6 +494,8 @@
 
 % A wraper to reset the style of appendicies when 'zh' option is set
 \newcommand{\addAppxToContents}{%
+% Hide section, subsection from ToC
+\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}
 \ifTHESISOPTIONzh
   % Set appendix numbering to Chiese style in ToC
   \titlecontents{chapter}[0pt]{}%
@@ -487,6 +507,11 @@
   {\centering\Huge\bfseries}%
   {附錄\xCJKalphatozhnum{\thechapter}\quad}% (X、 ...)
   {0em}{}%
+\else
+  % Format appendix title shown in ToC
+  \titlecontents{chapter}[0pt]{}%
+  {\bfseries \appendixname\hspace{0.5em}\thecontentslabel\hspace{0.5em}}%
+  {}{\cftdotfill{\cftdotsep}\contentspage}%
 \fi
 }
 

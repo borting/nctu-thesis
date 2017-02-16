@@ -3,21 +3,21 @@
 %\documentclass[watermark,final]{thesis}  % final mode (version for library)
 
 %-------------------------------------------------------------------------------
+% Package Loading
+%-------------------------------------------------------------------------------
+
+\usepackage{multirow}     % for multi-row table
+\usepackage{booktabs}     % table style used in books
+
+%-------------------------------------------------------------------------------
 % Configuration
 %-------------------------------------------------------------------------------
 
-% 自訂的指令和引用的 package
-\input{env/common}
+% 填寫題目, 作者, 指導教授, 學校, 系所, 日期等資訊
+\input{config/frontmatters}
 
-% 修改 thesis.cls default 設定
-\input{config/fonts}  % font settings
-
-%-------------------------------------------------------------------------------
-% Author Info
-%-------------------------------------------------------------------------------
-
-% 填寫 Title, 作者, 指導教授, 學校, 系所, 日期等資訊
-\input{author/info}
+% 修改 thesis.cls 的預設字型
+\input{config/fonts}
 
 \begin{document}
 
@@ -65,9 +65,10 @@
 
 % 內文, 請依照章節順序擺放
 \input{chapters/1-intro}
-\input{chapters/2-secorder}
-\input{chapters/3-writing}
-\input{chapters/4-figure}
+\input{chapters/2-doccls}
+\input{chapters/3-secorder}
+\input{chapters/4-ref}
+\input{chapters/5-figure}
 
 %-------------------------------------------------------------------------------
 % 參考文獻
@@ -99,7 +100,7 @@
 % Start appendix
 \appendix
 
-% Add Appendicies to "Table of Contents"
+% Add appendicies to "Table of Contents"
 \addAppxToContents
 
 % 請從此開始依序擺放附錄
