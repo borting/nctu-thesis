@@ -1,6 +1,6 @@
 # 交通大學碩博士論文 XeLaTeX 模板
 
-This thesis template is developed based on XeLaTeX + xeCJK.
+[nctu-thesis](https://github.com/borting/nctu-thesis) template is developed based on XeLaTeX + xeCJK.
 
 ## 下載
   你可以 clone 這個 repos, 或是到[這裡](https://github.com/borting/nctu-thesis/tags)下載最新版本
@@ -44,4 +44,4 @@ This thesis template is developed based on XeLaTeX + xeCJK.
 * 台大 [qcl](https://github.com/qcl/qcl-master-thesis) 與 [tzhuan](https://github.com/tzhuan/ntu-thesis) 兩位同學的 ntu-thesis template
 
 ## License
-   此模板係[採用創用 CC 姓名標示-非商業性-相同方式分享 3.0 台灣 授權條款](https://creativecommons.org/licenses/by-nc-sa/3.0/tw/legalcode)授權.
+   此模板係採用[創用 CC 姓名標示-非商業性-相同方式分享 3.0 台灣 授權條款](https://creativecommons.org/licenses/by-nc-sa/3.0/tw/legalcode)授權.
