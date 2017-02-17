@@ -22,7 +22,7 @@ This thesis template is developed based on XeLaTeX + xeCJK.
     (這樣你和你的指導教授用不同作業系統寫論文時, 就不用每次重新設定中文字型啦)
 
 ## 說明
-   請參考 [README.pdf](https://github.com/borting/nctu-thesis/blob/master/README.pdf)
+   進階的使用教學請參考 [README.pdf](https://github.com/borting/nctu-thesis/blob/master/README.pdf)
 
 ## Tested Environment
 * Windows
@@ -31,6 +31,9 @@ This thesis template is developed based on XeLaTeX + xeCJK.
   * Ubuntu 14.04.1 + TeX Live 2013/Debian
 * Mac OS X
   * Mac OS 10.9 + MacTeX 2016
+
+## Known Issues
+* 在編譯完英文版後, (在未清空編譯中繼檔的情況下)第一次執行 XeLaTeX 編譯中文版會出錯, 但是只要再跑一次 XeLaTeX 就可以了.
 
 ## Acknowledgement
    此模板的前身是實驗室 Watil 與 CE 兩位學長姐留下的 NCTU thesis template.
