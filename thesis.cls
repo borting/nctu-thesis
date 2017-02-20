@@ -92,6 +92,7 @@
 \usepackage[subfigure]{tocloft}  % centering toc, lof, and lot
 \usepackage[tight,footnotesize]{subfigure} % load in advance to prevent
                                            % conflicting with tocloft
+\usepackage[chapter]{algorithm}  % formating the numbering of algorithm label
 
 %-------------------------------------------------------------------------------
 % Page Format
@@ -487,6 +488,14 @@
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{\@bibtitle}}%
 }
+
+%-------------------------------------------------------------------------------
+% Algortithms
+%-------------------------------------------------------------------------------
+
+% Change the numbering style of algorithms to [chapter].[algorithm]
+%   Note that: you need to use \caption before \label
+\renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}}
 
 %-------------------------------------------------------------------------------
 % Apendicies
