@@ -498,7 +498,7 @@
 \renewcommand{\thealgorithm}{\arabic{chapter}.\arabic{algorithm}}
 
 %-------------------------------------------------------------------------------
-% Apendicies
+% Appendicies
 %-------------------------------------------------------------------------------
 
 % A wraper to reset the style of appendicies when 'zh' option is set
