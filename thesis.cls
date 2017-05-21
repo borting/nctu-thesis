@@ -294,7 +294,11 @@
   \toctitle{Table of Contents}%
   \loftitle{List of Figures}%
   \lottitle{List of Tables}%
-  \bibtitle{Bibliography}%
+  \ifTHESISOPTIONmaster
+    \bibtitle{References}%
+  \else
+    \bibtitle{Bibliography}%
+  \fi
   \cvtitle{Curriculum Vitae}%
   \loptitle{List of Publications}%
 \fi
@@ -318,7 +322,6 @@
   \renewcommand{\listtablename}{\makebox[4em][s]{\@lottitle}}%
   \renewcommand{\tablename}{表}%
   \renewcommand{\figurename}{圖}%
-  \renewcommand{\bibname}{\makebox[5.5em][s]{\@bibtitle}}%
 \fi
 
 % Set the chapter numbering to Chinese number in ToC
@@ -488,6 +491,9 @@
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{\@bibtitle}}%
 }
+
+% Configure the name of References/Bibliography
+\renewcommand{\bibname}{\makebox[5.5em][s]{\@bibtitle}}
 
 %-------------------------------------------------------------------------------
 % Algortithms
