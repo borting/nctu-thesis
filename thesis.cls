@@ -89,9 +89,9 @@
 \usepackage{xCJKnumb}     % coverting arabic number to chinese number
 \usepackage{titlesec}     % formating titles of sectioning
 \usepackage{titletoc}     % formating titles in toc
-\usepackage[subfigure]{tocloft}  % centering toc, lof, and lot
-\usepackage[tight,footnotesize]{subfigure} % load in advance to prevent
-                                           % conflicting with tocloft
+\usepackage{tocloft}	  % centering toc, lof, and lot
+\usepackage{caption}	  % for subfigure
+\usepackage[labelformat=simple]{subcaption} % for subfigure
 \usepackage[chapter]{algorithm}  % formating the numbering of algorithm label
 
 %-------------------------------------------------------------------------------
@@ -529,6 +529,13 @@
   {}{\cftdotfill{\cftdotsep}\contentspage}%
 \fi
 }
+
+%-------------------------------------------------------------------------------
+% Figures
+%-------------------------------------------------------------------------------
+
+% Changing the format of subcaption for reference
+\renewcommand\thesubfigure{ (\alph{subfigure})}
 
 %-------------------------------------------------------------------------------
 % Cover Page
