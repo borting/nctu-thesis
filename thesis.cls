@@ -322,6 +322,10 @@
   \renewcommand{\listtablename}{\makebox[4em][s]{\@lottitle}}%
   \renewcommand{\tablename}{表}%
   \renewcommand{\figurename}{圖}%
+\else
+  \renewcommand{\contentsname}{\@toctitle}%
+  \renewcommand{\listfigurename}{\@loftitle}%
+  \renewcommand{\listtablename}{\@lottitle}%
 \fi
 
 % Set the chapter numbering to Chinese number in ToC
