@@ -663,7 +663,7 @@
     Submitted to {\@institute}\\
     \@college\\
     \@university\\
-    in partial Fulfilment of the Requirements\\
+    in partial fulfilment of the requirements\\
     for the Degree of\\
     \@degree\\
     in\\
