@@ -763,11 +763,9 @@
 % English approval page
 %  \approvalenpage
 
-% Copyright page (dissertation final mode only)
-  \ifTHESISOPTIONphd
-    \ifTHESISOPTIONfinal
-      \copyrightpage
-    \fi
+% Copyright page (final mode only)
+  \ifTHESISOPTIONfinal
+    \copyrightpage
   \fi
 \fi
 }}
