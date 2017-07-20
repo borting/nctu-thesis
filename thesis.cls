@@ -265,19 +265,31 @@
 % Title of List of Publications
 \def\loptitle#1{\gdef\@loptitle{#1}}
 
+% Number of frontpages reserved for 授權書 and 審定書
+\def\reservedfrontpages#1{\gdef\@reservedfrontpages{#1}}
+
 %-------------------------------------------------------------------------------
 % Default Values for Macros
 %-------------------------------------------------------------------------------
+
+% Define value for the number of reserved front pages in draft and review modes
+\reservedfrontpages{0}
 
 % Define macros related to degree
 \ifTHESISOPTIONmaster
   \thesistype{Thesis}%
   \thesistypezh{碩士論文}%
   \degree{Master}%
+  \ifTHESISOPTIONfinal
+    \reservedfrontpages{2}% 授權書 + 中文審定書
+  \fi
 \else
   \thesistype{Dissertation}%
   \thesistypezh{博士論文}%
   \degree{Doctor of Philosophy}%
+  \ifTHESISOPTIONfinal
+    \reservedfrontpages{3}% 授權書 + 中文審定書 + 英文審定書
+  \fi
 \fi
 
 % Define language-related macros for front pages and back pages
@@ -775,6 +787,7 @@
 \def\abszhpage
 {
   \cleardoublepage
+  \setcounter{page}{\the\numexpr\@reservedfrontpages+\arabic{page}\relax}
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{摘要}}
   \begin{center}
