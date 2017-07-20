@@ -272,24 +272,17 @@
 % Default Values for Macros
 %-------------------------------------------------------------------------------
 
-% Define value for the number of reserved front pages in draft and review modes
-\reservedfrontpages{0}
-
 % Define macros related to degree
 \ifTHESISOPTIONmaster
   \thesistype{Thesis}%
   \thesistypezh{碩士論文}%
   \degree{Master}%
-  \ifTHESISOPTIONfinal
-    \reservedfrontpages{2}% 授權書 + 中文審定書
-  \fi
+  \reservedfrontpages{2}% 授權書 + 中文審定書
 \else
   \thesistype{Dissertation}%
   \thesistypezh{博士論文}%
   \degree{Doctor of Philosophy}%
-  \ifTHESISOPTIONfinal
-    \reservedfrontpages{3}% 授權書 + 中文審定書 + 英文審定書
-  \fi
+  \reservedfrontpages{3}% 授權書 + 中文審定書 + 英文審定書
 \fi
 
 % Define language-related macros for front pages and back pages
@@ -787,7 +780,10 @@
 \def\abszhpage
 {
   \cleardoublepage
-  \setcounter{page}{\the\numexpr\@reservedfrontpages+\arabic{page}\relax}
+  % Reserve front pages for 授權書 + 中/英審定書 in final mode
+  \ifTHESISOPTIONfinal
+    \setcounter{page}{\the\numexpr\@reservedfrontpages+\arabic{page}\relax}
+  \fi
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{摘要}}
   \begin{center}
