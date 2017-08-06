@@ -146,7 +146,7 @@
 % Chinese Font Setting
 %-------------------------------------------------------------------------------
 
-% Set main font for Chinese
+% Main (serif) font for Chinese
 \newcommand{\mainfontzh}[1]{%
 \ifx&#1&%
   \ifwindows  % Windows
@@ -163,20 +163,20 @@
 \fi
 }
 
-% Set ming font (明體)
-\newcommand{\mingfontzh}[1]{%
+% Sans-serif font for Chinese
+\newcommand{\sansfontzh}[1]{%
 \ifx&#1&%
   \ifwindows  % Windows
-    \newCJKfontfamily{\Ming}{PMingLiU}  % 新細明體
+    \setCJKsansfont{PMingLiU}  % 新細明體
   \else\iflinux  % Linux
-    \newCJKfontfamily{\Ming}{AR PL UMing TW}  % AR PL 明體
+    \setCJKsansfont{AR PL UMing TW}  % AR PL 明體
   \else\ifmacosx  % Mac OS X
-    \newCJKfontfamily{\Ming}{LiSong Pro}  % 儷宋 Pro (明體)
+    \setCJKsansfont{LiSong Pro}  % 儷宋 Pro (明體)
   \else  % '-shell-escape' is not set, using Windows fonts as default
-    \newCJKfontfamily{\Ming}{PMingLiU}
+    \setCJKsansfont{PMingLiU}
   \fi\fi\fi
 \else
-  \newCJKfontfamily{\Ming}{#1}
+  \setCJKsansfont{#1}
 \fi
 }
 
@@ -564,16 +564,16 @@
 % University, institute, and title
   \begin{center}
     % University
-    \fontsize{40}{40}{\makebox[10cm][s]{\Ming{\@universityzh}}}\\
+    \fontsize{40}{40}{\makebox[10cm][s]{\textsf{\@universityzh}}}\\
     \vspace{1.5\baselineskip}
     % Institute
-    \fontsize{28}{28}{\makebox[1.333\width][s]{\textbf{\Ming{\@institutezh}}}}\\
+    \fontsize{28}{28}{\makebox[1.333\width][s]{\textbf{\textsf{\@institutezh}}}}\\
     \vspace{1.5\baselineskip}
     % Thesis type
-    \fontsize{24}{24}{\makebox[4.5cm][s]{\textbf{\Ming{\@thesistypezh}}}}\\
+    \fontsize{24}{24}{\makebox[4.5cm][s]{\textbf{\textsf{\@thesistypezh}}}}\\
     \ifTHESISOPTIONdraft
       \vspace{1.5\baselineskip}
-      \makebox[2cm][s]{\textbf{\Ming{初稿}}}\\
+      \makebox[2cm][s]{\textbf{\textsf{初稿}}}\\
     \fi
     \vfill
     \singlespacing % set single spacing
