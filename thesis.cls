@@ -6,6 +6,9 @@
 % 用者修改該著作時，僅得依本授權條款或與本授權條款類似者來散布該衍生作品。使用時
 % 必須按照著作人指定的方式表彰其姓名。
 %-------------------------------------------------------------------------------
+% Author: Borting Chen (bortingchen@gmail.com)
+% Source: https://github.com/borting/nctu-thesis
+%-------------------------------------------------------------------------------
 \ProvidesClass{thesis}[2017/07/20 V2.5 by Borting Chen]
 \NeedsTeXFormat{LaTeX2e}
 
