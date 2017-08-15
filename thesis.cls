@@ -567,16 +567,20 @@
 % University, institute, and title
   \begin{center}
     % University
-    \fontsize{40}{40}{\makebox[10cm][s]{\textsf{\@universityzh}}}\\
+    %\fontsize{40}{40}{\makebox[10cm][s]{\textsf{\@universityzh}}}\\
+    \fontsize{40}{40}{\makebox[10cm][s]{\@universityzh}}\\
     \vspace{1.5\baselineskip}
     % Institute
-    \fontsize{28}{28}{\makebox[1.333\width][s]{\textbf{\textsf{\@institutezh}}}}\\
+    %\fontsize{28}{28}{\makebox[1.333\width][s]{\textbf{\textsf{\@institutezh}}}}\\
+    \fontsize{28}{28}{\makebox[1.333\width][s]{\textbf{\@institutezh}}}\\
     \vspace{1.5\baselineskip}
     % Thesis type
-    \fontsize{24}{24}{\makebox[4.5cm][s]{\textbf{\textsf{\@thesistypezh}}}}\\
+    %\fontsize{24}{24}{\makebox[4.5cm][s]{\textbf{\textsf{\@thesistypezh}}}}\\
+    \fontsize{24}{24}{\makebox[4.5cm][s]{\textbf{\@thesistypezh}}}\\
     \ifTHESISOPTIONdraft
       \vspace{1.5\baselineskip}
-      \makebox[2cm][s]{\textbf{\textsf{初稿}}}\\
+      %\makebox[2cm][s]{\textbf{\textsf{初稿}}}\\
+      \makebox[2cm][s]{\textbf{初稿}}\\
     \fi
     \vfill
     \singlespacing % set single spacing
