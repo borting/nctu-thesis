@@ -9,8 +9,12 @@
 % Author: Borting Chen (bortingchen@gmail.com)
 % Source: https://github.com/borting/nctu-thesis
 %-------------------------------------------------------------------------------
-\ProvidesClass{thesis}[2017/07/20 V2.5 by Borting Chen]
 \NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{thesis}[2018/07/29 V2.6 by Borting Chen]
+
+% Pre-load packages for pgfkeys
+\RequirePackage{pgfkeys}
+\RequirePackage{pgfopts}
 
 %-------------------------------------------------------------------------------
 % Document Options Declaration
@@ -34,6 +38,27 @@
 
 \DeclareOption{en}{\THESISOPTIONentrue\THESISOPTIONzhfalse}
 \DeclareOption{zh}{\THESISOPTIONenfalse\THESISOPTIONzhtrue}
+
+% Declare options for page numbering style: (default: nctupagenum)
+%   nctupagenum - roman-style page numbering started from abstract
+%   bookpagenum - roman-style page numbering started from titlepage
+
+\newif\ifTHESISOPTIONnctupagenum    \THESISOPTIONnctupagenumtrue
+\newif\ifTHESISOPTIONbookpagenum    \THESISOPTIONbookpagenumfalse
+
+\DeclareOption{nctupagenum}
+  {\THESISOPTIONnctupagenumtrue\THESISOPTIONbookpagenumfalse}
+\DeclareOption{bookpagenum}
+  {\THESISOPTIONnctupagenumfalse\THESISOPTIONbookpagenumtrue}
+
+% Declare option to reserve pages when bookpagenum is used (default: 0)
+%   reservedfrontpage - number of authorizatoin page and approval page
+\pgfkeys{%
+  /thesis/.is family,
+  /thesis,
+  reservedfrontpage/.store in=\reservedfrontpage,
+  reservedfrontpage=0,
+}
 
 % Declare binding option: (default: disabled)
 %   depending on the mode of thesis format:
@@ -74,8 +99,13 @@
 \newif\ifTHESISOPTIONwatermark      \THESISOPTIONwatermarkfalse
 \DeclareOption{watermark}{\THESISOPTIONwatermarktrue}
 
+% Declare option for copyright page: (default: disabled)
+\newif\ifTHESISOPTIONcopyright      \THESISOPTIONcopyrightfalse
+\DeclareOption{copyright}{\THESISOPTIONcopyrighttrue}
+
 % Load basic options
 \ProcessOptions
+\ProcessPgfOptions{/thesis}
 \LoadClass[a4paper,12pt,oneside]{book}
 
 %-------------------------------------------------------------------------------
@@ -778,10 +808,16 @@
 % English approval page
 %  \approvalenpage
 
-% Copyright page (final mode only)
-  \ifTHESISOPTIONfinal
+% Copyright page (shown in final mode only)
+  \ifTHESISOPTIONfinal\ifTHESISOPTIONcopyright
     \copyrightpage
-  \fi
+  \fi\fi
+\fi
+
+% Reset page counter to zero, so that roman-style page numbering
+% can start from the abstract page.
+\ifTHESISOPTIONnctupagenum
+\setcounter{page}{0}
 \fi
 }}
 
@@ -793,10 +829,11 @@
 \def\abszhpage
 {
   \cleardoublepage
-  % Reserve front pages for 授權書 + 中/英審定書 in final mode
-  \ifTHESISOPTIONfinal
-    \setcounter{page}{\the\numexpr\@reservedfrontpages+\arabic{page}\relax}
-  \fi
+  % Reserve pages for 授權書 + 中/英審定書 in final mode if book-style page
+  % numbering is used
+  \ifTHESISOPTIONfinal\ifTHESISOPTIONbookpagenum
+    \setcounter{page}{\the\numexpr\reservedfrontpage+\arabic{page}\relax}
+  \fi\fi
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{摘要}}
   \begin{center}
