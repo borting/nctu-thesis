@@ -6,7 +6,7 @@
 \label{table:clsoptions}
 \begin{tabular}{lll}
 \toprule[1.1pt]
-                      & Options   & Description\\
+類型                      & Options   & Description\\
 \midrule[1.1pt]
 \multirow{2}{*}{論文類型} & master    & 碩士論文 (default)\\
                       & phd       & 博士論文\\
@@ -25,6 +25,14 @@
 浮水印                   & watermark & \begin{tabular}[c]{@{}l@{}}review mode 不顯示\\ draft mode 顯示 ``DRAFT" 字樣\\ final mode 顯示指定的浮水印\end{tabular} \\
 \midrule
 裝訂                    & binding   & \begin{tabular}[c]{@{}l@{}} 在頁面左側預留 1cm 的裝訂空間\\ (enabled by default under final mode)\end{tabular}\\
+\midrule
+著作權頁                    & copyright   & \begin{tabular}[c]{@{}l@{}} 顯示 copyright page (default: no)\\ (only shown in final mode)\end{tabular}\\
+\midrule
+\multirow{2}{*}{頁碼編排}   & nctupagenum   & 從 abstract 開始編羅馬數字頁碼 (default)\\
+
+                           & bookpagenum   & 從 title page 開始編羅馬數字頁碼\\
+\midrule
+預留頁                   & reservedpages & \begin{tabular}[c]{@{}l@{}} 預留頁碼給授權頁和審定書 (default: 0)\\ (only valid if bookpagenum option is used)\\ (only valid in final mode)\end{tabular}\\
 \bottomrule[1.1pt]
 \end{tabular}
 \end{table}

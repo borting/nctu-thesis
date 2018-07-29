@@ -71,7 +71,7 @@ thesis.cls 提供了以下四個修改預設字型的指令.
 
 \section{Options provided by thesis.cls}
 
-thesis.cls 提供碩士與博士論文模板, 並提供初稿與終稿等選項讓使用者自行印出的版面格式.
+thesis.cls 提供碩士與博士論文模板, 並提供初稿與終稿等選項讓使用者設定印出的版面格式.
 thesis.cls 的 options 設定就在 \textbf{main.tex} 的第一行
 
 \textbackslash documentclass[\textbf{<options>}]\{thesis\}
@@ -131,6 +131,13 @@ thesis.cls 提供的 options 詳列於 Table~\ref{table:clsoptions}.
 
 % 把 table 的內容放在另一個檔案再 load, 讓 tex 看起來乾淨一點
 \input{tables/table-classopt}
+
+\textbf{注意}: reservedpages 要搭配 bookpagenum 使用, 才會預留頁碼給授權頁與審定書.
+比方說, 要預留 3 頁的話, 需要下
+
+\begin{itemize}
+\item \textbackslash documentclass[bookpagenum, reservedpages=3, watermark,final]\{thesis\}
+\end{itemize}
 
 \section{論文檔案位置}
 
