@@ -52,12 +52,12 @@
   {\THESISOPTIONnctupagenumfalse\THESISOPTIONbookpagenumtrue}
 
 % Declare option to reserve pages when bookpagenum is used (default: 0)
-%   reservedfrontpage - number of authorizatoin page and approval page
+%   reservedpages - number of authorizatoin page and approval page
 \pgfkeys{%
   /thesis/.is family,
   /thesis,
-  reservedfrontpage/.store in=\reservedfrontpage,
-  reservedfrontpage=0,
+  reservedpages/.store in=\reservedpages,
+  reservedpages=0,
 }
 
 % Declare binding option: (default: disabled)
@@ -307,7 +307,7 @@
 \def\loptitle#1{\gdef\@loptitle{#1}}
 
 % Number of frontpages reserved for 授權書 and 審定書
-\def\reservedfrontpages#1{\gdef\@reservedfrontpages{#1}}
+\def\reservedpagess#1{\gdef\@reservedfrontpages{#1}}
 
 %-------------------------------------------------------------------------------
 % Default Values for Macros
@@ -318,12 +318,12 @@
   \thesistype{Thesis}%
   \thesistypezh{碩士論文}%
   \degree{Master}%
-  \reservedfrontpages{2}% 授權書 + 中文審定書
+  \reservedpagess{2}% 授權書 + 中文審定書
 \else
   \thesistype{Dissertation}%
   \thesistypezh{博士論文}%
   \degree{Doctor of Philosophy}%
-  \reservedfrontpages{3}% 授權書 + 中文審定書 + 英文審定書
+  \reservedpagess{3}% 授權書 + 中文審定書 + 英文審定書
 \fi
 
 % Define language-related macros for front pages and back pages
@@ -832,7 +832,7 @@
   % Reserve pages for 授權書 + 中/英審定書 in final mode if book-style page
   % numbering is used
   \ifTHESISOPTIONfinal\ifTHESISOPTIONbookpagenum
-    \setcounter{page}{\the\numexpr\reservedfrontpage+\arabic{page}\relax}
+    \setcounter{page}{\the\numexpr\reservedpages+\arabic{page}\relax}
   \fi\fi
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{摘要}}
