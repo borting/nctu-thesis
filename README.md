@@ -9,7 +9,10 @@
 * Use command line
 
   ```
+  # build
   $ make
+  # clean
+  $ make clean
   ```
 
 * Change the xelatex option in IDE, then build main.tex
@@ -20,6 +23,13 @@
   * thesis.cls 會根據你目前使用的作業系統選擇要使用的中文字型, 請設定 -shell-escape 開啟這個功能.
 
     (這樣你和你的指導教授用不同作業系統寫論文時, 就不用每次重新設定中文字型啦)
+* Windows batch file (Thanks the contribution from [tair8022](https://github.com/tair8022/nctu-thesis))
+  ```
+  :: build
+  > build.bat
+  :: clean
+  > clanup.bat
+  ```
 
 ## 說明
    進階的使用教學請參考 [README.pdf](https://github.com/borting/nctu-thesis/blob/master/README.pdf)
