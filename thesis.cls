@@ -10,7 +10,7 @@
 % Source: https://github.com/borting/nctu-thesis
 %-------------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{thesis}[2018/07/29 V2.6 by Borting Chen]
+\ProvidesClass{thesis}[2021/02/25 V2.7 by Borting Chen]
 
 % Pre-load packages for pgfkeys
 \RequirePackage{pgfkeys}
