@@ -262,9 +262,6 @@
 % The full (unabbreviated) name of the degree
 \def\degree#1{\gdef\@degree{#1}}
 
-% The name of your degree's field (e.g. Psychology, Computer Science)
-\def\field#1{\gdef\@field{#1}}
-
 % The type of thesis in English
 \def\thesistype#1{\gdef\@thesistype{#1}}
 
@@ -277,17 +274,12 @@
 % The name of the institute in Chinese
 \def\institutezh#1{\gdef\@institutezh{#1}}
 
-% The name of college in English
-\def\college#1{\gdef\@college{#1}}
-
 % The name of university in English
 \def\university#1{\gdef\@university{#1}}
 
 % The name of university in Chinese
 \def\universityzh#1{\gdef\@universityzh{#1}}
 
-% The location of university
-\def\location#1{\gdef\@location{#1}}
 
 % The name of advisor in English
 \def\advisor#1{\gdef\@advisor{#1}}
