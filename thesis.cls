@@ -160,19 +160,31 @@
 % Main font for English
 \newcommand{\mainfont}[1]{%
 \ifx&#1&%
-  \setmainfont[Ligatures=TeX]{Times New Roman}
+  \iflinux{}
+    % Use Liberation Fonts on Linux to avoid license issue with Windows fonts
+    % Liberation Serif is an alternatives to Times New Roman
+    \setmainfont[Ligatures=TeX]{Liberation Serif}
+  \else
+    \setmainfont[Ligatures=TeX]{Times New Roman}
+  \fi
 \else
   \setmainfont[Ligatures=TeX]{#1}
 \fi
 }
 
 % Sans-serif font for English
-\newcommand{\sansfont}[1]{%
-\ifx&#1&%
-  \setsansfont[Ligatures=TeX]{Arial}
-\else
-  \setsansfont[Ligatures=TeX]{#1}
-\fi
+\newcommand{\sansfont}[1]{
+  \ifx&#1&
+    \iflinux{}
+      % Use Liberation Fonts on Linux to avoid license issue with Windows fonts
+      % Liberation Sans is an alternatives to Arial
+      \setsansfont[Ligatures=TeX]{Liberation Sans}
+    \else
+      \setsansfont[Ligatures=TeX]{Arial}
+    \fi
+  \else
+    \setsansfont[Ligatures=TeX]{#1}
+  \fi
 }
 
 %-------------------------------------------------------------------------------
