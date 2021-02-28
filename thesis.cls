@@ -187,6 +187,22 @@
   \fi
 }
 
+% Monospaced font for English
+\newcommand{\monofont}[1]{
+  \ifx&#1&
+    \iflinux{}
+      % Use Liberation Fonts on Linux to avoid license issue with Windows fonts
+      % Liberation Mono is an alternatives to Courier New
+      \setmonofont[Ligatures=TeX]{Liberation Mono}
+    \else
+      \setmonofont[Ligatures=TeX]{Courier New}
+    \fi
+  \else
+    \setmonofont[Ligatures=TeX]{#1}
+  \fi
+}
+
+
 %-------------------------------------------------------------------------------
 % Chinese Font Setting
 %-------------------------------------------------------------------------------
