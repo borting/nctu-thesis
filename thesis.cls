@@ -633,128 +633,6 @@
     \fontsize{28}{28}{\makebox[1.333\width][s]{\textbf{\@institutezh}}}\\
     \vspace{1.5\baselineskip}
     % Thesis type
-    %\fontsize{24}{24}{\makebox[4.5cm][s]{\textbf{\textsf{\@thesistypezh}}}}\\
-    \fontsize{24}{24}{\makebox[4.5cm][s]{\textbf{\@thesistypezh}}}\\
-    \ifTHESISOPTIONdraft
-      \vspace{1.5\baselineskip}
-      %\makebox[2cm][s]{\textbf{\textsf{初稿}}}\\
-      \makebox[2cm][s]{\textbf{初稿}}\\
-    \fi
-    \vfill
-    \singlespacing % set single spacing
-    % Chinese title
-    \LARGE{\@titlezh}\\
-    \vspace{0.75\baselineskip}
-    % English title
-    \LARGE{\@title}\\
-    \vfill
-  \end{center}
-% Author & advisors
-  \begin{flushleft}%
-    \singlespacing
-    \LARGE
-    \begin{tabular}{crll}%
-    % Author
-      &\LARGE{\makebox[4em][s]{研究生}：}&{\@authorzh}&\vspace{1em}\\%
-    % Advisor
-      &{指導教授：}&{\@advisorzh}&{博士}\\%
-    % Co-Advisor A
-      \ifx \@coadvisorAzh \@empty \else
-        &&{\@coadvisorAzh}&{博士}\\%
-      \fi
-    % Co-Advisor B
-      \ifx \@coadvisorBzh \@empty \else
-        &&{\@coadvisorBzh}&{博士}\\%
-      \fi
-    \end{tabular}%
-  \end{flushleft}
-  \vspace{1in}
-  \vfill
-% Submission date in Chinese
-  \begin{center}
-    \makebox[2.5\width][s]{\large\@degreeyearzh}\\
-  \end{center}
-}
-
-%-------------------------------------------------------------------------------
-% Title Page
-%-------------------------------------------------------------------------------
-
-\def\titlepage
-{
-  \cleardoublepage
-  \ClearShipoutPicture  % remove watermark in this page
-  \thispagestyle{empty}
-% Chines & English titles
-  \begin{center}
-    \singlespacing\Large
-    \@titlezh\\
-    \vspace{0.25\baselineskip}
-    \@title\\
-    \vspace{0.25\baselineskip}
-  \end{center}
-% Author name and advisor name in Chinese and English
-  \begin{flushleft}
-    \singlespacing
-    \setlength{\tabcolsep}{0.25em}
-  % Chinese name
-    \begin{tabular}{rl}%
-      \large{\makebox[4em][s]{研究生}：}&\large{\@authorzh}\vspace{0.5em}\\%
-      \large{指導教授：}&{\large{\@advisorzh}}\\%
-      \ifx \@coadvisorAzh \@empty \else
-        &{\large{\@coadvisorAzh}}\\%
-      \fi
-      \ifx \@coadvisorBzh \@empty \else
-        &{\large{\@coadvisorBzh}}\\%
-      \fi
-    \end{tabular}%
-    \hfill
-  % English name
-    \begin{tabular}{rl}%
-      \large{Student:}&{\large{\@author}}\vspace{0.5em}\\%
-      \large{Advisor:}&{\large{\@advisor}}\\%
-      \ifx \@coadvisorA \@empty \else
-        &{\large{\@coadvisorA}}\\%
-      \fi
-      \ifx \@coadvisorB \@empty \else
-        &{\large{\@coadvisorB}}\\%
-      \fi
-    \end{tabular}
-  \end{flushleft}
-  \vfill
-% University & institute & thesis type in Chinese
-  \begin{center}
-    \makebox[2\width][s]{\large\@universityzh}\\
-    \makebox[1.33\width][s]{\large\@institutezh}\\
-    \ifTHESISOPTIONdraft
-      \makebox[1.33\width][s]{\large\@thesistypezh 初稿}\\
-    \else
-      \makebox[1.33\width][s]{\large\@thesistypezh}\\
-    \fi
-    \vfill
-% Submission description in English
-    \ifTHESISOPTIONdraft
-      \centerline{{A \@thesistype\ Draft}}%
-    \else
-      \centerline{{A \@thesistype}}%
-    \fi
-    Submitted to {\@institute}\\
-    \@college\\
-    \@university\\
-    in partial fulfilment of the requirements\\
-    for the Degree of\\
-    \@degree\\
-    in\\
-    \vspace{0.5\baselineskip}
-    \@field\\
-    \vspace{\baselineskip}
-    \vfill
-% Submission date and location
-    {{\@degreemonth} {\@degreeyear}}\\
-    \vspace{0.25\baselineskip}
-    \@location\\
-    \vfill
-    \makebox[1.75\width][s]{\normalsize\@degreeyearzh}
   \end{center}
 }
 
@@ -823,9 +701,6 @@
 
 % Set page numbering to 'roman' (i, ii, iii, ...)
   \frontmatter
-
-% Title page
-  \titlepage
 
 % Authorization page
 %  \authzpage
