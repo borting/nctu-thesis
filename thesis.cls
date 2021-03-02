@@ -280,24 +280,47 @@
 % The name of university in Chinese
 \def\universityzh#1{\gdef\@universityzh{#1}}
 
+% Default title of a advisor
+\newcommand{\defaultadvisortitle}{Prof.}
+
+% Default title of a advisor in Chinese
+\newcommand{\defaultadvisortitlezh}{教授}
 
 % The name of advisor in English
 \def\advisor#1{\gdef\@advisor{#1}}
 
+% The title of the advisor in English
+\def\advisortitle#1{\gdef\@advisortitle{#1}}
+
 % The name of advisor in Chinese
 \def\advisorzh#1{\gdef\@advisorzh{#1}}
+
+% The title of the advisor in Chinese.
+\def\advisortitlezh#1{\gdef\@advisortitlezh{#1}}
 
 % The name of co-advisor A in English
 \def\coadvisorA#1{\gdef\@coadvisorA{#1}}
 
+% The title of the co-advisor A in English
+\def\coadvisorAtitle#1{\gdef\@coadvisorAtitle{#1}}
+
 % The name of co-advisor A in Chinese
 \def\coadvisorAzh#1{\gdef\@coadvisorAzh{#1}}
+
+% The title of the co-advisor A in Chinese
+\def\coadvisorAtitlezh#1{\gdef\@coadvisorAtitlezh{#1}}
 
 % The name of co-advisor B in English
 \def\coadvisorB#1{\gdef\@coadvisorB{#1}}
 
+% The title of the co-advisor B in English
+\def\coadvisorBtitle#1{\gdef\@coadvisorBtitle{#1}}
+
 % The name of co-advisor B in Chinese
 \def\coadvisorBzh#1{\gdef\@coadvisorBzh{#1}}
+
+% The title of co-advisor B in Chinese
+\def\coadvisorBtitlezh#1{\gdef\@coadvisorBtitlezh{#1}}
 
 % The name of the author in Chinese
 \def\authorzh#1{\gdef\@authorzh{#1}}
@@ -721,9 +744,8 @@
 %-------------------------------------------------------------------------------
 
 % Page layout of Chinese abstract
-\def\abszhpage
-{
-  \cleardoublepage
+\def\abszhpage{
+  \cleardoublepage{}
   % Reserve pages for 授權書 + 中/英審定書 in final mode if book-style page
   % numbering is used
   \ifTHESISOPTIONfinal\ifTHESISOPTIONbookpagenum
@@ -731,38 +753,58 @@
   \fi\fi
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{摘要}}
+
+  % Title, author, advisor(s), institute and university
   \begin{center}
-    \singlespacing
-% Thesis title
+    \singlespacing{}
+    % Thesis title
     {\Large \bf \@titlezh}\\
     \vspace{\baselineskip}
-% Author and advisors
+
+    % Author and advisor(s)
     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lr}%
       \setlength{\tabcolsep}{0.25em}%
-  % Author
+      % Author
       \begin{tabular}{rl}%
         \large{學生：}&{\large{\@authorzh}}\\%
       \end{tabular}&%
       \setlength{\tabcolsep}{0.25em}%
-      \begin{tabular}{rlc}%
-  % Advisor
-        \large{指導教授：}&{\large{\@advisorzh}}&{\large{博士}}\\%
-  % Co-advisor A
+      \begin{tabular}{crl}%
+        % Advisor
+        \large{指導教授：}&{\large{\@advisorzh}}&
+        \ifx \@advisortitlezh \@empty
+          {\large{\defaultadvisortitlezh{}}}\\
+        \else
+          {\large{\@advisortitlezh}}\\
+        \fi
+        % Co-advisor A
         \ifx \@coadvisorAzh \@empty \else
-          &{\large{\@coadvisorAzh}}&{\large{博士}}\\%
+          &{\large{\@coadvisorAzh}}&
+          \ifx \@coadvisorAtitlezh \@empty
+            {large{\defaultadvisortitlezh{}}}\\
+          \else
+            {\large{\@coadvisorAtitlezh}}\\
+          \fi
         \fi
-  % Co-advisor B
+        % Co-advisor B
         \ifx \@coadvisorBzh \@empty \else
-          &{\large{\@coadvisorBzh}}&{\large{博士}}\\%
+          &{\large{\@coadvisorBzh}}&
+          \ifx \@coadvisorBtitlezh \@empty
+            {large{\defaultadvisortitlezh{}}}\\
+          \else
+            {\large{\@coadvisorBtitlezh}}\\
+          \fi
         \fi
-      \end{tabular}\\%
+      \end{tabular}\\
     \end{tabular*}\\
-% Institute and university name
+
+    % Institute and university name
     \vspace{0.5\baselineskip}
     \large{\@universityzh\hspace{1ex}\@institutezh}\\
     \vspace{\baselineskip}
-% Abstract title
-    \Large{\textbf{摘\qquad 要}}\\
+
+    % Abstract title
+    \Large{\textbf{摘\qquad{}要}}\\
   \end{center}
 }
 
@@ -782,43 +824,67 @@
 %-------------------------------------------------------------------------------
 
 % Page layout of English abstract
-\def\absenpage
-{
+\def\absenpage{
   \cleardoublepage
   \phantomsection
   \addcontentsline{toc}{chapter}{\textbf{Abstract}}
+
+  % Title, author, advisor(s), institute and university
   \begin{center}
     \singlespacing
-% Thesis title
+    % Thesis title
     {\Large \bf \@title}\\
     \vspace{\baselineskip}
-% Author and advisors
+
+    % Author and advisor(s)
     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lr}%
       \setlength{\tabcolsep}{0.25em}%
-  % Author
+      % Author
       \begin{tabular}{rl}%
         \large{Student:}&{\large{\@author}}\\%
       \end{tabular}&%
       \setlength{\tabcolsep}{0.25em}%
-      \begin{tabular}{rl}%
-  % Advisor
-        \large{Advisor:}&{\large{Dr. \@advisor}}\\%
-  % Co-advisor A
-        \ifx \@coadvisorA \@empty \else
-          &{\large{Dr. \@coadvisorA}}\\%
+
+      % Advisor(s)
+      \begin{tabular}{crl}%
+        % Advisor
+        \large{Advisor:}&
+        \ifx \@advisortitle \@empty
+          \large{\defaultadvisortitle{}}&
+        \else
+          \large{\@advisortitle}&
         \fi
-  % Co-advisor B
-        \ifx \@coadvisorB \@empty \else
-          &{\large{Dr. \@coadvisorB}}\\%
+        \large{\@advisor}\\
+        % Co-advisor A
+        \ifx \@coadvisorA \@empty
+        \else
+          \ifx \@coadvisorAtitle \@empty
+            & \large{\defaultadvisortitle{}} &
+          \else
+            & \large{\@coadvisorAtitle} &
+          \fi
+          \large{\@coadvisorA}\\
+        \fi
+        % Co-advisor B
+        \ifx \@coadvisorB \@empty
+        \else
+          \ifx \@coadvisorBtitle \@empty
+            & \large{\defaultadvisortitle{}} &
+          \else
+            & \large{\@coadvisorBtitle} &
+          \fi
+          \large{\@coadvisorB}\\
         \fi
       \end{tabular}\\%
     \end{tabular*}\\
-% Institue and university name
+
+    % Institue and university name
     \vspace{0.5\baselineskip}
     \large{\@institute}\\
     \large{\@university}\\
     \vspace{\baselineskip}
-% Abstract title
+
+    % Abstract title
     \Large{\textbf{Abstract}}\\
   \end{center}
 }
