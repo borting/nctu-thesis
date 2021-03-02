@@ -358,12 +358,12 @@
 
 % Define macros related to degree
 \ifTHESISOPTIONmaster
-  \thesistype{Thesis}%
+  \thesistype{Master Thesis}%
   \thesistypezh{碩士論文}%
   \degree{Master}%
   \reservedpagess{2}% 授權書 + 中文審定書
 \else
-  \thesistype{Dissertation}%
+  \thesistype{Doctoral Dissertation}%
   \thesistypezh{博士論文}%
   \degree{Doctor of Philosophy}%
   \reservedpagess{3}% 授權書 + 中文審定書 + 英文審定書
