@@ -634,21 +634,95 @@
 % Cover Page
 %-------------------------------------------------------------------------------
 
-\def\coverpage
-{
+\def\coverpage{
   \thispagestyle{empty}%
-% University, institute, and title
+  % Set different margin for the cover page
+  \ifTHESISOPTIONbinding  % only valid in final mode
+    \newgeometry{left=3cm, right=2cm, top=3cm, bottom=3cm}
+  \else
+    \newgeometry{left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+  \fi
+
+  % University, institute, thesis type title, authors, advisor(s) and date
   \begin{center}
-    % University
-    %\fontsize{40}{40}{\makebox[10cm][s]{\textsf{\@universityzh}}}\\
-    \fontsize{40}{40}{\makebox[10cm][s]{\@universityzh}}\\
-    \vspace{1.5\baselineskip}
-    % Institute
-    %\fontsize{28}{28}{\makebox[1.333\width][s]{\textbf{\textsf{\@institutezh}}}}\\
-    \fontsize{28}{28}{\makebox[1.333\width][s]{\textbf{\@institutezh}}}\\
-    \vspace{1.5\baselineskip}
-    % Thesis type
+    % University and institute in chinese
+    \begingroup
+      \onehalfspacing
+      \fontsize{18}{18}\selectfont
+      % University
+      \@universityzh\\
+      % Institute
+      \@institutezh\\
+    \endgroup
+
+    \begin{spacing}{1.5}
+      % Thesis type in chinese
+      \begingroup
+        \fontsize{18}{18}\selectfont
+        \@thesistypezh\\
+        \ifTHESISOPTIONdraft
+          初稿\\
+        \fi
+      \endgroup
+
+      \vspace{\baselineskip}
+
+      % Institue name in English
+      \begingroup
+        \fontsize{14}{14}\selectfont
+        \@institute\\
+      \endgroup
+
+      % University and thesis type in English
+      \begingroup
+        \fontsize{16}{16}\selectfont
+        \@university\\
+        \@thesistype\\
+      \endgroup
+
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+
+      % Title in both of Chinese and English
+      \begingroup
+        \fontsize{18}{18}\selectfont
+        % Chinese title
+        \@titlezh\\
+        % English title
+        \@title\\
+      \endgroup
+
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+
+      % Author & advisor(s)
+      \begingroup
+        \fontsize{18}{18}\selectfont
+        \begin{tabular}{rll}
+          研究生： & \@authorzh（\@author）\\
+          指導教授： &\@advisorzh（\@advisor）\\
+          \ifx \@coadvisorAzh \@empty \else
+            & \@coadvisorAzh（\@coadvisorA）\\
+          \fi
+          \ifx \@coadvisorBzh \@empty \else
+            & \@coadvisorBzh（\@coadvisorB）\\
+          \fi
+        \end{tabular}
+      \endgroup
+      \vfill
+
+      % Degree year in both of Chinese and English
+      \begingroup
+        \fontsize{18}{18}\selectfont
+        \@degreeyearzh\\
+        \@degreemonth, \@degreeyear\\
+      \endgroup
+    \end{spacing}
   \end{center}
+  \restoregeometry
 }
 
 %-------------------------------------------------------------------------------
