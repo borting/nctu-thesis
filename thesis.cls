@@ -499,7 +499,7 @@
 %% \changemargin
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
 %% \endchangemargin
-\let\endchangemargin=\endlist 
+\let\endchangemargin=\endlist
 
 % Covert 'A' to 1, 'B' to 2, ...
 %TODO
@@ -530,6 +530,10 @@
   \ifnum\strcmp{#1}{T} = 0 二十 \else 零%
   \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi
 }
+
+% Keyword under abstract
+\newcommand{\keywordszh}[1]{\vfill\textbf{\textit{關鍵字: }} #1}
+\newcommand{\keywordsen}[1]{\vfill\textbf{\textit{Keywords: }} #1}
 
 %-------------------------------------------------------------------------------
 % Bibliography
