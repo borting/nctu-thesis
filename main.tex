@@ -1,4 +1,4 @@
-\documentclass[]{thesis}  % draft mode (default)
+\documentclass[final]{thesis}  % draft mode (default)
 %\documentclass[review]{thesis}  % review mode (show contents & reference only)
 %\documentclass[watermark,final]{thesis}  % final mode (version for library)
 
@@ -8,6 +8,16 @@
 
 \usepackage{multirow}     % for multi-row table
 \usepackage{booktabs}     % table style used in books
+
+% Keywords command
+\providecommand{\keywordszh}[1]{
+    \vfill
+    \textbf{\textit{關鍵字：}} #1
+}
+\providecommand{\keywordsen}[1]{
+    \vfill
+    \textbf{\textit{Keywords: }} #1
+}
 
 %-------------------------------------------------------------------------------
 % Configuration
@@ -29,16 +39,6 @@
 \maketitle
 
 %-------------------------------------------------------------------------------
-% Abstract
-%-------------------------------------------------------------------------------
-
-% 中文摘要
-\input{abs/abstract_zh}
-
-% 英文摘要
-\input{abs/abstract_en}
-
-%-------------------------------------------------------------------------------
 % Acknowledgement
 %-------------------------------------------------------------------------------
 
@@ -47,6 +47,16 @@
 
 % 題獻頁 (Only shown in the final mode of a PhD dissertation)
 \input{ack/dedication}
+
+%-------------------------------------------------------------------------------
+% Abstract
+%-------------------------------------------------------------------------------
+
+% 中文摘要
+\input{abs/abstract_zh}
+
+% 英文摘要
+\input{abs/abstract_en}
 
 %-------------------------------------------------------------------------------
 % 目錄
