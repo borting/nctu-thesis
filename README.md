@@ -1,4 +1,4 @@
-# 交通大學碩博士論文 XeLaTeX 模板
+# 國立陽明交通大學碩博士論文 XeLaTeX 模板
 
 [nctu-thesis](https://github.com/borting/nctu-thesis) template is developed based on XeLaTeX + xeCJK.
 
