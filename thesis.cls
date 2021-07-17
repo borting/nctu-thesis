@@ -691,7 +691,7 @@
       \begingroup
         \fontsize{18}{18}\selectfont
         \@degreeyearzh\\
-        \@degreemonth, \@degreeyear\\
+        \@degreemonth\ \@degreeyear\\
       \endgroup
     \end{spacing}
   \end{center}
