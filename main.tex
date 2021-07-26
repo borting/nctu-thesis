@@ -8,6 +8,16 @@
 
 \usepackage{multirow}     % for multi-row table
 \usepackage{booktabs}     % table style used in books
+\usepackage{chngcntr}     % make figure indexing sequential
+
+% Make figure index sequential (remove it if you need book view indexing)
+\counterwithout{figure}{chapter}
+\counterwithout{figure}{section}
+\setcounter{figure}{-1} % There is 1 figure keywork used in title page
+\counterwithout{table}{chapter}
+\counterwithout{table}{section}
+\counterwithout{equation}{chapter}
+\counterwithout{equation}{section}
 
 % Keywords command
 \providecommand{\keywordszh}[1]{

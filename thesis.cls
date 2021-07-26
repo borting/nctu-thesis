@@ -407,13 +407,13 @@
 % Set the chapter numbering to Chinese number in ToC
 \ifTHESISOPTIONzh
   \titlecontents{chapter}[0pt]{}%
-  {\bfseries\xCJKnumber{\thecontentslabel}、\hspace{0.5em}}{}%
+  {\bfseries 第\xCJKnumber{\thecontentslabel}章\hspace{0.5em}}{}%
   {\cftdotfill{\cftdotsep}\contentspage}%
 \else
 % Format the chapter numbering in ToC when using English
   \titlecontents{chapter}[0pt]{}%
   % Fix the chapter number within a box no matter it has 1 or 2 digits
-  {\bfseries\makebox[1em][l]{\thecontentslabel}\hspace{0.25em}}{}%
+  {\bfseries \makebox[1em][l]{\thecontentslabel}\hspace{0.25em}}{}%
   {\cftdotfill{\cftdotsep}\contentspage}%
 \fi
 
