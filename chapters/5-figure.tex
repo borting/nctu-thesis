@@ -24,6 +24,11 @@
 \textbf{注意:} 在呼叫圖的標籤的時候, 請寫 \textbf{Figure$\sim$\textbackslash ref\{label\}}.
 (請參考 .tex 檔看我是如何載入 Figure~\ref{fig:nctu_logo} 的吧).
 
+\subsection{Figure indexing}
+\label{subsec:fig_index}
+
+目前圖、表、公式的編號是用流水號 (1, 2, 3, ...)，如果需要修改成 book class 類似的章節號 (1.1, 1.2, 2.1, ...)，可以到 main.tex 將 counterwithout{} 註解掉。
+
 \section{Tables}
 
 我個人的習慣是把表格的內容放到另一個 .tex 內, 再把這些 .tex 檔放到另一個資料夾下 (e.g. \textit{tables/}), 讓本文看起來不會那麼亂.

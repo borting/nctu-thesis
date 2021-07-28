@@ -236,6 +236,7 @@
 
 % The name of your degree's field (e.g. Psychology, Computer Science)
 \def\field#1{\gdef\@field{#1}}
+\def\awarded#1{\gdef\@awarded{#1}}
 
 % The type of thesis in English
 \def\thesistype#1{\gdef\@thesistype{#1}}
@@ -262,22 +263,47 @@
 \def\location#1{\gdef\@location{#1}}
 
 % The name of advisor in English
-\def\advisor#1{\gdef\@advisor{#1}}
+\def\advisorFN#1{\gdef\@advisorFN{#1}}
+\def\advisorLN#1{\gdef\@advisorLN{#1}}
+
+% The title of advisor in English
+\def\advisorTitle#1{\gdef\@advisorTitle{#1}}
 
 % The name of advisor in Chinese
 \def\advisorzh#1{\gdef\@advisorzh{#1}}
 
+% The title of advisor in Chinese
+\def\advisorTitlezh#1{\gdef\@advisorTitlezh{#1}}
+
 % The name of co-advisor A in English
-\def\coadvisorA#1{\gdef\@coadvisorA{#1}}
+\def\coadvisorAFN#1{\gdef\@coadvisorAFN{#1}}
+\def\coadvisorALN#1{\gdef\@coadvisorALN{#1}}
+
+% The title of advisor A in English
+\def\coadvisorATitle#1{\gdef\@coadvisorATitle{#1}}
 
 % The name of co-advisor A in Chinese
 \def\coadvisorAzh#1{\gdef\@coadvisorAzh{#1}}
 
+% The title of advisor A in Chinese
+\def\coadvisorATitlezh#1{\gdef\@coadvisorATitlezh{#1}}
+
 % The name of co-advisor B in English
-\def\coadvisorB#1{\gdef\@coadvisorB{#1}}
+\def\coadvisorBFN#1{\gdef\@coadvisorBFN{#1}}
+\def\coadvisorBLN#1{\gdef\@coadvisorBLN{#1}}
+
+% The title of advisor B in English
+\def\coadvisorBTitle#1{\gdef\@coadvisorBTitle{#1}}
 
 % The name of co-advisor B in Chinese
 \def\coadvisorBzh#1{\gdef\@coadvisorBzh{#1}}
+
+% The title of advisor B in Chinese
+\def\coadvisorBTitlezh#1{\gdef\@coadvisorBTitlezh{#1}}
+
+% The name of the author in English
+\def\authorFN#1{\gdef\@authorFN{#1}}
+\def\authorLN#1{\gdef\@authorLN{#1}}
 
 % The name of the author in Chinese
 \def\authorzh#1{\gdef\@authorzh{#1}}
@@ -368,6 +394,10 @@
   \renewcommand{\listtablename}{\makebox[4em][s]{\@lottitle}}%
   \renewcommand{\tablename}{表}%
   \renewcommand{\figurename}{圖}%
+  \renewcommand{\cftfigpresnum}{圖~}%
+  \setlength{\cftfignumwidth}{4em}%
+  \renewcommand{\cfttabpresnum}{表~}%
+  \setlength{\cfttabnumwidth}{4em}%
 \else
   \renewcommand{\contentsname}{\@toctitle}%
   \renewcommand{\listfigurename}{\@loftitle}%
@@ -377,13 +407,13 @@
 % Set the chapter numbering to Chinese number in ToC
 \ifTHESISOPTIONzh
   \titlecontents{chapter}[0pt]{}%
-  {\bfseries\xCJKnumber{\thecontentslabel}、\hspace{0.5em}}{}%
+  {\bfseries 第\xCJKnumber{\thecontentslabel}章\hspace{0.5em}}{}%
   {\cftdotfill{\cftdotsep}\contentspage}%
 \else
 % Format the chapter numbering in ToC when using English
   \titlecontents{chapter}[0pt]{}%
   % Fix the chapter number within a box no matter it has 1 or 2 digits
-  {\bfseries\makebox[1em][l]{\thecontentslabel}\hspace{0.25em}}{}%
+  {\bfseries \makebox[1em][l]{\thecontentslabel}\hspace{0.25em}}{}%
   {\cftdotfill{\cftdotsep}\contentspage}%
 \fi
 
@@ -499,7 +529,7 @@
 %% \changemargin
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
 %% \endchangemargin
-\let\endchangemargin=\endlist 
+\let\endchangemargin=\endlist
 
 % Covert 'A' to 1, 'B' to 2, ...
 %TODO
@@ -591,141 +621,176 @@
 % Cover Page
 %-------------------------------------------------------------------------------
 
-\def\coverpage
-{
+\def\coverpage{
   \thispagestyle{empty}%
-% University, institute, and title
+  % University, institute, and title
   \begin{center}
     % University
-    %\fontsize{40}{40}{\makebox[10cm][s]{\textsf{\@universityzh}}}\\
-    \fontsize{40}{40}{\makebox[10cm][s]{\@universityzh}}\\
-    \vspace{1.5\baselineskip}
-    % Institute
-    %\fontsize{28}{28}{\makebox[1.333\width][s]{\textbf{\textsf{\@institutezh}}}}\\
-    \fontsize{28}{28}{\makebox[1.333\width][s]{\textbf{\@institutezh}}}\\
-    \vspace{1.5\baselineskip}
-    % Thesis type
-    %\fontsize{24}{24}{\makebox[4.5cm][s]{\textbf{\textsf{\@thesistypezh}}}}\\
-    \fontsize{24}{24}{\makebox[4.5cm][s]{\textbf{\@thesistypezh}}}\\
-    \ifTHESISOPTIONdraft
-      \vspace{1.5\baselineskip}
-      %\makebox[2cm][s]{\textbf{\textsf{初稿}}}\\
-      \makebox[2cm][s]{\textbf{初稿}}\\
-    \fi
-    \vfill
-    \singlespacing % set single spacing
-    % Chinese title
-    \LARGE{\@titlezh}\\
-    \vspace{0.75\baselineskip}
-    % English title
-    \LARGE{\@title}\\
-    \vfill
+    \begingroup
+      \onehalfspacing
+      \fontsize{18}{18}\selectfont
+      % University
+      \@universityzh\\
+      % Institute
+      \@institutezh\\
+    \endgroup
+    \begin{spacing}{1.5}
+      % Thesis type in chinese
+      \begingroup
+        \fontsize{18}{18}\selectfont
+        \@thesistypezh\\
+        \ifTHESISOPTIONdraft
+          初稿\\
+        \fi
+      \endgroup
+      \vspace{\baselineskip}
+      % Institue name in English
+      \begingroup
+        \fontsize{14}{14}\selectfont
+        \@institute\\
+      \endgroup
+      % University and thesis type in English
+      \begingroup
+        \fontsize{16}{16}\selectfont
+        \@university\\
+        \ifTHESISOPTIONmaster
+          Master \@thesistype\\
+        \fi
+      \endgroup
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      % Title in both of Chinese and English
+      \begingroup
+        \fontsize{18}{18}\selectfont
+        % Chinese title
+        \@titlezh\\
+        % English title
+        \@title\\
+      \endgroup
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      \vspace{\baselineskip}
+      % Author & advisor(s)
+      \begingroup
+        \fontsize{18}{18}\selectfont
+        \begin{tabular}{rll}
+          研究生： & \@authorzh（\@authorLN, \@authorFN）\\
+          指導教授： &\@advisorzh（\@advisorLN, \@advisorFN）\\
+          \ifx \@coadvisorAzh \@empty \else
+            & \@coadvisorAzh（\@coadvisorALN, \@coadvisorAFN）\\
+          \fi
+          \ifx \@coadvisorBzh \@empty \else
+            & \@coadvisorBzh（\@coadvisorBLN, \@coadvisorBLN）\\
+          \fi
+        \end{tabular}
+      \endgroup
+      \vfill
+      % Degree year in both of Chinese and English
+      \begingroup
+        \fontsize{18}{18}\selectfont
+        \@degreeyearzh\\
+        \@degreemonth\ \@degreeyear\\
+      \endgroup
+    \end{spacing}
   \end{center}
-% Author & advisors
-  \begin{flushleft}%
-    \singlespacing
-    \LARGE
-    \begin{tabular}{crll}%
-    % Author
-      &\LARGE{\makebox[4em][s]{研究生}：}&{\@authorzh}&\vspace{1em}\\%
-    % Advisor
-      &{指導教授：}&{\@advisorzh}&{博士}\\%
-    % Co-Advisor A
-      \ifx \@coadvisorAzh \@empty \else
-        &&{\@coadvisorAzh}&{博士}\\%
-      \fi
-    % Co-Advisor B
-      \ifx \@coadvisorBzh \@empty \else
-        &&{\@coadvisorBzh}&{博士}\\%
-      \fi
-    \end{tabular}%
-  \end{flushleft}
-  \vspace{1in}
-  \vfill
-% Submission date in Chinese
-  \begin{center}
-    \makebox[2.5\width][s]{\large\@degreeyearzh}\\
-  \end{center}
+  \restoregeometry
 }
 
 %-------------------------------------------------------------------------------
 % Title Page
 %-------------------------------------------------------------------------------
 
-\def\titlepage
-{
+\def\titlepage{
   \cleardoublepage
   \ClearShipoutPicture  % remove watermark in this page
   \thispagestyle{empty}
-% Chines & English titles
+  % Chines & English titles
   \begin{center}
-    \singlespacing\Large
-    \@titlezh\\
-    \vspace{0.25\baselineskip}
-    \@title\\
-    \vspace{0.25\baselineskip}
+    \onehalfspacing
+    \fontsize{18}{18}\selectfont
+    \begingroup
+      \@titlezh\\
+      \@title\\
+    \endgroup
   \end{center}
-% Author name and advisor name in Chinese and English
-  \begin{flushleft}
-    \singlespacing
-    \setlength{\tabcolsep}{0.25em}
-  % Chinese name
-    \begin{tabular}{rl}%
-      \large{\makebox[4em][s]{研究生}：}&\large{\@authorzh}\vspace{0.5em}\\%
-      \large{指導教授：}&{\large{\@advisorzh}}\\%
-      \ifx \@coadvisorAzh \@empty \else
-        &{\large{\@coadvisorAzh}}\\%
-      \fi
-      \ifx \@coadvisorBzh \@empty \else
-        &{\large{\@coadvisorBzh}}\\%
-      \fi
-    \end{tabular}%
-    \hfill
-  % English name
-    \begin{tabular}{rl}%
-      \large{Student:}&{\large{\@author}}\vspace{0.5em}\\%
-      \large{Advisor:}&{\large{\@advisor}}\\%
-      \ifx \@coadvisorA \@empty \else
-        &{\large{\@coadvisorA}}\\%
-      \fi
-      \ifx \@coadvisorB \@empty \else
-        &{\large{\@coadvisorB}}\\%
-      \fi
-    \end{tabular}
-  \end{flushleft}
+  \vspace{\baselineskip}
+  % Author name and advisor name in Chinese and English
+  \begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.8\textwidth}
+      \begin{flushleft}
+        \singlespacing
+        \setlength{\tabcolsep}{0.25em}
+        % Chinese name
+        \begin{tabular}{rl}%
+          \large{\makebox[4em][s]{研究生}：}&\large{\@authorzh}\vspace{0.5em}\\%
+          \large{指導教授：}&{\large{\@advisorzh\ 博士}}\\%
+          \ifx \@coadvisorAzh \@empty \else
+            &{\large{\@coadvisorAzh\ 博士}}\\%
+          \fi
+          \ifx \@coadvisorBzh \@empty \else
+            &{\large{\@coadvisorBzh\ 博士}}\\%
+          \fi
+        \end{tabular}%
+        \hfill
+        % English name
+        \begin{tabular}{rl}%
+          \large{Student:}&{\large{\@authorFN\ \@authorLN}}\vspace{0.5em}\\%
+          \large{Advisor:}&{\large{Dr. \@advisorFN\ \@advisorLN}}\\%
+          \ifx \@coadvisorAFN \@empty \else
+            &{\large{Dr. \@coadvisorAFN\ \@coadvisorALN}}\\%
+          \fi
+          \ifx \@coadvisorBFN \@empty \else
+            &{\large{Dr. \@coadvisorBFN\ \@coadvisorBLN}}\\%
+          \fi
+        \end{tabular}
+      \end{flushleft}
+    \end{subfigure}
+  \end{figure}
   \vfill
-% University & institute & thesis type in Chinese
+  % University & institute & thesis type in Chinese
   \begin{center}
-    \makebox[2\width][s]{\large\@universityzh}\\
-    \makebox[1.33\width][s]{\large\@institutezh}\\
-    \ifTHESISOPTIONdraft
-      \makebox[1.33\width][s]{\large\@thesistypezh 初稿}\\
-    \else
-      \makebox[1.33\width][s]{\large\@thesistypezh}\\
-    \fi
+    \begingroup
+      \onehalfspacing
+      \fontsize{14}{14}\selectfont
+      % University
+      \@universityzh\\
+      % Institute
+      \@institutezh\\
+      % Thesis type
+      \@thesistypezh\\
+      \ifTHESISOPTIONdraft
+        初稿\\
+      \fi
+    \endgroup
     \vfill
-% Submission description in English
-    \ifTHESISOPTIONdraft
-      \centerline{{A \@thesistype\ Draft}}%
-    \else
-      \centerline{{A \@thesistype}}%
-    \fi
-    Submitted to {\@institute}\\
-    \@college\\
-    \@university\\
-    in partial fulfilment of the requirements\\
-    for the Degree of\\
-    \@degree\\
-    in\\
-    \vspace{0.5\baselineskip}
-    \@field\\
+    % Submission description in English
+    \begingroup
+      \singlespacing
+      \fontsize{14}{14}\selectfont
+      \ifTHESISOPTIONdraft
+        \centerline{{A \@thesistype\ Draft}}%
+      \else
+        \centerline{{A \@thesistype}}%
+      \fi
+      Submitted to {\@institute}\\
+      \@college\\
+      \@university\\
+      in Partial Fulfilment of the Requirements\\
+      for the Degree of\\
+      {\@degree\ of \@field}\\
+      in\\
+      \@awarded\\
+    \endgroup
     \vspace{\baselineskip}
     \vfill
-% Submission date and location
+    % Submission date and location
     {{\@degreemonth} {\@degreeyear}}\\
-    \vspace{0.25\baselineskip}
     \@location\\
-    \vfill
+    \vspace{0.25\baselineskip}
+    %\vfill{0.25}
     \makebox[1.75\width][s]{\normalsize\@degreeyearzh}
   \end{center}
 }
@@ -778,7 +843,7 @@
   \vspace{2.5in}
   \rule[0pt]{0pt}{0pt} \\
   \begin{center}
-    \copyright {\@degreeyear} - {\@author}\\
+    \copyright {\@degreeyear} - {\@authorFN\ \@authorLN}\\
     \vspace{0.5\baselineskip}
     All rights reserved.\\
   \end{center}
@@ -792,9 +857,6 @@
 \ifTHESISOPTIONreview\else
 % Cover page
   \coverpage
-
-% Set page numbering to 'roman' (i, ii, iii, ...)
-  \frontmatter
 
 % Title page
   \titlepage
@@ -814,6 +876,9 @@
   \fi\fi
 \fi
 
+% Set page numbering to 'roman' (i, ii, iii, ...)
+\frontmatter
+
 % Reset page counter to zero, so that roman-style page numbering
 % can start from the abstract page.
 \ifTHESISOPTIONnctupagenum
@@ -826,8 +891,7 @@
 %-------------------------------------------------------------------------------
 
 % Page layout of Chinese abstract
-\def\abszhpage
-{
+\def\abszhpage{
   \cleardoublepage
   % Reserve pages for 授權書 + 中/英審定書 in final mode if book-style page
   % numbering is used
@@ -851,14 +915,14 @@
       \setlength{\tabcolsep}{0.25em}%
       \begin{tabular}{rlc}%
   % Advisor
-        \large{指導教授：}&{\large{\@advisorzh}}&{\large{博士}}\\%
+        \large{指導教授：}&{\large{\@advisorzh}}&{\large{\@advisorTitlezh}}\\%
   % Co-advisor A
         \ifx \@coadvisorAzh \@empty \else
-          &{\large{\@coadvisorAzh}}&{\large{博士}}\\%
+          &{\large{\@coadvisorAzh}}&{\large{\@coadvisorATitlezh}}\\%
         \fi
   % Co-advisor B
         \ifx \@coadvisorBzh \@empty \else
-          &{\large{\@coadvisorBzh}}&{\large{博士}}\\%
+          &{\large{\@coadvisorBzh}}&{\large{\@coadvisorBTitlezh}}\\%
         \fi
       \end{tabular}\\%
     \end{tabular*}\\
@@ -902,19 +966,19 @@
       \setlength{\tabcolsep}{0.25em}%
   % Author
       \begin{tabular}{rl}%
-        \large{Student:}&{\large{\@author}}\\%
+        \large{Student:}&{\large{\@authorFN\ \@authorLN}}\\%
       \end{tabular}&%
       \setlength{\tabcolsep}{0.25em}%
       \begin{tabular}{rl}%
   % Advisor
-        \large{Advisor:}&{\large{Dr. \@advisor}}\\%
+        \large{Advisor:}&{\large{\@advisorTitle\ \@advisorFN\ \@advisorLN}}\\%
   % Co-advisor A
-        \ifx \@coadvisorA \@empty \else
-          &{\large{Dr. \@coadvisorA}}\\%
+        \ifx \@coadvisorAFN \@empty \else
+          &{\large{\@coadvisorATitle\ \@coadvisorAFN\ \@coadvisorALN}}\\%
         \fi
   % Co-advisor B
-        \ifx \@coadvisorB \@empty \else
-          &{\large{Dr. \@coadvisorB}}\\%
+        \ifx \@coadvisorBFN \@empty \else
+          &{\large{\@coadvisorBTitle\ \@coadvisorBFN\ \@coadvisorBLN}}\\%
         \fi
       \end{tabular}\\%
     \end{tabular*}\\
@@ -947,8 +1011,8 @@
 {
   \cleardoublepage
   \ClearShipoutPicture  % remove watermark in this page
-  \phantomsection
-  \addcontentsline{toc}{chapter}{\textbf{\@acktitle}}
+  %\phantomsection
+  %\addcontentsline{toc}{chapter}{\textbf{\@acktitle}}
   \begin{center}
     \ifTHESISOPTIONzh
       {\LARGE \bf \makebox[3em][s]{\@acktitle}}\\
